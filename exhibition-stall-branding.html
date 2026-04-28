@@ -3,336 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exhibition Stall Branding | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Professional ${page.title} services in Riyadh, Saudi Arabia. High-quality solutions for your ${page.category.toLowerCase()} needs.">
-
-    <!-- Fonts -->
+    <title>Exhibition Stall Branding in Riyadh | Custom Booth Design | AQSA Print</title>
+    <meta name="description" content="End-to-end exhibition stall branding and booth design in Riyadh. We design, print, and install high-impact custom stalls for trade shows and corporate events.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="style.css">
-    
     <style>
-        .service-detail-section {
-            padding: 80px 0;
-        }
-        .service-content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        @media (min-width: 1024px) {
-            .service-content-grid {
-                grid-template-columns: 2fr 1fr;
-            }
-        }
-        .service-image {
-            width: 100%;
-            border-radius: var(--radius-xl);
-            margin-bottom: 30px;
-            box-shadow: var(--shadow-lg);
-        }
-        .service-desc-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 20px;
-        }
-        .service-desc-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray-600);
-            margin-bottom: 24px;
-        }
-        .service-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 40px 0;
-        }
-        .service-features li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 16px;
-            color: var(--gray-700);
-        }
-        .service-features li i {
-            color: var(--teal-primary);
-            font-size: 20px;
-        }
-        .sidebar-box {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 30px;
-            border: 1px solid var(--gray-100);
-            box-shadow: var(--shadow-md);
-            margin-bottom: 30px;
-            position: sticky;
-            top: 100px;
-        }
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--gray-900);
+        html{scroll-behavior:smooth}
+        *{scroll-margin-top:80px}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:92vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.7) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2;width:100%}
+        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+        .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+        .hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+        .hero-trust-item i{color:#2DB8A8;font-size:16px}
+        .lp-intro{padding:100px 0 60px;background:#fff}
+        .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .intro-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .intro-img img{width:100%;height:auto;display:block}
+        .intro-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px;line-height:1.2}
+        .intro-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:20px}
+        .intro-list{list-style:none;padding:0;margin:0}
+        .intro-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:15px;color:var(--gray-700)}
+        .intro-list li i{color:var(--teal-primary);font-size:18px;margin-top:2px;flex-shrink:0}
+        .lp-features{padding:80px 0;background:var(--gray-50)}
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:48px}
+        .feature-card{background:#fff;border-radius:var(--radius-xl);padding:36px 28px;text-align:center;border:1px solid var(--gray-100);transition:all .25s ease}
+        .feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--teal-light)}
+        .feature-icon{width:68px;height:68px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;color:var(--teal-dark)}
+        .feature-card h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .feature-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-details{padding:100px 0;background:#fff}
+        .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .details-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px}
+        .details-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:24px}
+        .details-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .details-img img{width:100%;height:auto;display:block}
+        .details-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        .spec-item{background:var(--gray-50);border-radius:var(--radius-lg);padding:20px}
+        .spec-item h5{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .spec-item p{font-size:13px;color:var(--gray-500);margin:0}
+        .lp-process{padding:100px 0;background:var(--gray-50)}
+        .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px}
+        .work-step{text-align:center}
+        .work-num{width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 18px;box-shadow:0 8px 24px rgba(45,184,168,.3)}
+        .work-step h4{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .work-step p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-faq{padding:100px 0;background:var(--gray-50)}
+        .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:48px}
+        .faq-item{background:#fff;border-radius:var(--radius-xl);padding:28px;border:1px solid var(--gray-100);transition:all .2s ease}
+        .faq-item:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md)}
+        .faq-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .faq-item h4 i{color:var(--teal-primary);font-size:18px;flex-shrink:0}
+        .faq-item p{font-size:14px;color:var(--gray-600);line-height:1.7}
+        .lp-cta{padding:110px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-note{color:rgba(255,255,255,.55);font-size:14px}
+        .cta-note i{color:var(--teal-primary);margin-right:6px}
+        @media(max-width:768px){
+            .lp-hero-content{padding:140px 20px 80px}
+            .lp-hero-ctas{flex-direction:column;align-items:center}
+            .lp-hero-ctas .btn{width:100%;max-width:320px}
+            .intro-grid,.details-grid{grid-template-columns:1fr;gap:40px}
+            .feature-grid{grid-template-columns:1fr}
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
                         <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div>
-                        <span class="logo-text text-gradient">AQSA</span>
-                        <span class="logo-text-ar">أقصى</span>
-                    </div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
-
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <div class="nav-dropdown">
-                        <a href="services.html" class="nav-link active nav-dropdown-trigger">
-                            Services <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
-                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
-                        </div>
-                    </div>
-                    <div class="nav-dropdown">
-                        <a href="shop.html" class="nav-link nav-dropdown-trigger">
-                            Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
-                        </div>
-                    </div>
+                    <a href="services.html" class="nav-link active">Services</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
-
                 <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary btn-quote">
-                        <i class="fas fa-calendar-check"></i> Get Quote
-                    </a>
-                    <button class="mobile-menu-btn" aria-label="Toggle menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
         <div class="mobile-menu">
             <a href="index.html" class="mobile-menu-link">Home</a>
             <a href="services.html" class="mobile-menu-link">Services</a>
-            <a href="shop.html" class="mobile-menu-link">Products</a>
             <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
             <a href="about.html" class="mobile-menu-link">About</a>
             <a href="contact.html" class="mobile-menu-link">Contact</a>
-            <div class="mobile-menu-cta">
-                <a href="quote.html" class="btn btn-primary" style="width: 100%;">
-                    <i class="fab fa-whatsapp"></i> Get Free Quote
-                </a>
-            </div>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a></div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="lp-hero">
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80')"></div>
         <div class="container">
-            <div class="page-hero-content">
-                <h1 class="section-title"><span class="text-gradient">Exhibition Stall Branding</span></h1>
-                <p class="section-subtitle">Premium ${page.title} tailored for your business in KSA.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Detail -->
-    <section class="service-detail-section">
-        <div class="container">
-            <div class="service-content-grid">
-                <!-- Main Content -->
-                <div>
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" alt="Exhibition Stall Branding" class="service-image">
-                    
-                    <h2 class="service-desc-title">About This Service</h2>
-                    <p class="service-desc-text">
-                        Welcome to our ${page.title} service page. As part of our comprehensive ${page.category} solutions, we provide top-tier ${page.title.toLowerCase()} that meet the highest standards of quality in Riyadh. Our experienced team uses state-of-the-art technology to ensure your project stands out.
-                    </p>
-                    <p class="service-desc-text">
-                        Whether you are a startup or a large enterprise in Saudi Arabia, our ${page.title.toLowerCase()} is designed to be cost-effective, durable, and highly impactful. We handle everything from conceptualization to final delivery, ensuring a seamless experience.
-                    </p>
-
-                    <h2 class="service-desc-title">Key Features</h2>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> High-quality materials for maximum durability</li>
-                        <li><i class="fas fa-check-circle"></i> Custom designs tailored to your brand identity</li>
-                        <li><i class="fas fa-check-circle"></i> Fast turnaround and professional installation available</li>
-                        <li><i class="fas fa-check-circle"></i> Competitive pricing for the Saudi market</li>
-                    </ul>
-
-                    <a href="quote.html" class="btn btn-primary">Request a Custom Quote</a>
+            <div class="lp-hero-content">
+                <span class="lp-hero-badge">Trade Show Dominance</span>
+                <h1>High-Impact <span>Exhibition Stall Branding</span></h1>
+                <p class="hero-subtitle">Transform empty floor space into an immersive brand experience. We provide end-to-end exhibition stall design, fabrication, and installation services across Riyadh.</p>
+                <div class="lp-hero-ctas">
+                    <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
                 </div>
-
-                <!-- Sidebar -->
-                <aside>
-                    <div class="sidebar-box">
-                        <h3 class="sidebar-title">Need Help?</h3>
-                        <p style="color: var(--gray-600); margin-bottom: 20px; line-height: 1.6;">Our experts in Riyadh are ready to assist you with your printing requirements.</p>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 16px;">
-                            <a href="tel:+966556683044" style="display: flex; align-items: center; gap: 12px; color: var(--gray-800); text-decoration: none; font-weight: 600;">
-                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; color: var(--teal-primary);">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                +966 55 668 3044
-                            </a>
-                            <a href="https://wa.me/966556683044" style="display: flex; align-items: center; gap: 12px; color: var(--gray-800); text-decoration: none; font-weight: 600;">
-                                <div style="width: 40px; height: 40px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; color: white;">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                Chat on WhatsApp
-                            </a>
-                            <a href="mailto:info@aqsaprint.com" style="display: flex; align-items: center; gap: 12px; color: var(--gray-800); text-decoration: none; font-weight: 600;">
-                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; color: var(--teal-primary);">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                info@aqsaprint.com
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h3 class="sidebar-title">Related Services</h3>
-                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-                            <li><a href="signages.html" style="color: var(--teal-primary); text-decoration: none; font-weight: 500;">&rarr; Signages</a></li>
-                            <li><a href="vehicle-branding.html" style="color: var(--teal-primary); text-decoration: none; font-weight: 500;">&rarr; Vehicle Branding</a></li>
-                            <li><a href="rollups-backdrops.html" style="color: var(--teal-primary); text-decoration: none; font-weight: 500;">&rarr; Rollups & Backdrops</a></li>
-                            <li><a href="indoor-outdoor-branding.html" style="color: var(--teal-primary); text-decoration: none; font-weight: 500;">&rarr; Indoor & Outdoor Branding</a></li>
-                        </ul>
-                    </div>
-                </aside>
+                <div class="hero-trust">
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Custom 3D Fabrication</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> On-Site Installation</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Turnkey Solutions</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="lp-intro">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-img">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Exhibition Stall Branding Riyadh" loading="lazy">
+                </div>
+                <div class="intro-content">
+                    <h2>Stand Out on the Show Floor</h2>
+                    <p>In a crowded exhibition hall, you have roughly three seconds to capture a passing attendee's attention. A standard shell-scheme booth with basic rollup banners simply won't cut it when competing against industry leaders.</p>
+                    <p>AQSA Print specializes in creating custom, immersive exhibition stalls that draw people in. From structural woodwork and custom display counters to massive seamless wall graphics and integrated lighting, we handle everything required to make your booth the centerpiece of the event.</p>
+                    <ul class="intro-list">
+                        <li><i class="fas fa-check-circle"></i> Complete transformation of standard shell-scheme booths</li>
+                        <li><i class="fas fa-check-circle"></i> Custom-built structural displays and wooden fabrications</li>
+                        <li><i class="fas fa-check-circle"></i> Massive seamless wall graphics using tension fabric or vinyl</li>
+                        <li><i class="fas fa-check-circle"></i> Integration of LED lighting, screens, and interactive elements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-features fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our Capabilities</span>
+                <h2 class="section-title">Stall Branding Solutions</h2>
+                <p class="section-subtitle">We offer scalable solutions depending on your budget and space.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cube"></i></div>
+                    <h4>Shell Scheme Upgrades</h4>
+                    <p>We transform basic rented shell schemes by covering the generic walls with seamless printed vinyl or fabric panels, instantly elevating the space without structural changes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-hammer"></i></div>
+                    <h4>Custom Wooden Stands</h4>
+                    <p>Fully bespoke structural builds. We fabricate wooden walls, archways, and display plinths painted and branded to your exact corporate specifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h4>3D Lettering & Lighting</h4>
+                    <p>Make your logo pop with custom-cut 3D acrylic signage mounted to your stall walls, often back-lit with LEDs to ensure maximum visibility across the hall.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-store"></i></div>
+                    <h4>Branded Counters & Furniture</h4>
+                    <p>Complete the look with custom-branded reception counters, printed podiums, and floor graphics that tie the entire booth together cohesively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-details fade-in">
+        <div class="container">
+            <div class="details-grid">
+                <div class="details-content">
+                    <h2>Turnkey Event Support</h2>
+                    <p>Organizing an exhibition is stressful enough without having to worry about managing builders, printers, and installers separately. AQSA Print acts as your single point of contact.</p>
+                    <p>We print all materials in our Riyadh facility to ensure perfect color matching. On the buildup day, our professional installation team handles the entire setup, ensuring every graphic is perfectly aligned and every light is functioning, so you can walk into a finished booth on opening day.</p>
+                    <div class="details-specs">
+                        <div class="spec-item"><h5>Design</h5><p>3D Renderings Available</p></div>
+                        <div class="spec-item"><h5>Wall Graphics</h5><p>Vinyl, Foamboard, Fabric</p></div>
+                        <div class="spec-item"><h5>Flooring</h5><p>Custom Printed Vinyl / Carpet</p></div>
+                        <div class="spec-item"><h5>Logistics</h5><p>Full Setup & Teardown</p></div>
+                    </div>
+                </div>
+                <div class="details-img">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="Exhibition Booth Fabrication" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-process fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">How We Work</span>
+                <h2 class="section-title">The Project Workflow</h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-step"><div class="work-num">1</div><h4>Brief & Planning</h4><p>We review your floor plan, booth size, and budget to determine the best structural and branding approach.</p></div>
+                <div class="work-step"><div class="work-num">2</div><h4>Design & Mockup</h4><p>Our team creates a layout mapping exactly where graphics, counters, and 3D signage will be placed.</p></div>
+                <div class="work-step"><div class="work-num">3</div><h4>In-House Production</h4><p>We print the wall panels, route the 3D lettering, and fabricate any custom counters at our facility.</p></div>
+                <div class="work-step"><div class="work-num">4</div><h4>On-Site Installation</h4><p>Our expert team arrives on buildup day to install the flooring, erect the walls, apply graphics, and set up lighting.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-faq fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How far in advance should I book?</h4>
+                    <p>For a basic shell-scheme upgrade (just wall graphics), we need 3-5 days. For custom fabricated wooden stalls, we recommend starting the process 3-4 weeks before the exhibition buildup date.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do you handle the venue approvals?</h4>
+                    <p>Yes. If your stall requires structural modifications or electrical work, we can provide the necessary technical drawings and materials specifications required for venue management approval.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> What happens after the exhibition?</h4>
+                    <p>We handle the teardown process. If you purchased modular hardware or 3D signage, we will pack it safely for you to reuse at future events. Temporary structures and vinyls will be disposed of.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Can you print graphics for a booth built by someone else?</h4>
+                    <p>Absolutely. If you already have a contractor building your booth structure, we can act solely as your large-format print partner to produce the wall graphics, floor decals, and signs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-cta">
+        <div class="container">
+            <h2>Let's Build an Unforgettable Experience</h2>
+            <p>Contact our exhibition specialists to discuss your upcoming event in Riyadh.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Request Consultation</a>
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
+            <p class="cta-note"><i class="fas fa-phone"></i> Or call us: +966 55 668 3044</p>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs>
-                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
-                                </linearGradient>
-                            </defs>
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                             <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
                             <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
                             <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
                         </svg>
                         <span class="footer-logo-text">AQSA</span>
                     </div>
-                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <p class="footer-description">Your trusted partner for all printing, signage, and exhibition needs in Riyadh, KSA.</p>
                 </div>
                 <div>
                     <h4 class="footer-title">Services</h4>
                     <ul class="footer-links">
                         <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
                         <li><a href="signages.html">Signages</a></li>
-                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
-                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
-                        <li><a href="flags.html">Flags</a></li>
-                        <li><a href="promotional-gifts.html">Promotional Gifts</a></li>
+                        <li><a href="printing-services.html">Print Services</a></li>
+                        <li><a href="pop-up-stands.html">Pop-Up Stands</a></li>
+                        <li><a href="exhibition-stall-branding.html">Exhibition Stalls</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="quote.html">Get a Quote</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact Us</h4>
+                    <h4 class="footer-title">Contact</h4>
                     <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riyadh, Saudi Arabia</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+966 55 668 3044<br>+966 55 989 6763</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@aqsaprint.com</span>
-                        </li>
-                        <li>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+966 55 668 3044</span>
-                        </li>
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
         </div>
     </footer>
 
-    <!-- Floating Buttons -->
-    
-
-    <!-- Shared JavaScript -->
     <script src="main.js"></script>
+    <script>
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    </script>
 </body>
 </html>
