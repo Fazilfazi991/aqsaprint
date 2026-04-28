@@ -3,10 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flex & Banner Printing in Riyadh | AQSA Print</title>
-    <meta name="description" content="Banner printing.">
+    <title>Flex & Large Format Printing in Riyadh | AQSA Print</title>
+    <meta name="description" content="High-impact large format printing in Riyadh. Flex banners, billboards, roll-ups, and event backdrops printed with durable, weather-resistant inks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        *{scroll-margin-top:80px}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:92vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.7) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2;width:100%}
+        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+        .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+        .hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+        .hero-trust-item i{color:#2DB8A8;font-size:16px}
+        .lp-intro{padding:100px 0 60px;background:#fff}
+        .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .intro-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .intro-img img{width:100%;height:auto;display:block}
+        .intro-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px;line-height:1.2}
+        .intro-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:20px}
+        .intro-list{list-style:none;padding:0;margin:0}
+        .intro-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:15px;color:var(--gray-700)}
+        .intro-list li i{color:var(--teal-primary);font-size:18px;margin-top:2px;flex-shrink:0}
+        .lp-features{padding:80px 0;background:var(--gray-50)}
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:48px}
+        .feature-card{background:#fff;border-radius:var(--radius-xl);padding:36px 28px;text-align:center;border:1px solid var(--gray-100);transition:all .25s ease}
+        .feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--teal-light)}
+        .feature-icon{width:68px;height:68px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;color:var(--teal-dark)}
+        .feature-card h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .feature-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-details{padding:100px 0;background:#fff}
+        .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .details-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px}
+        .details-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:24px}
+        .details-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .details-img img{width:100%;height:auto;display:block}
+        .details-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        .spec-item{background:var(--gray-50);border-radius:var(--radius-lg);padding:20px}
+        .spec-item h5{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .spec-item p{font-size:13px;color:var(--gray-500);margin:0}
+        .lp-process{padding:100px 0;background:var(--gray-50)}
+        .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px}
+        .work-step{text-align:center}
+        .work-num{width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 18px;box-shadow:0 8px 24px rgba(45,184,168,.3)}
+        .work-step h4{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .work-step p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-faq{padding:100px 0;background:var(--gray-50)}
+        .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:48px}
+        .faq-item{background:#fff;border-radius:var(--radius-xl);padding:28px;border:1px solid var(--gray-100);transition:all .2s ease}
+        .faq-item:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md)}
+        .faq-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .faq-item h4 i{color:var(--teal-primary);font-size:18px;flex-shrink:0}
+        .faq-item p{font-size:14px;color:var(--gray-600);line-height:1.7}
+        .lp-cta{padding:110px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-note{color:rgba(255,255,255,.55);font-size:14px}
+        .cta-note i{color:var(--teal-primary);margin-right:6px}
+        @media(max-width:768px){
+            .lp-hero-content{padding:140px 20px 80px}
+            .lp-hero-ctas{flex-direction:column;align-items:center}
+            .lp-hero-ctas .btn{width:100%;max-width:320px}
+            .intro-grid,.details-grid{grid-template-columns:1fr;gap:40px}
+            .feature-grid{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -17,29 +95,48 @@
                         <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="services.html" class="nav-link active">Services</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
+                <div class="header-actions">
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a></div>
         </div>
     </header>
 
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1542362567-b07e54358753?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <span class="section-badge" style="color: white; border-color: rgba(255,255,255,0.3);">Branding</span>
-                <h1>Banners That Grab Attention</h1>
-                <p class="text-white" style="font-size: 1.2rem; margin-bottom: 2rem;">Large format flex printing.</p>
+                <span class="lp-hero-badge">Large Format Specialists</span>
+                <h1>Go Big with <span>Flex & Banner Printing</span></h1>
+                <p class="hero-subtitle">High-impact large format printing in Riyadh. Billboards, roll-ups, and event backdrops printed with durable, weather-resistant inks for maximum visibility.</p>
                 <div class="lp-hero-ctas">
-                    <a href="quote.html" class="btn btn-primary">Get Free Quote</a>
-                    <a href="https://wa.me/966556683044" class="btn-wa">WhatsApp</a>
+                    <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+                </div>
+                <div class="hero-trust">
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Seamless Large Sizes</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Weather-Resistant Inks</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Indoor & Outdoor Media</div>
                 </div>
             </div>
         </div>
@@ -47,32 +144,175 @@
 
     <section class="lp-intro">
         <div class="container">
-            <div class="lp-intro-inner">
-                <h2 class="section-title">Premium Flex & Banner Printing</h2>
-                <p>Banners for every event.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="lp-features">
-        <div class="container">
-            <div class="lp-features-grid"><div class="lp-feature-card"><h3>Premium Quality</h3><p>Durable and professional.</p></div><div class="lp-feature-card"><h3>Fast Turnaround</h3><p>Meeting your deadlines.</p></div></div>
-        </div>
-    </section>
-
-    <section class="lp-service-block">
-        <div class="container">
-            <div class="lp-service-block-inner">
-                <div class="lp-service-block-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Flex & Banner Printing Detail"></div>
-                <div class="lp-service-block-content">
-                    <h3>Professional Flex & Banner Printing Solutions</h3>
-                    <p>High quality.</p>
-                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+            <div class="intro-grid">
+                <div class="intro-img">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Large Format Printing Riyadh" loading="lazy">
+                </div>
+                <div class="intro-content">
+                    <h2>Command Attention at Any Distance</h2>
+                    <p>When you need to make a massive impact, standard printing sizes won't cut it. Our large format and flex printing services are designed to produce striking, larger-than-life graphics that command attention from afar.</p>
+                    <p>Using the latest eco-solvent and latex printing technologies, we deliver rich, vibrant colors that withstand Riyadh's intense sun and weather, ensuring your message stays bright and clear for months or years.</p>
+                    <ul class="intro-list">
+                        <li><i class="fas fa-check-circle"></i> Print widths up to 5 meters without seams</li>
+                        <li><i class="fas fa-check-circle"></i> High-resolution output for crisp images up close or far away</li>
+                        <li><i class="fas fa-check-circle"></i> Full finishing services including eyelets, hemming, and pole pockets</li>
+                        <li><i class="fas fa-check-circle"></i> Options for backlit, blockout, and mesh materials</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer"><div class="container"><p>© 2025 AQSA Print. Riyadh, KSA.</p></div></footer>
+    <section class="lp-features fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our Products</span>
+                <h2 class="section-title">Large Format Solutions</h2>
+                <p class="section-subtitle">Everything you need for events, exhibitions, and outdoor advertising.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-image"></i></div>
+                    <h4>Flex Banners & Hoardings</h4>
+                    <p>Durable PVC flex banners for outdoor advertising, construction site hoardings, and large promotional displays. Available in frontlit and backlit variants.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-columns"></i></div>
+                    <h4>Roll-up & Pop-up Stands</h4>
+                    <p>Portable display solutions perfect for exhibitions, trade shows, and retail environments. High-quality print media loaded into durable aluminum cassettes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                    <h4>Event Backdrops</h4>
+                    <p>Massive, non-reflective fabric or vinyl backdrops for press conferences, red carpets, and corporate stages. Printed seamlessly for a professional look.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-sticky-note"></i></div>
+                    <h4>Window & Wall Graphics</h4>
+                    <p>Large format self-adhesive vinyl for retail storefronts, office interiors, and glass partitions. Including clear, frosted, and one-way vision options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-details fade-in">
+        <div class="container">
+            <div class="details-grid">
+                <div class="details-content">
+                    <h2>Engineered for Durability</h2>
+                    <p>Large format prints are often subjected to harsh environments. That's why we use premium, weather-resistant inks and robust substrates designed specifically for longevity.</p>
+                    <p>Our flex materials range from lightweight options for short-term promotions to heavy-duty, reinforced blockout materials for long-term outdoor installations. We also offer wind-permeable mesh banners for high-wind areas like scaffolding and building wraps.</p>
+                    <div class="details-specs">
+                        <div class="spec-item"><h5>Max Print Width</h5><p>Up to 5 Meters Seamless</p></div>
+                        <div class="spec-item"><h5>Ink Types</h5><p>Eco-Solvent, Latex, UV</p></div>
+                        <div class="spec-item"><h5>Durability</h5><p>UV & Water Resistant</p></div>
+                        <div class="spec-item"><h5>Finishing</h5><p>Hemming, Eyelets, Pockets</p></div>
+                    </div>
+                </div>
+                <div class="details-img">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Banner Finishing Process" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-process fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">How We Work</span>
+                <h2 class="section-title">Our Production Process</h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-step"><div class="work-num">1</div><h4>Consultation & Sizing</h4><p>We discuss your application (indoor/outdoor, duration) to recommend the right material and verify final dimensions.</p></div>
+                <div class="work-step"><div class="work-num">2</div><h4>Artwork Verification</h4><p>Large formats require high-resolution files. We rigorously check your artwork to ensure it won't pixelate when printed at scale.</p></div>
+                <div class="work-step"><div class="work-num">3</div><h4>Wide Format Printing</h4><p>Your graphics are printed using industrial wide-format plotters calibrated for exact color reproduction.</p></div>
+                <div class="work-step"><div class="work-num">4</div><h4>Finishing & Assembly</h4><p>We add necessary finishing touches like welded hems, metal eyelets, or mount the prints into roll-up stand hardware.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-faq fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How large can you print?</h4>
+                    <p>We can print seamlessly up to 5 meters wide and essentially infinite length. For sizes larger than 5 meters in both dimensions, we use high-frequency welding to join panels seamlessly.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> What resolution do my images need to be?</h4>
+                    <p>For large format viewing (from a distance), 100-150 DPI at actual size is usually sufficient. Vector files (AI, EPS) are preferred as they scale infinitely without losing quality.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do you provide installation services?</h4>
+                    <p>Yes. For large banners, building wraps, and complex hoardings, our professional installation team in Riyadh will ensure the graphics are mounted securely and safely.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> What is the difference between frontlit and backlit flex?</h4>
+                    <p>Frontlit flex is opaque and designed to be illuminated from the front (or viewed in daylight). Backlit flex is translucent, designed to be placed over a light box for illumination from behind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-cta">
+        <div class="container">
+            <h2>Ready to Go Large?</h2>
+            <p>Contact us with your dimensions for an immediate quote.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
+            <p class="cta-note"><i class="fas fa-phone"></i> Or call us: +966 55 668 3044</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing and branding needs in Riyadh, KSA.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Printing Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="digital-printing.html">Digital Printing</a></li>
+                        <li><a href="offset-printing.html">Offset Printing</a></li>
+                        <li><a href="uv-printing.html">UV Printing</a></li>
+                        <li><a href="flex-banner-printing.html">Large Format</a></li>
+                        <li><a href="screen-printing.html">Screen Printing</a></li>
+                        <li><a href="dtf-printing.html">DTF Printing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    </script>
 </body>
 </html>
