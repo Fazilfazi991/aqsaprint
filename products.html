@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog | AQSA Print UAE</title>
+    <meta name="description" content="Browse our extensive catalog of printing products. High-quality business cards, banners, signs, and promotional gifts.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .catalog-section {
+            padding: 60px 0 100px;
+        }
+
+        .catalog-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 1024px) {
+            .catalog-container {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+
+        /* Sidebar Filters */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filter-group {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--gray-100);
+            margin-bottom: 24px;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--gray-600);
+            transition: color var(--transition-fast);
+        }
+
+        .filter-item:hover {
+            color: var(--teal-primary);
+        }
+
+        .filter-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--teal-primary);
+            cursor: pointer;
+        }
+
+        /* Catalog Main Area */
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .results-count {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        .sort-select {
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            font-size: 14px;
+            color: var(--gray-700);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sort-select:focus {
+            border-color: var(--teal-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .load-more {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Quick View Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            padding: 20px;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--radius-xl);
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--gray-400);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-image {
+            background: var(--gray-50);
+            height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image {
+                height: 100%;
+            }
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 40px;
+        }
+
+        .modal-category {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teal-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+
+        .modal-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+        }
+
+        .modal-description {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E8A5B8"/>
+                                <stop offset="100%" style="stop-color:#2DB8A8"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
+                        <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
+                    </svg>
+                    <div>
+                        <span class="logo-text text-gradient">AQSA</span>
+                        <span class="logo-text-ar">أقصى</span>
+                    </div>
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="products.html" class="nav-link active">Products</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html" class="nav-link nav-dropdown-trigger">
+                            Solutions <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="nav-dropdown-menu">
+                            <a href="products.html" class="nav-dropdown-item">Business Cards</a>
+                            <a href="services.html" class="nav-dropdown-item">Signage & Banners</a>
+                            <a href="services.html" class="nav-dropdown-item">Vehicle Branding</a>
+                            <a href="products.html" class="nav-dropdown-item">Promotional Items</a>
+                            <a href="products.html" class="nav-dropdown-item">Packaging</a>
+                        </div>
+                    </div>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="quote.html" class="btn btn-primary btn-quote">
+                        <i class="fas fa-calendar-check"></i> Get Quote
+                    </a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="products.html" class="mobile-menu-link">Products</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta">
+                <a href="quote.html" class="btn btn-primary" style="width: 100%;">
+                    <i class="fab fa-whatsapp"></i> Get Free Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="section-title">Product <span class="text-gradient">Catalog</span></h1>
+                <p class="section-subtitle">Premium printing products for every business need. Customize and order online with fast delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-container">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-title"><i class="fas fa-filter"></i> Categories</h3>
+                        <div class="filter-list">
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Business Cards" checked>
+                                <span>Business Cards</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Stationery" checked>
+                                <span>Letterheads & Stationery</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Marketing" checked>
+                                <span>Flyers & Brochures</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Signage" checked>
+                                <span>Rollup Banners</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Signs" checked>
+                                <span>Business Signs</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Vehicle" checked>
+                                <span>Vehicle Graphics</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Apparel" checked>
+                                <span>Promotional Apparel</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="Gifts" checked>
+                                <span>Corporate Gifts</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Catalog Content -->
+                <main class="catalog-main">
+                    <div class="catalog-header">
+                        <span class="results-count">Showing <span id="item-count">8</span> products</span>
+                        <select class="sort-select">
+                            <option value="popular">Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid" id="products-container">
+                        <!-- Products will be injected here or listed statically -->
+                        <!-- 1. Business Cards -->
+                        <div class="product-card" data-category="Business Cards" data-price="250">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" alt="Premium Business Cards">
+                                <span class="product-badge">Popular</span>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Business Cards</span>
+                                <h3 class="product-title">Premium Silk Cards</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 250</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Silk Business Cards', 'Premium 400gsm silk finish cards with high-quality offset printing.', 'AED 250', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80', 'Business Cards')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Stationery -->
+                        <div class="product-card" data-category="Stationery" data-price="150">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&q=80" alt="Corporate Letterheads">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Stationery</span>
+                                <h3 class="product-title">Corporate Letterheads</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 150</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Corporate Letterheads', 'Professional 100gsm bond paper letterheads for your business communications.', 'AED 150', 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=800&q=80', 'Stationery')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Marketing -->
+                        <div class="product-card" data-category="Marketing" data-price="180">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" alt="Flyers & Brochures">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Marketing</span>
+                                <h3 class="product-title">A4 Glossy Flyers</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 180</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('A4 Glossy Flyers', 'Vibrant full-color flyers on 150gsm glossy art paper.', 'AED 180', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80', 'Marketing')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Signage -->
+                        <div class="product-card" data-category="Signage" data-price="320">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Rollup Banners">
+                                <span class="product-badge">Best Seller</span>
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Signage</span>
+                                <h3 class="product-title">Economy Rollup Stand</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 320</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Economy Rollup Stand', 'Standard 85x200cm rollup banner with aluminum stand and carry bag.', 'AED 320', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', 'Signage')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Signs -->
+                        <div class="product-card" data-category="Signs" data-price="500">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Business Signs">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Signs</span>
+                                <h3 class="product-title">Acrylic Wall Sign</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 500</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Acrylic Wall Sign', 'Elegant clear acrylic signage with standoff mounts for office branding.', 'AED 500', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', 'Signs')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. Vehicle -->
+                        <div class="product-card" data-category="Vehicle" data-price="800">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Vehicle Graphics">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Vehicle</span>
+                                <h3 class="product-title">Van Partial Branding</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 800</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Van Partial Branding', 'High-quality vinyl graphics for vehicle doors and sides.', 'AED 800', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', 'Vehicle')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7. Apparel -->
+                        <div class="product-card" data-category="Apparel" data-price="45">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=600&q=80" alt="Promotional Apparel">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Apparel</span>
+                                <h3 class="product-title">Branded Cotton T-Shirt</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 45</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Branded Cotton T-Shirt', '100% cotton T-shirts with high-quality screen printing or embroidery.', 'AED 45', 'https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=800&q=80', 'Apparel')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8. Gifts -->
+                        <div class="product-card" data-category="Gifts" data-price="20">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=600&q=80" alt="Corporate Gifts">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">Gifts</span>
+                                <h3 class="product-title">Custom Branded Pens</h3>
+                                <div class="product-price">
+                                    <span class="price-current">AED 20</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="product-btn product-btn-primary" onclick="openQuickView('Custom Branded Pens', 'Elegant ballpoint pens with your company logo laser engraved.', 'AED 20', 'https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=800&q=80', 'Gifts')">Quick View</button>
+                                    <a href="quote.html" class="product-btn product-btn-secondary">Customize</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="load-more">
+                        <button class="btn btn-secondary">Load More Products</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quick-view">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeQuickView()"><i class="fas fa-times"></i></span>
+            <div class="modal-image">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <span class="modal-category" id="modal-cat"></span>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <div class="modal-price" id="modal-price"></div>
+                <p class="modal-description" id="modal-desc"></p>
+                <div class="modal-actions">
+                    <a href="quote.html" class="btn btn-primary">Customize Now</a>
+                    <a href="https://wa.me/971501234567" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Inquiry</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs>
+                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
+                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing needs in UAE. Premium quality, fast turnaround, and exceptional service.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Business Printing</a></li>
+                        <li><a href="services.html">Signage & Banners</a></li>
+                        <li><a href="services.html">Vehicle Branding</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="quote.html">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/971501234567" class="floating-btn floating-btn-whatsapp" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+971501234567" class="floating-btn floating-btn-phone" aria-label="Call us">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        function openQuickView(title, desc, price, img, cat) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-price').innerText = price;
+            document.getElementById('modal-img').src = img;
+            document.getElementById('modal-cat').innerText = cat;
+            document.getElementById('quick-view').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Filtering Logic
+        const filters = document.querySelectorAll('input[name="category"]');
+        const cards = document.querySelectorAll('.product-card');
+
+        filters.forEach(filter => {
+            filter.addEventListener('change', () => {
+                const checkedCategories = Array.from(filters)
+                    .filter(i => i.checked)
+                    .map(i => i.value);
+
+                let visibleCount = 0;
+                cards.forEach(card => {
+                    const cat = card.dataset.category;
+                    if (checkedCategories.includes(cat)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                document.getElementById('item-count').innerText = visibleCount;
+            });
+        });
+
+        // Sorting Logic
+        const sortSelect = document.querySelector('.sort-select');
+        const container = document.getElementById('products-container');
+
+        sortSelect.addEventListener('change', () => {
+            const val = sortSelect.value;
+            const items = Array.from(cards);
+
+            items.sort((a, b) => {
+                if (val === 'price-low') return a.dataset.price - b.dataset.price;
+                if (val === 'price-high') return b.dataset.price - a.dataset.price;
+                return 0; // popular/default
+            });
+
+            items.forEach(item => container.appendChild(item));
+        });
+    </script>
+</body>
+</html>
