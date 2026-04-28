@@ -3,250 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Branding in Riyadh | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Professional vehicle branding in Riyadh. Turn your fleet into mobile billboards with our premium car, van, and truck wrapping services.">
+    <title>Vehicle Branding in Riyadh | Car, Van & Truck Wraps | AQSA Print</title>
+    <meta name="description" content="Professional vehicle branding in Riyadh. Turn your fleet into mobile billboards with premium car, van and truck wrapping services. Free quote & installation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        *{scroll-margin-top:80px}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:92vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.7) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2;width:100%}
+        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+        .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+        .hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+        .hero-trust-item i{color:#2DB8A8;font-size:16px}
+        .lp-intro{padding:100px 0 60px;background:#fff}
+        .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .intro-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .intro-img img{width:100%;height:auto;display:block}
+        .intro-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px;line-height:1.2}
+        .intro-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:20px}
+        .intro-list{list-style:none;padding:0;margin:0}
+        .intro-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:15px;color:var(--gray-700)}
+        .intro-list li i{color:var(--teal-primary);font-size:18px;margin-top:2px;flex-shrink:0}
+
+        .services-section{padding:100px 0;background:var(--gray-50)}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;margin-top:48px}
+        .service-card{background:#fff;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--gray-100);transition:all .3s ease}
+        .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-xl);border-color:var(--teal-light)}
+        .service-card-img{height:220px;overflow:hidden}
+        .service-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+        .service-card:hover .service-card-img img{transform:scale(1.05)}
+        .service-card-body{padding:28px}
+        .service-card-body h3{font-size:22px;font-weight:700;color:var(--gray-900);margin-bottom:12px}
+        .service-card-body p{font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:20px}
+        .service-card-features{list-style:none;padding:0;margin:0 0 24px}
+        .service-card-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700);margin-bottom:8px}
+        .service-card-features li i{color:var(--teal-primary);font-size:14px}
+        .service-card-btn{display:inline-flex;align-items:center;gap:8px;color:var(--teal-primary);font-weight:600;font-size:15px;text-decoration:none;transition:gap .2s ease}
+        .service-card-btn:hover{gap:12px;color:var(--teal-dark)}
+
+        .lp-process{padding:100px 0;background:#fff}
+        .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px}
+        .work-step{text-align:center}
+        .work-num{width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 18px;box-shadow:0 8px 24px rgba(45,184,168,.3)}
+        .work-step h4{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .work-step p{font-size:14px;color:var(--gray-600);line-height:1.65}
+
+        .lp-faq{padding:100px 0;background:var(--gray-50)}
+        .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:48px}
+        .faq-item{background:#fff;border-radius:var(--radius-xl);padding:28px;border:1px solid var(--gray-100);transition:all .2s ease}
+        .faq-item:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md)}
+        .faq-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .faq-item h4 i{color:var(--teal-primary);font-size:18px;flex-shrink:0}
+        .faq-item p{font-size:14px;color:var(--gray-600);line-height:1.7}
+
+        .lp-cta{padding:110px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-note{color:rgba(255,255,255,.55);font-size:14px}
+        .cta-note i{color:var(--teal-primary);margin-right:6px}
+
+        @media(max-width:768px){
+            .lp-hero-content{padding:140px 20px 80px}
+            .lp-hero-ctas{flex-direction:column;align-items:center}
+            .lp-hero-ctas .btn{width:100%;max-width:320px}
+            .intro-grid{grid-template-columns:1fr;gap:40px}
+            .services-grid{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="services.html" class="nav-link active">Services</a>
-                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary">Get Quote</a>
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
                 </div>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a></div>
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- HERO -->
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1611016186353-652a19d8422f?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <h1>Vehicle Branding in Riyadh</h1>
-                <h2>Turn your vehicles into powerful mobile billboards with AQSA Print. High-quality vinyl wraps and graphics for every vehicle type.</h2>
+                <span class="lp-hero-badge">Vehicle Branding Specialists — Riyadh</span>
+                <h1>Vehicle Branding That <span>Drives Your Business</span></h1>
+                <p class="hero-subtitle">Turn your cars, vans and trucks into powerful mobile billboards. Premium vinyl wraps designed, printed and installed in Riyadh by AQSA Print.</p>
                 <div class="lp-hero-ctas">
-                    <a href="quote.html" class="btn btn-primary">Get Free Quote</a>
-                    <a href="https://wa.me/966556683044" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                    <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+                </div>
+                <div class="hero-trust">
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 3M & Avery Vinyl</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 3–5 Year Durability</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Fleet Discounts</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Free Design Mockup</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Introductory Section -->
-    <section class="lp-intro" style="padding-bottom: 0;">
+    <!-- INTRO -->
+    <section class="lp-intro">
         <div class="container">
-            <div class="lp-intro-inner">
-                <span class="section-badge">Mobile Advertising</span>
-                <h2 class="section-title">Maximize Your Brand Reach</h2>
-                <p>Vehicle branding is one of the most effective ways to reach thousands of potential customers every day. Whether you have a single car or a massive fleet of trucks, our expert team in Riyadh provides durable, vibrant, and professional branding solutions that last.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 1. Car Branding Section -->
-    <section class="lp-service-block">
-        <div class="container">
-            <div class="lp-service-block-inner">
-                <div class="lp-service-block-img">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Car Branding Riyadh">
-                </div>
-                <div class="lp-service-block-content">
-                    <span class="section-badge">Product 01</span>
-                    <h3>Car Branding</h3>
-                    <p>Professional car branding solutions for company sedans and private vehicles. We use premium cast vinyl that conforms perfectly to every curve of your car, ensuring a factory-finish look.</p>
-                    <ul class="lp-service-block-features">
-                        <li><i class="fas fa-check-circle"></i> High-Gloss Finish</li>
-                        <li><i class="fas fa-check-circle"></i> UV Protection</li>
-                        <li><i class="fas fa-check-circle"></i> 3+ Years Durability</li>
-                        <li><i class="fas fa-check-circle"></i> Safe Removal</li>
+            <div class="intro-grid">
+                <div class="intro-img"><img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80" alt="Vehicle Branding Riyadh" loading="lazy"></div>
+                <div class="intro-content">
+                    <h2>Your Vehicles Are Your Most Powerful Marketing Channel</h2>
+                    <p>Every day your vehicles are on Riyadh's roads, they're being seen by tens of thousands of people. A single branded vehicle generates 30,000–70,000 impressions per day — that's more reach than a billboard at a fraction of the cost, with zero monthly fees.</p>
+                    <p>At AQSA Print, we specialise in vehicle branding for every type — from executive sedans to 50-truck logistics fleets. Using only certified 3M and Avery cast vinyl, we deliver wraps that look stunning on day one and still look fresh years later.</p>
+                    <ul class="intro-list">
+                        <li><i class="fas fa-check-circle"></i> One-time investment, years of continuous advertising</li>
+                        <li><i class="fas fa-check-circle"></i> Protects original paint from UV, scratches and dust</li>
+                        <li><i class="fas fa-check-circle"></i> Fully removable — zero residue, zero paint damage</li>
+                        <li><i class="fas fa-check-circle"></i> Cars, vans, trucks, buses and specialty vehicles</li>
                     </ul>
-                    <div class="lp-service-block-btns">
-                        <a href="car-branding.html" class="btn btn-primary">View Details</a>
-                        <a href="quote.html" class="btn btn-outline">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our Services</span>
+                <h2 class="section-title">Vehicle Branding Solutions</h2>
+                <p class="section-subtitle">Explore our specialised services for every vehicle type and budget.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Car Branding -->
+                <div class="service-card">
+                    <div class="service-card-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&q=80" alt="Car Branding Riyadh" loading="lazy"></div>
+                    <div class="service-card-body">
+                        <h3>Car Branding</h3>
+                        <p>Professional vinyl wraps for sedans, SUVs and company cars. Factory-smooth finish with premium cast vinyl.</p>
+                        <ul class="service-card-features">
+                            <li><i class="fas fa-check"></i> High-Gloss & Matte Finishes</li>
+                            <li><i class="fas fa-check"></i> UV Protection & Safe Removal</li>
+                            <li><i class="fas fa-check"></i> 3+ Years Durability</li>
+                        </ul>
+                        <a href="car-branding.html" class="service-card-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Truck & Van -->
+                <div class="service-card">
+                    <div class="service-card-img"><img src="https://images.unsplash.com/photo-1601929862217-f1175f0fce47?w=800&q=80" alt="Truck Van Branding Riyadh" loading="lazy"></div>
+                    <div class="service-card-body">
+                        <h3>Truck & Van Branding</h3>
+                        <p>Large-format wraps for delivery vans, logistics trucks and trailers. Heavy-duty vinyl built for commercial use.</p>
+                        <ul class="service-card-features">
+                            <li><i class="fas fa-check"></i> Full Side & Rear Wraps</li>
+                            <li><i class="fas fa-check"></i> Fleet Consistency Packages</li>
+                            <li><i class="fas fa-check"></i> Volume Discounts Available</li>
+                        </ul>
+                        <a href="truck-van-branding.html" class="service-card-btn">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Full & Partial -->
+                <div class="service-card">
+                    <div class="service-card-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" alt="Full Partial Vehicle Wraps" loading="lazy"></div>
+                    <div class="service-card-body">
+                        <h3>Full & Partial Wraps</h3>
+                        <p>Choose 100% coverage for maximum impact or strategic partial wraps for cost-effective branding.</p>
+                        <ul class="service-card-features">
+                            <li><i class="fas fa-check"></i> Complete Colour Changes</li>
+                            <li><i class="fas fa-check"></i> Budget-Friendly Partial Options</li>
+                            <li><i class="fas fa-check"></i> Seamless Edge Finishing</li>
+                        </ul>
+                        <a href="full-partial-vehicle-branding.html" class="service-card-btn">View Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. Van Branding Section -->
-    <section class="lp-service-block">
+    <!-- PROCESS -->
+    <section class="lp-process fade-in">
         <div class="container">
-            <div class="lp-service-block-inner">
-                <div class="lp-service-block-content">
-                    <span class="section-badge">Product 02</span>
-                    <h3>Van Branding</h3>
-                    <p>Transform your delivery vans into professional brand ambassadors. Our van branding services cover everything from simple logos to full side wraps that capture attention on every street.</p>
-                    <ul class="lp-service-block-features">
-                        <li><i class="fas fa-check-circle"></i> Full Side Wraps</li>
-                        <li><i class="fas fa-check-circle"></i> Rear Window Perforation</li>
-                        <li><i class="fas fa-check-circle"></i> Fleet Consistency</li>
-                        <li><i class="fas fa-check-circle"></i> Fast Turnaround</li>
-                    </ul>
-                    <div class="lp-service-block-btns">
-                        <a href="truck-van-branding.html" class="btn btn-primary">View Details</a>
-                        <a href="quote.html" class="btn btn-outline">Get Quote</a>
-                    </div>
+            <div class="section-header">
+                <span class="section-badge">How We Work</span>
+                <h2 class="section-title">Our 4-Step Branding Process</h2>
+                <p class="section-subtitle">From first call to hitting the road branded — simple and stress-free.</p>
+            </div>
+            <div class="work-grid">
+                <div class="work-step"><div class="work-num">1</div><h4>Consultation</h4><p>We discuss your goals, measure your vehicles and recommend the best coverage option for your budget.</p></div>
+                <div class="work-step"><div class="work-num">2</div><h4>Design</h4><p>Our designers create a to-scale digital mockup. You see exactly how your brand will look before we print.</p></div>
+                <div class="work-step"><div class="work-num">3</div><h4>Print & Prep</h4><p>High-resolution UV printing on premium cast vinyl with protective overlaminate. Vehicle cleaned and prepped.</p></div>
+                <div class="work-step"><div class="work-num">4</div><h4>Installation</h4><p>Professional application in our controlled facility with heat-gun moulding for a seamless, bubble-free finish.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lp-faq fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How long does vehicle branding last?</h4>
+                    <p>Our premium cast vinyl wraps last 3–5 years depending on maintenance and sun exposure. We recommend hand washing and shaded parking to maximise lifespan.</p>
                 </div>
-                <div class="lp-service-block-img">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Van Branding Riyadh">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Will the wrap damage my paint?</h4>
+                    <p>No — in fact it protects it. Premium cast vinyl shields paint from UV, dust and minor scratches. When removed correctly, paint is preserved in original condition.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Can you brand any type of vehicle?</h4>
+                    <p>Yes. Cars, SUVs, vans, trucks, buses, trailers, boats and specialty vehicles. If it has a surface, we can wrap it with custom graphics.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do you offer fleet discounts?</h4>
+                    <p>Absolutely. We offer significant volume pricing for 5+ vehicles. The more vehicles, the better the per-unit rate. Contact us for a custom fleet quote.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Truck Branding Section -->
-    <section class="lp-service-block">
+    <!-- CTA -->
+    <section class="lp-cta">
         <div class="container">
-            <div class="lp-service-block-inner">
-                <div class="lp-service-block-img">
-                    <img src="https://images.unsplash.com/photo-1586191582056-94399e46a7be?w=800&q=80" alt="Truck Branding Riyadh">
-                </div>
-                <div class="lp-service-block-content">
-                    <span class="section-badge">Product 03</span>
-                    <h3>Truck Branding</h3>
-                    <p>Large-scale advertising for logistics and distribution trucks. We handle everything from rigid box trucks to curtain-sided trailers, using heavy-duty vinyl designed for long-haul durability.</p>
-                    <ul class="lp-service-block-features">
-                        <li><i class="fas fa-check-circle"></i> Heavy-Duty Vinyl</li>
-                        <li><i class="fas fa-check-circle"></i> Large Format Print</li>
-                        <li><i class="fas fa-check-circle"></i> Curtain Branding</li>
-                        <li><i class="fas fa-check-circle"></i> Night Visibility</li>
-                    </ul>
-                    <div class="lp-service-block-btns">
-                        <a href="truck-van-branding.html" class="btn btn-primary">View Details</a>
-                        <a href="quote.html" class="btn btn-outline">Get Quote</a>
-                    </div>
-                </div>
+            <h2>Ready to Brand Your Vehicles?</h2>
+            <p>Get a free design mockup and detailed quote — usually within 24 hours.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
             </div>
+            <p class="cta-note"><i class="fas fa-phone"></i> Or call us: +966 55 668 3044</p>
         </div>
     </section>
 
-    <!-- 4. Full & Partial Branding -->
-    <section class="lp-service-block">
-        <div class="container">
-            <div class="lp-service-block-inner">
-                <div class="lp-service-block-content">
-                    <span class="section-badge">Product 04</span>
-                    <h3>Full & Partial Wraps</h3>
-                    <p>Choose the level of branding that fits your budget and goals. From complete color changes with printed graphics to strategic partial wraps on doors and hoods.</p>
-                    <ul class="lp-service-block-features">
-                        <li><i class="fas fa-check-circle"></i> 100% Surface Cover</li>
-                        <li><i class="fas fa-check-circle"></i> Cost-Effective Options</li>
-                        <li><i class="fas fa-check-circle"></i> Seamless Design</li>
-                        <li><i class="fas fa-check-circle"></i> Custom Cut Decals</li>
-                    </ul>
-                    <div class="lp-service-block-btns">
-                        <a href="full-partial-vehicle-branding.html" class="btn btn-primary">View Details</a>
-                        <a href="quote.html" class="btn btn-outline">Get Quote</a>
-                    </div>
-                </div>
-                <div class="lp-service-block-img">
-                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="Full and Partial Vehicle Branding">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="lp-process">
-        <div class="container">
-            <h2 class="section-title text-center">Our 4-Step Branding Process</h2>
-            <div class="lp-process-grid">
-                <div class="lp-process-step">
-                    <div class="lp-process-num">1</div>
-                    <h3>Consultation</h3>
-                    <p>We discuss your goals and measure your vehicle.</p>
-                </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-num">2</div>
-                    <h3>Design</h3>
-                    <p>Our experts create a visual mockup for your approval.</p>
-                </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-num">3</div>
-                    <h3>Print & Prep</h3>
-                    <p>High-quality printing and surface preparation.</p>
-                </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-num">4</div>
-                    <h3>Installation</h3>
-                    <p>Professional application in our dust-free facility.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="lp-faq">
-        <div class="container">
-            <h2 class="section-title text-center">Frequently Asked Questions</h2>
-            <div class="lp-faq-list">
-                <div class="lp-faq-item">
-                    <button class="lp-faq-question">How long does vehicle branding last? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
-                    <div class="lp-faq-answer">Our premium vinyl wraps typically last 3 to 5 years depending on maintenance and exposure to the sun.</div>
-                </div>
-                <div class="lp-faq-item">
-                    <button class="lp-faq-question">Will the wrap damage my vehicle's paint? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
-                    <div class="lp-faq-answer">No, in fact, it protects the original paint from UV rays and minor scratches. It can be safely removed without leaving residue.</div>
-                </div>
-                <div class="lp-faq-item">
-                    <button class="lp-faq-question">Do I need RTA approval for branding? <div class="faq-icon"><i class="fas fa-plus"></i></div></button>
-                    <div class="lp-faq-answer">Yes, for commercial branding, approvals are required. We can assist you with the necessary documentation and guidelines.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="footer-logo-text">AQSA</span>
-                    <p>Your trusted partner for all printing needs in Riyadh since 2020.</p>
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing and branding needs in Riyadh, KSA.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Vehicle Branding</h4>
+                    <ul class="footer-links">
+                        <li><a href="car-branding.html">Car Branding</a></li>
+                        <li><a href="truck-van-branding.html">Truck & Van</a></li>
+                        <li><a href="full-partial-vehicle-branding.html">Full & Partial Wraps</a></li>
+                    </ul>
                 </div>
                 <div>
                     <h4 class="footer-title">Contact</h4>
-                    <p>Riyadh, KSA<br>+966 55 668 3044<br>info@aqsaprint.com</p>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
                 </div>
             </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
         </div>
     </footer>
 
     <script src="main.js"></script>
     <script>
-        document.querySelectorAll('.lp-faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                button.parentElement.classList.toggle('active');
-            });
-        });
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
     </script>
 </body>
 </html>

@@ -3,9 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | AQSA Print Saudi Arabia</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Contact AQSA Print Riyadh | Get a Free Quote | Call +966 55 668 3044</title>
+    <meta name="description" content="Contact AQSA Print in Riyadh for signage, vehicle branding, printing and more. Call, WhatsApp or visit us. Free quotes within 24 hours.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:50vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.75) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2}
+        .lp-hero-content{max-width:700px;margin:0 auto;text-align:center;padding:140px 0 80px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.8);line-height:1.7;max-width:560px;margin:0 auto}
+
+        .contact-section{padding:100px 0;background:#fff}
+        .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+        .contact-info h2{font-size:clamp(26px,3vw,34px);font-weight:800;color:var(--gray-900);margin-bottom:16px}
+        .contact-info>p{font-size:16px;color:var(--gray-600);line-height:1.7;margin-bottom:36px}
+        .contact-card{display:flex;align-items:flex-start;gap:18px;padding:24px;background:var(--gray-50);border-radius:var(--radius-xl);margin-bottom:16px;border:1px solid var(--gray-100);transition:all .25s ease}
+        .contact-card:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .contact-card-icon{width:52px;height:52px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--teal-dark);flex-shrink:0}
+        .contact-card h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .contact-card p{font-size:14px;color:var(--gray-600);margin:0}
+        .contact-card a{color:var(--teal-primary);text-decoration:none;font-weight:600}
+        .contact-card a:hover{color:var(--teal-dark)}
+
+        .contact-form-wrap{background:#fff;padding:40px;border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);border:1px solid var(--gray-100)}
+        .contact-form-wrap h3{font-size:22px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .contact-form-wrap>p{font-size:14px;color:var(--gray-500);margin-bottom:28px}
+        .form-group{margin-bottom:20px}
+        .form-group label{display:block;font-size:14px;font-weight:600;color:var(--gray-700);margin-bottom:8px}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 16px;border:1px solid var(--gray-200);border-radius:var(--radius-lg);font-size:15px;font-family:inherit;color:var(--gray-900);background:#fff;transition:border-color .2s ease,box-shadow .2s ease;box-sizing:border-box}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--teal-primary);box-shadow:0 0 0 3px rgba(45,184,168,.12)}
+        .form-group textarea{height:130px;resize:vertical}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .form-submit{width:100%;padding:16px;font-size:16px;font-weight:700;background:var(--gradient-primary);color:#fff;border:none;border-radius:var(--radius-lg);cursor:pointer;transition:all .25s ease}
+        .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,184,168,.35)}
+
+        .map-section{padding:0 0 100px;background:#fff}
+        .map-wrap{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);height:400px}
+        .map-wrap iframe{width:100%;height:100%;border:0}
+
+        .lp-cta{padding:100px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;margin-bottom:16px}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:32px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+        .btn-lg{padding:18px 36px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px)}
+
+        @media(max-width:768px){
+            .lp-hero-content{padding:120px 20px 60px}
+            .contact-grid{grid-template-columns:1fr;gap:40px}
+            .form-row{grid-template-columns:1fr}
+            .contact-form-wrap{padding:28px}
+            .map-wrap{height:300px}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -13,75 +76,182 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="services.html" class="nav-link">Services</a>
-                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link active">Contact</a>
                 </nav>
+                <div class="header-actions">
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%">Get Free Quote</a></div>
         </div>
     </header>
 
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <h1 class="text-white">Contact Us</h1>
-                <h2 class="text-white">Let's discuss your project and bring your brand to life.</h2>
+                <span class="lp-hero-badge">Contact Us</span>
+                <h1>Let's Bring Your <span>Brand to Life</span></h1>
+                <p class="hero-subtitle">Get in touch with our team in Riyadh. Free quotes delivered within 24 hours for all signage, branding and printing projects.</p>
             </div>
         </div>
     </section>
 
-    <section class="lp-intro">
+    <section class="contact-section fade-in">
         <div class="container">
-            <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p style="margin-bottom: 24px;">Our team is ready to help you with any inquiries.</p>
-                    <div style="margin-bottom: 16px;"><i class="fas fa-phone" style="color: var(--teal-primary); margin-right: 12px;"></i> +966 55 668 3044</div>
-                    <div style="margin-bottom: 16px;"><i class="fab fa-whatsapp" style="color: var(--teal-primary); margin-right: 12px;"></i> +966 55 668 3044</div>
-                    <div style="margin-bottom: 16px;"><i class="fas fa-envelope" style="color: var(--teal-primary); margin-right: 12px;"></i> info@aqsaprint.com</div>
-                    <div style="margin-bottom: 16px;"><i class="fas fa-map-marker-alt" style="color: var(--teal-primary); margin-right: 12px;"></i> Riyadh, Saudi Arabia</div>
+                    <h2>How to Reach Us</h2>
+                    <p>Whether you need a quick quote or want to discuss a large project, our team is ready to help. Choose your preferred method below.</p>
+
+                    <a href="tel:+966556683044" style="text-decoration:none;color:inherit">
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                            <div><h4>Call Us</h4><p><a href="tel:+966556683044">+966 55 668 3044</a></p><p>Sun–Thu, 8 AM – 6 PM</p></div>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/966556683044" style="text-decoration:none;color:inherit">
+                        <div class="contact-card">
+                            <div class="contact-card-icon" style="background:rgba(37,211,102,.12);color:#25D366"><i class="fab fa-whatsapp"></i></div>
+                            <div><h4>WhatsApp</h4><p><a href="https://wa.me/966556683044">+966 55 668 3044</a></p><p>Fastest response — usually within minutes</p></div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:info@aqsaprint.com" style="text-decoration:none;color:inherit">
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                            <div><h4>Email</h4><p><a href="mailto:info@aqsaprint.com">info@aqsaprint.com</a></p><p>For detailed project briefs and file sharing</p></div>
+                        </div>
+                    </a>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h4>Visit Our Workshop</h4><p>Riyadh, Saudi Arabia</p><p>By appointment — call ahead</p></div>
+                    </div>
                 </div>
-                <div class="contact-form">
-                    <form action="#" method="POST" style="background: white; padding: 32px; border-radius: 16px; box-shadow: var(--shadow-lg);">
-                        <div style="margin-bottom: 16px;">
-                            <label>Name</label>
-                            <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px;">
+
+                <div class="contact-form-wrap">
+                    <h3>Send Us a Message</h3>
+                    <p>Fill in the form and we'll get back to you within 24 hours.</p>
+                    <form action="#" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Mohammed Al-Rashid" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+966 5X XXX XXXX" required>
+                            </div>
                         </div>
-                        <div style="margin-bottom: 16px;">
-                            <label>Email</label>
-                            <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px;">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@company.com">
                         </div>
-                        <div style="margin-bottom: 16px;">
-                            <label>Message</label>
-                            <textarea placeholder="Your Message" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px; height: 120px;"></textarea>
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option>Vehicle Branding</option>
+                                <option>Signage</option>
+                                <option>Digital Printing</option>
+                                <option>Indoor/Outdoor Branding</option>
+                                <option>Exhibition & Events</option>
+                                <option>Promotional Gifts</option>
+                                <option>Other</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project — quantity, size, deadline, etc."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit"><i class="fas fa-paper-plane" style="margin-right:8px"></i> Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="map-section fade-in">
+        <div class="container">
+            <div class="map-wrap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d463878.24389792!2d46.5423!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-cta">
+        <div class="container">
+            <h2>Prefer a Quick Chat?</h2>
+            <p>WhatsApp is our fastest channel — most enquiries answered within minutes.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp" style="margin-right:8px"></i> WhatsApp Now</a>
+                <a href="tel:+966556683044" class="btn btn-primary btn-lg"><i class="fas fa-phone" style="margin-right:8px"></i> Call Us</a>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
-            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing and branding needs in Riyadh, KSA.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="signages.html">Signages</a></li>
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                        <li><a href="digital-printing.html">Printing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
         </div>
     </footer>
+
+    <script src="main.js"></script>
+    <script>
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    </script>
 </body>
 </html>

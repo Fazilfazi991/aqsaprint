@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | AQSA Print Saudi Arabia</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Our Work | Portfolio | AQSA Print Riyadh</title>
+    <meta name="description" content="See our latest signage, vehicle branding, printing and exhibition projects across Riyadh and KSA. Real results for real businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:50vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.75) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2}
+        .lp-hero-content{max-width:700px;margin:0 auto;text-align:center;padding:140px 0 80px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.8);line-height:1.7;max-width:560px;margin:0 auto}
+
+        .filter-section{padding:60px 0 0;background:#fff;text-align:center}
+        .filter-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+        .filter-btn{padding:10px 24px;border-radius:999px;border:1px solid var(--gray-200);background:#fff;color:var(--gray-600);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s ease;font-family:inherit}
+        .filter-btn:hover,.filter-btn.active{background:var(--gradient-primary);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(45,184,168,.25)}
+
+        .portfolio-section{padding:60px 0 100px;background:#fff}
+        .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px}
+        .portfolio-card{border-radius:var(--radius-xl);overflow:hidden;background:#fff;border:1px solid var(--gray-100);transition:all .3s ease;cursor:pointer}
+        .portfolio-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--teal-light)}
+        .portfolio-card-img{height:260px;overflow:hidden;position:relative}
+        .portfolio-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+        .portfolio-card:hover .portfolio-card-img img{transform:scale(1.08)}
+        .portfolio-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(15,23,42,.7) 100%);opacity:0;transition:opacity .3s ease}
+        .portfolio-card:hover .portfolio-card-overlay{opacity:1}
+        .portfolio-card-body{padding:24px}
+        .portfolio-card-tag{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--gradient-light);color:var(--teal-dark);font-size:12px;font-weight:600;margin-bottom:10px}
+        .portfolio-card-body h3{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+        .portfolio-card-body p{font-size:14px;color:var(--gray-500);margin:0}
+
+        .stats-section{padding:80px 0;background:var(--gray-50)}
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+        .stat-item h3{font-size:clamp(36px,4vw,52px);font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+        .stat-item p{font-size:14px;color:var(--gray-600);font-weight:600}
+
+        .lp-cta{padding:100px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;margin-bottom:16px}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:32px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+        .btn-lg{padding:18px 36px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px)}
+
+        @media(max-width:768px){
+            .lp-hero-content{padding:120px 20px 60px}
+            .portfolio-grid{grid-template-columns:1fr}
+            .stats-grid{grid-template-columns:1fr 1fr;gap:24px}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -13,56 +70,181 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="services.html" class="nav-link">Services</a>
-                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link active">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
+                <div class="header-actions">
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%">Get Free Quote</a></div>
         </div>
     </header>
 
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <h1 class="text-white">Our Portfolio</h1>
-                <h2 class="text-white">See our latest work in action across Riyadh and KSA.</h2>
+                <span class="lp-hero-badge">Our Portfolio</span>
+                <h1>Real Projects. <span>Real Results.</span></h1>
+                <p class="hero-subtitle">Browse our latest signage, vehicle branding, printing and exhibition work across Riyadh and KSA.</p>
             </div>
         </div>
     </section>
 
-    <section class="lp-portfolio">
+    <section class="filter-section">
         <div class="container">
-            <div class="lp-portfolio-grid">
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Vehicle Wrap</h4><p>Logistics Co.</p></div>
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Storefront Sign</h4><p>Retail Mall</p></div>
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Office Interior</h4><p>Bank Headquarters</p></div>
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Exhibition Stall</h4><p>Expo Center</p></div>
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Promotional flags</h4><p>Car Show</p></div>
-                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Corporate Gifts</h4><p>Govt. Agency</p></div>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="signage">Signage</button>
+                <button class="filter-btn" data-filter="vehicle">Vehicle Branding</button>
+                <button class="filter-btn" data-filter="printing">Printing</button>
+                <button class="filter-btn" data-filter="exhibition">Exhibition</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-section fade-in">
+        <div class="container">
+            <div class="portfolio-grid">
+                <div class="portfolio-card" data-category="signage">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="3D Signage Project" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Signage</span><h3>3D LED Storefront Sign</h3><p>Retail Mall, Riyadh</p></div>
+                </div>
+                <div class="portfolio-card" data-category="vehicle">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="Car Branding" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Vehicle</span><h3>Fleet Branding — 12 Vehicles</h3><p>Delivery Company, KSA</p></div>
+                </div>
+                <div class="portfolio-card" data-category="exhibition">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Exhibition Stall" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Exhibition</span><h3>Custom Exhibition Stall</h3><p>Riyadh Expo Center</p></div>
+                </div>
+                <div class="portfolio-card" data-category="signage">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office Signage" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Signage</span><h3>Corporate Office Interior Signs</h3><p>Financial District, Riyadh</p></div>
+                </div>
+                <div class="portfolio-card" data-category="vehicle">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1601929862217-f1175f0fce47?w=600&q=80" alt="Truck Wrap" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Vehicle</span><h3>Logistics Truck Full Wrap</h3><p>Supply Chain Co., Jeddah</p></div>
+                </div>
+                <div class="portfolio-card" data-category="printing">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&q=80" alt="Banner Printing" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Printing</span><h3>Large Format Event Banners</h3><p>National Day Festival</p></div>
+                </div>
+                <div class="portfolio-card" data-category="branding">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1611016186353-652a19d8422f?w=600&q=80" alt="Wall Branding" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Branding</span><h3>Full Office Wall Branding</h3><p>Tech Startup, Riyadh</p></div>
+                </div>
+                <div class="portfolio-card" data-category="signage">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="Outdoor Signage" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Signage</span><h3>Outdoor Pylon Sign</h3><p>Shopping Center, North Riyadh</p></div>
+                </div>
+                <div class="portfolio-card" data-category="printing">
+                    <div class="portfolio-card-img"><img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&q=80" alt="Promotional Materials" loading="lazy"><div class="portfolio-card-overlay"></div></div>
+                    <div class="portfolio-card-body"><span class="portfolio-card-tag">Printing</span><h3>Corporate Stationery Suite</h3><p>Law Firm, Riyadh</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section fade-in">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><h3>500+</h3><p>Projects Completed</p></div>
+                <div class="stat-item"><h3>200+</h3><p>Happy Clients</p></div>
+                <div class="stat-item"><h3>5+</h3><p>Years Experience</p></div>
+                <div class="stat-item"><h3>50+</h3><p>Fleet Vehicles Branded</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-cta">
+        <div class="container">
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's discuss it — free quote within 24 hours.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp" style="margin-right:8px"></i> WhatsApp</a>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing and branding needs in Riyadh, KSA.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="signages.html">Signages</a></li>
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                        <li><a href="digital-printing.html">Printing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
         </div>
     </footer>
+
+    <script src="main.js"></script>
+    <script>
+    // Fade-in observer
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+    // Portfolio filter
+    document.querySelectorAll('.filter-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter=btn.dataset.filter;
+            document.querySelectorAll('.portfolio-card').forEach(card=>{
+                if(filter==='all'||card.dataset.category===filter){
+                    card.style.display='';card.style.opacity='0';card.style.transform='translateY(20px)';
+                    setTimeout(()=>{card.style.transition='all .4s ease';card.style.opacity='1';card.style.transform='translateY(0)'},50);
+                }else{card.style.display='none'}
+            });
+        });
+    });
+    </script>
 </body>
 </html>

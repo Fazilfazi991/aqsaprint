@@ -3,10 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AQSA Print | Premium Printing Services in Riyadh, Saudi Arabia</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AQSA Print | Premium Printing & Signage Services in Riyadh, Saudi Arabia</title>
+    <meta name="description" content="Leading printing and signage company in Riyadh. Vehicle branding, 3D signs, outdoor/indoor signage, and premium print services. Fast delivery across KSA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* HERO SECTION */
+        .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.85) 40%,rgba(45,184,168,.25) 100%)}
+        .hero-bg::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80');background-size:cover;background-position:center;opacity:.15}
+        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:150px;background:linear-gradient(to top,#fff 0%,transparent 100%)}
+        .hero .container{position:relative;z-index:2}
+        .hero-content{max-width:900px;margin:0 auto;text-align:center;padding:180px 20px 120px}
+        .hero-badge{display:inline-block;padding:10px 24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px;backdrop-filter:blur(10px)}
+        .hero h1{font-size:clamp(42px,7vw,76px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:28px;letter-spacing:-1.5px}
+        .hero h1 .gradient-text{background:linear-gradient(135deg,#E8A5B8 0%,#2DB8A8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+        .hero-subtitle{font-size:clamp(18px,2.5vw,24px);color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:42px;font-weight:400}
+        .hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:48px}
+        .hero-ctas .btn{padding:18px 42px;font-size:17px;font-weight:700;border-radius:12px;transition:all .3s ease}
+        .btn-primary-hero{background:linear-gradient(135deg,#E8A5B8 0%,#2DB8A8 100%);color:#fff;border:none;box-shadow:0 8px 32px rgba(45,184,168,.4)}
+        .btn-primary-hero:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(45,184,168,.5)}
+        .btn-secondary-hero{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.3);backdrop-filter:blur(10px)}
+        .btn-secondary-hero:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:36px;align-items:center}
+        .hero-trust-item{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.8);font-size:15px;font-weight:600}
+        .hero-trust-item i{color:#2DB8A8;font-size:20px}
+
+        /* STATS SECTION */
+        .stats{background:#fff;padding:80px 0;border-bottom:1px solid var(--gray-100)}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1100px;margin:0 auto}
+        .stat-card{text-align:center;padding:20px}
+        .stat-number{font-size:56px;font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+        .stat-label{font-size:16px;color:var(--gray-600);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+        /* SERVICES SECTION */
+        .services{padding:120px 0;background:var(--gray-50)}
+        .services-header{text-align:center;max-width:700px;margin:0 auto 64px}
+        .section-badge{display:inline-block;padding:8px 20px;background:var(--gradient-light);border-radius:999px;color:var(--teal-dark);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px}
+        .section-title{font-size:clamp(32px,5vw,52px);font-weight:900;color:var(--gray-900);line-height:1.15;margin-bottom:20px;letter-spacing:-1px}
+        .section-subtitle{font-size:18px;color:var(--gray-600);line-height:1.7}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+        .service-card{background:#fff;border-radius:20px;padding:40px 32px;border:2px solid var(--gray-100);transition:all .3s ease;position:relative;overflow:hidden}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-primary);transform:scaleX(0);transition:transform .3s ease}
+        .service-card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.12);border-color:var(--teal-light)}
+        .service-card:hover::before{transform:scaleX(1)}
+        .service-icon{width:72px;height:72px;border-radius:16px;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--teal-dark);margin-bottom:24px}
+        .service-card h3{font-size:24px;font-weight:800;color:var(--gray-900);margin-bottom:12px}
+        .service-card p{font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:24px}
+        .service-card .btn{width:100%;justify-content:center}
+
+        /* WHY CHOOSE US */
+        .why-us{padding:120px 0;background:#fff}
+        .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .why-content h2{font-size:clamp(32px,5vw,48px);font-weight:900;color:var(--gray-900);margin-bottom:24px;line-height:1.2}
+        .why-content p{font-size:17px;color:var(--gray-600);line-height:1.8;margin-bottom:32px}
+        .why-list{list-style:none;padding:0;margin:0}
+        .why-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding:20px;background:var(--gray-50);border-radius:12px}
+        .why-item-icon{width:48px;height:48px;border-radius:12px;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0}
+        .why-item-content h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+        .why-item-content p{font-size:14px;color:var(--gray-600);line-height:1.6;margin:0}
+        .why-image{border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+        .why-image img{width:100%;height:auto;display:block}
+
+        /* PROCESS SECTION */
+        .process{padding:120px 0;background:var(--gray-50)}
+        .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;margin-top:64px;position:relative}
+        .process-step{text-align:center;position:relative}
+        .process-number{width:80px;height:80px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;margin:0 auto 24px;box-shadow:0 12px 32px rgba(45,184,168,.35);position:relative;z-index:2}
+        .process-step h3{font-size:22px;font-weight:800;color:var(--gray-900);margin-bottom:12px}
+        .process-step p{font-size:15px;color:var(--gray-600);line-height:1.7}
+
+        /* PORTFOLIO PREVIEW */
+        .portfolio-preview{padding:120px 0;background:#fff}
+        .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:64px}
+        .portfolio-item{border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer}
+        .portfolio-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+        .portfolio-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.95) 0%,transparent 60%);opacity:0;transition:opacity .3s ease;display:flex;align-items:flex-end;padding:28px}
+        .portfolio-item:hover img{transform:scale(1.1)}
+        .portfolio-item:hover .portfolio-overlay{opacity:1}
+        .portfolio-info h4{color:#fff;font-size:20px;font-weight:700;margin-bottom:6px}
+        .portfolio-info p{color:rgba(255,255,255,.8);font-size:14px}
+
+        /* TESTIMONIALS */
+        .testimonials{padding:120px 0;background:var(--gray-50)}
+        .testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px;margin-top:64px}
+        .testimonial-card{background:#fff;border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.06);position:relative}
+        .testimonial-quote{font-size:48px;color:var(--teal-primary);opacity:.2;position:absolute;top:20px;left:30px}
+        .testimonial-text{font-size:16px;color:var(--gray-700);line-height:1.8;margin-bottom:24px;position:relative;z-index:1}
+        .testimonial-author{display:flex;align-items:center;gap:16px}
+        .author-avatar{width:56px;height:56px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700}
+        .author-info h5{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .author-info p{font-size:14px;color:var(--gray-500);margin:0}
+        .testimonial-stars{color:#FDB022;font-size:14px;margin-bottom:16px}
+
+        /* CTA SECTION */
+        .cta-section{padding:120px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;top:-50%;right:-20%;width:700px;height:700px;background:radial-gradient(circle,rgba(45,184,168,.2) 0%,transparent 70%);border-radius:50%}
+        .cta-content{text-align:center;max-width:800px;margin:0 auto;position:relative;z-index:2}
+        .cta-content h2{font-size:clamp(36px,6vw,58px);font-weight:900;color:#fff;margin-bottom:24px;line-height:1.15}
+        .cta-content p{font-size:20px;color:rgba(255,255,255,.8);margin-bottom:40px;line-height:1.6}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:32px}
+        .cta-note{color:rgba(255,255,255,.6);font-size:15px}
+        .cta-note i{color:var(--teal-primary);margin-right:8px}
+
+        /* STICKY BAR */
+        .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);border-top:1px solid var(--gray-200);padding:16px 24px;display:flex;justify-content:center;gap:12px;z-index:999;box-shadow:0 -4px 32px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .3s ease}
+        .sticky-cta.visible{transform:translateY(0)}
+        .sticky-cta .btn{padding:14px 32px;font-size:15px;font-weight:700}
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            .hero-content{padding:140px 20px 100px}
+            .hero-ctas{flex-direction:column;align-items:stretch}
+            .hero-ctas .btn{width:100%;max-width:320px;margin:0 auto}
+            .why-grid,.process-steps{grid-template-columns:1fr}
+            .services-grid,.testimonial-grid,.portfolio-grid{grid-template-columns:1fr}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
+            .sticky-cta{padding:12px 16px;gap:8px}
+            .sticky-cta .btn{flex:1;padding:12px 16px;font-size:14px}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -14,16 +133,12 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link active">Home</a>
@@ -34,82 +149,402 @@
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary">Get Quote</a>
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
                 </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="shop.html" class="mobile-menu-link">Products</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta">
+                <a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a>
             </div>
         </div>
     </header>
 
-    <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1589149098258-3e9102ca63d3?w=1200&q=80')"></div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
         <div class="container">
-            <div class="lp-hero-content">
-                <h1 class="text-white">Premium Printing Solutions <br>for Your Business</h1>
-                <h2 class="text-white">From business cards to large format signage, we deliver quality that makes your brand stand out in Riyadh.</h2>
-                <div class="lp-hero-ctas">
-                    <a href="quote.html" class="btn btn-primary">Get Free Quote</a>
-                    <a href="portfolio.html" class="btn btn-outline-white">View Portfolio</a>
+            <div class="hero-content">
+                <span class="hero-badge">Riyadh's Premier Print & Signage</span>
+                <h1>Transform Your Brand with <span class="gradient-text">Premium Printing</span> & Signage Solutions</h1>
+                <p class="hero-subtitle">From stunning vehicle wraps to eye-catching 3D signage and professional print materials — we bring your brand vision to life across Saudi Arabia.</p>
+                <div class="hero-ctas">
+                    <a href="quote.html" class="btn btn-primary-hero"><i class="fas fa-paper-plane" style="margin-right:10px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-secondary-hero"><i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp Us</a>
                 </div>
-                <div class="lp-hero-stats">
-                    <div class="lp-hero-stat"><i class="fas fa-check-circle"></i> 500+ Clients</div>
-                    <div class="lp-hero-stat"><i class="fas fa-check-circle"></i> 10K+ Projects</div>
-                    <div class="lp-hero-stat"><i class="fas fa-check-circle"></i> 24h Delivery</div>
+                <div class="hero-trust">
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 500+ Happy Clients</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 10,000+ Projects</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 24-48hr Turnaround</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-features" style="background: white;">
+    <!-- STATS -->
+    <section class="stats">
         <div class="container">
-            <h2 class="section-title text-center">Our Core Services</h2>
-            <div class="lp-features-grid">
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-truck"></i></div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Satisfied Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24-48h</div>
+                    <div class="stat-label">Fast Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services">
+        <div class="container">
+            <div class="services-header">
+                <span class="section-badge">What We Offer</span>
+                <h2 class="section-title">Complete Branding & Print Solutions</h2>
+                <p class="section-subtitle">Everything your business needs to stand out in the Saudi market — designed, printed, and installed by experts.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-truck"></i></div>
                     <h3>Vehicle Branding</h3>
-                    <p>Mobile billboards for your business.</p>
+                    <p>Turn your vehicles into mobile billboards with premium vinyl wraps, decals, and fleet graphics that capture attention on every road.</p>
+                    <a href="vehicle-branding.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
                 </div>
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Signages</h3>
-                    <p>LED and 3D signs that stand out.</p>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cube"></i></div>
+                    <h3>3D Signage</h3>
+                    <p>Dimensional acrylic and metal letters that pop off the wall. LED illuminated options available for 24/7 visibility.</p>
+                    <a href="3d-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
                 </div>
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-print"></i></div>
-                    <h3>Printing Services</h3>
-                    <p>High-quality marketing collateral.</p>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-sign"></i></div>
+                    <h3>Indoor Signage</h3>
+                    <p>Professional office signs, reception logos, wayfinding systems, and acrylic name plates for a polished interior.</p>
+                    <a href="indoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-store-alt"></i></div>
+                    <h3>Outdoor Signage</h3>
+                    <p>Weatherproof storefront signs, pylon signs, and LED lightboxes built to withstand Riyadh's intense climate.</p>
+                    <a href="outdoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-print"></i></div>
+                    <h3>Print Services</h3>
+                    <p>Business cards, brochures, flyers, banners, and all marketing collateral printed on premium paper stocks.</p>
+                    <a href="printing-services.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Promotional Items</h3>
+                    <p>Custom branded merchandise — t-shirts, mugs, pens, and giveaways that keep your brand top of mind.</p>
+                    <a href="shop.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-process">
+    <!-- WHY CHOOSE US -->
+    <section class="why-us">
         <div class="container">
-            <h2 class="section-title text-center">How It Works</h2>
-            <div class="lp-process-grid">
-                <div class="lp-process-step"><div class="lp-process-num">1</div><h3>Consultation</h3><p>Discuss your vision.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">2</div><h3>Design</h3><p>We create concepts.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">3</div><h3>Print</h3><p>High-quality production.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">4</div><h3>Deliver</h3><p>Fast arrival in KSA.</p></div>
+            <div class="why-grid">
+                <div class="why-content">
+                    <span class="section-badge">Why Choose AQSA</span>
+                    <h2>The Print Partner You Can Trust</h2>
+                    <p>We've built our reputation on delivering exceptional quality, meeting deadlines, and providing service that goes beyond expectations. When you work with AQSA Print, you're working with a team that genuinely cares about your success.</p>
+                    <div class="why-list">
+                        <div class="why-item">
+                            <div class="why-item-icon"><i class="fas fa-award"></i></div>
+                            <div class="why-item-content">
+                                <h4>Premium Quality Guaranteed</h4>
+                                <p>We use only premium materials and state-of-the-art equipment to ensure your prints look sharp and last for years.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="why-item-content">
+                                <h4>Lightning-Fast Turnaround</h4>
+                                <p>Most orders ship within 24-48 hours. Rush services available when you need it yesterday.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-icon"><i class="fas fa-headset"></i></div>
+                            <div class="why-item-content">
+                                <h4>Expert Support Team</h4>
+                                <p>Our team guides you through design, material selection, and installation to ensure perfect results.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="why-item-content">
+                                <h4>100% Satisfaction Promise</h4>
+                                <p>If you're not completely happy, we'll make it right. That's our commitment to you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-image">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="AQSA Print Team">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-final-cta">
+    <!-- PROCESS -->
+    <section class="process">
         <div class="container">
-            <h2>Start Your Project Today</h2>
-            <p>Join 500+ businesses who trust AQSA Print for their branding.</p>
-            <a href="quote.html" class="btn-white">Get Free Quote</a>
+            <div class="services-header">
+                <span class="section-badge">How It Works</span>
+                <h2 class="section-title">From Idea to Reality in 4 Simple Steps</h2>
+                <p class="section-subtitle">We've streamlined our process to make ordering and receiving your prints as smooth as possible.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3>Share Your Vision</h3>
+                    <p>Tell us what you need via phone, WhatsApp, or quote form. Upload your artwork or let us design it for you.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3>Review & Approve</h3>
+                    <p>We send you a detailed quote and mockup within 24 hours. Make any tweaks until it's perfect.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3>We Print & Produce</h3>
+                    <p>Your project goes into production with quality checks at every stage to ensure flawless execution.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3>Deliver or Install</h3>
+                    <p>Fast delivery across KSA, or schedule our team to professionally install your signage on-site.</p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- PORTFOLIO PREVIEW -->
+    <section class="portfolio-preview">
+        <div class="container">
+            <div class="services-header">
+                <span class="section-badge">Our Work</span>
+                <h2 class="section-title">See What We've Created</h2>
+                <p class="section-subtitle">Browse a selection of our recent projects for businesses across Riyadh and beyond.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="3D Signage Project">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Premium 3D Logo Sign</h4>
+                            <p>Brushed aluminum with LED backlighting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1619984807973-2c10e9a2c3bf?w=600&q=80" alt="Vehicle Wrap">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Full Vehicle Wrap</h4>
+                            <p>Complete fleet branding for logistics company</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80" alt="Business Cards">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Luxury Business Cards</h4>
+                            <p>Spot UV and gold foil finishing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Storefront Sign">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>LED Storefront Sign</h4>
+                            <p>Illuminated channel letters for retail</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1589149098258-3e9102ca63d3?w=600&q=80" alt="Interior Signage">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Office Wayfinding System</h4>
+                            <p>Complete directional and room signage</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?w=600&q=80" alt="Promotional Materials">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Marketing Collateral</h4>
+                            <p>Brochures, flyers, and presentation folders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:48px">
+                <a href="portfolio.html" class="btn btn-primary btn-lg">View Full Portfolio <i class="fas fa-arrow-right" style="margin-left:10px"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="services-header">
+                <span class="section-badge">Testimonials</span>
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">Don't just take our word for it — hear from businesses we've helped grow.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">AQSA Print delivered exceptional quality on our vehicle fleet branding. The wraps have held up perfectly in the Saudi heat and still look brand new after 18 months. Highly professional team.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h5>Ahmed Al-Rashid</h5>
+                            <p>CEO, Desert Logistics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">We needed 500 business cards printed overnight for a major conference. AQSA Print not only delivered on time but the quality exceeded our expectations. The spot UV finish looks incredible.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h5>Sara Mohammed</h5>
+                            <p>Marketing Director, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Our new 3D illuminated sign has transformed our storefront. Customers can spot us from blocks away now. The installation was seamless and the team was incredibly professional throughout.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">K</div>
+                        <div class="author-info">
+                            <h5>Khalid Ibrahim</h5>
+                            <p>Owner, Riyadh Cafe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Elevate Your Brand?</h2>
+                <p>Join 500+ businesses who trust AQSA Print for their branding and printing needs. Get your free quote today.</p>
+                <div class="cta-buttons">
+                    <a href="quote.html" class="btn btn-primary-hero btn-lg"><i class="fas fa-paper-plane" style="margin-right:10px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-secondary-hero btn-lg"><i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp Us Now</a>
+                </div>
+                <p class="cta-note"><i class="fas fa-phone"></i> Or call us directly: +966 55 668 3044</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="quote.html" class="btn btn-primary"><i class="fas fa-paper-plane" style="margin-right:8px"></i> Get Quote</a>
+        <a href="https://wa.me/966556683044" class="btn" style="background:#25D366;color:#fff"><i class="fab fa-whatsapp" style="margin-right:8px"></i> WhatsApp</a>
+    </div>
 
     <footer class="footer">
         <div class="container">
-            <p>© 2025 AQSA Print. Riyadh, Saudi Arabia.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                        <li><a href="signages.html">Signages</a></li>
+                        <li><a href="3d-signage.html">3D Signs</a></li>
+                        <li><a href="printing-services.html">Print Services</a></li>
+                        <li><a href="shop.html">Promotional Items</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="quote.html">Get Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-    
+
     <div class="floating-buttons">
         <a href="https://wa.me/966556683044" class="floating-btn floating-btn-whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+966556683044" class="floating-btn floating-btn-phone"><i class="fas fa-phone"></i></a>
     </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Sticky CTA bar on scroll
+        window.addEventListener('scroll', function() {
+            const stickyCta = document.getElementById('stickyCta');
+            if (window.scrollY > 800) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
