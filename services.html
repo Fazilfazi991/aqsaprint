@@ -14,7 +14,7 @@
         /* HERO */
         .services-hero{position:relative;min-height:70vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
         .services-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.75) 50%,rgba(45,184,168,.25) 100%)}
-        .services-hero-bg::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1589149098258-3e9102ca63d3?w=1600&q=80');background-size:cover;background-position:center;opacity:.2}
+        .services-hero-bg::before{content:'';position:absolute;inset:0;background-image:url('images/generated/services_hero.png');background-size:cover;background-position:center;opacity:.3}
         .services-hero .container{position:relative;z-index:2}
         .services-hero-content{max-width:800px;margin:0 auto;text-align:center;padding:140px 20px 80px}
         .hero-badge{display:inline-block;padding:10px 24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
@@ -39,6 +39,9 @@
         .service-icon{width:80px;height:80px;border-radius:20px;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--teal-dark);margin-bottom:24px;position:relative;overflow:hidden}
         .service-icon::after{content:'';position:absolute;inset:0;background:var(--gradient-primary);opacity:0;transition:opacity .3s ease}
         .service-card:hover .service-icon::after{opacity:.15}
+        .service-image{width:100%;height:200px;border-radius:16px;overflow:hidden;margin-bottom:28px}
+        .service-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+        .service-card:hover .service-image img{transform:scale(1.05)}
         .service-icon i{position:relative;z-index:1}
         
         .service-card h3{font-size:26px;font-weight:800;color:var(--gray-900);margin-bottom:14px;line-height:1.3}
@@ -158,7 +161,7 @@
             <div class="services-grid">
                 <!-- Vehicle Branding -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-truck"></i></div>
+                    <div class="service-image"><img src="images/generated/service_vehicle.png" alt="Vehicle Branding"></div>
                     <h3>Vehicle Branding</h3>
                     <p>Transform your vehicles into mobile billboards with premium vinyl wraps, decals, and fleet graphics. High-quality materials designed for KSA's climate.</p>
                     <ul class="service-features">
@@ -172,7 +175,7 @@
 
                 <!-- Signages -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-cube"></i></div>
+                    <div class="service-image"><img src="images/generated/service_3d.png" alt="3D & LED Signage"></div>
                     <h3>3D & LED Signage</h3>
                     <p>Eye-catching dimensional signs with illuminated options. Premium acrylic, metal, and LED technology for maximum visibility day and night.</p>
                     <ul class="service-features">
@@ -186,7 +189,7 @@
 
                 <!-- Indoor Signage -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-door-open"></i></div>
+                    <div class="service-image"><img src="images/generated/service_indoor.png" alt="Indoor Signage"></div>
                     <h3>Indoor Signage</h3>
                     <p>Professional office signage including reception logos, wayfinding systems, room signs, and acrylic name plates for a polished interior.</p>
                     <ul class="service-features">
@@ -200,7 +203,7 @@
 
                 <!-- Outdoor Signage -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-store-alt"></i></div>
+                    <div class="service-image"><img src="images/generated/service_outdoor.png" alt="Outdoor Signage"></div>
                     <h3>Outdoor Signage</h3>
                     <p>Weatherproof storefront signs, pylon signs, and channel letters built to withstand Riyadh's intense climate and deliver lasting impact.</p>
                     <ul class="service-features">
@@ -214,7 +217,7 @@
 
                 <!-- Printing Services -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-print"></i></div>
+                    <div class="service-image"><img src="images/generated/service_print.png" alt="Printing Services"></div>
                     <h3>Printing Services</h3>
                     <p>High-quality business cards, brochures, flyers, catalogs, and all marketing collateral printed on premium paper stocks with finishing options.</p>
                     <ul class="service-features">
@@ -228,7 +231,7 @@
 
                 <!-- Rollups & Backdrops -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-scroll"></i></div>
+                    <div class="service-image"><img src="images/generated/work_vehicle.png" alt="Rollups & Backdrops"></div>
                     <h3>Rollups & Backdrops</h3>
                     <p>Portable display solutions perfect for exhibitions, trade shows, and events. Easy to transport and set up with stunning visual impact.</p>
                     <ul class="service-features">
@@ -242,7 +245,7 @@
 
                 <!-- Flags -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-flag"></i></div>
+                    <div class="service-image"><img src="images/generated/service_outdoor.png" alt="Promotional Flags"></div>
                     <h3>Promotional Flags</h3>
                     <p>Eye-catching outdoor flags including feather flags, teardrop banners, and custom flag designs for maximum outdoor visibility.</p>
                     <ul class="service-features">
@@ -256,7 +259,7 @@
 
                 <!-- Promotional Gifts -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-gift"></i></div>
+                    <div class="service-image"><img src="images/generated/service_promo.png" alt="Promotional Items"></div>
                     <h3>Promotional Items</h3>
                     <p>Custom branded merchandise including t-shirts, mugs, pens, notebooks, and corporate gifts that keep your brand top of mind.</p>
                     <ul class="service-features">
@@ -270,7 +273,7 @@
 
                 <!-- Design Services -->
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                    <div class="service-image"><img src="images/generated/work_wayfinding.png" alt="Design & Development"></div>
                     <h3>Design & Development</h3>
                     <p>Professional graphic design services including logo design, brand identity, and creative concepts that bring your vision to life.</p>
                     <ul class="service-features">

@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* HERO SECTION */
-        .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .hero{position:relative;min-height:80vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
         .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.85) 40%,rgba(45,184,168,.25) 100%)}
-        .hero-bg::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80');background-size:cover;background-position:center;opacity:.15}
-        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:150px;background:linear-gradient(to top,#fff 0%,transparent 100%)}
+        .hero-bg::before{content:'';position:absolute;inset:0;background-image:url('images/generated/home_hero.png');background-size:cover;background-position:center;opacity:.2}
+        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,#fff 0%,transparent 100%)}
         .hero .container{position:relative;z-index:2}
         .hero-content{max-width:900px;margin:0 auto;text-align:center;padding:180px 20px 120px}
         .hero-badge{display:inline-block;padding:10px 24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px;backdrop-filter:blur(10px)}
@@ -36,7 +36,7 @@
         .stats{background:#fff;padding:80px 0;border-bottom:1px solid var(--gray-100)}
         .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1100px;margin:0 auto}
         .stat-card{text-align:center;padding:20px}
-        .stat-number{font-size:56px;font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px}
+        .stat-number{font-size:56px;font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:8px;white-space:nowrap;padding-right:12px}
         .stat-label{font-size:16px;color:var(--gray-600);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 
         /* SERVICES SECTION */
@@ -50,7 +50,9 @@
         .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-primary);transform:scaleX(0);transition:transform .3s ease}
         .service-card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.12);border-color:var(--teal-light)}
         .service-card:hover::before{transform:scaleX(1)}
-        .service-icon{width:72px;height:72px;border-radius:16px;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--teal-dark);margin-bottom:24px}
+        .service-image{width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:24px}
+        .service-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+        .service-card:hover .service-image img{transform:scale(1.05)}
         .service-card h3{font-size:24px;font-weight:800;color:var(--gray-900);margin-bottom:12px}
         .service-card p{font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:24px}
         .service-card .btn{width:100%;justify-content:center}
@@ -106,7 +108,7 @@
         .cta-content h2{font-size:clamp(36px,6vw,58px);font-weight:900;color:#fff;margin-bottom:24px;line-height:1.15}
         .cta-content p{font-size:20px;color:rgba(255,255,255,.8);margin-bottom:40px;line-height:1.6}
         .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
-        .cta-buttons .btn{min-width:220px}display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:32px}
+        .cta-buttons .btn{min-width:220px}
         .cta-note{display:flex;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.85);font-size:16px;margin-top:24px}
         .cta-note i{color:var(--teal-primary);font-size:18px}
 
@@ -223,40 +225,40 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-truck"></i></div>
+                    <div class="service-image"><img src="images/generated/service_vehicle.png" alt="Vehicle Branding"></div>
                     <h3>Vehicle Branding</h3>
                     <p>Turn your vehicles into mobile billboards with premium vinyl wraps, decals, and fleet graphics that capture attention on every road.</p>
-                    <a href="vehicle-branding.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="vehicle-branding.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-cube"></i></div>
+                    <div class="service-image"><img src="images/generated/service_3d.png" alt="3D Signage"></div>
                     <h3>3D Signage</h3>
                     <p>Dimensional acrylic and metal letters that pop off the wall. LED illuminated options available for 24/7 visibility.</p>
-                    <a href="3d-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="3d-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-sign"></i></div>
+                    <div class="service-image"><img src="images/generated/service_indoor.png" alt="Indoor Signage"></div>
                     <h3>Indoor Signage</h3>
                     <p>Professional office signs, reception logos, wayfinding systems, and acrylic name plates for a polished interior.</p>
-                    <a href="indoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="indoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-store-alt"></i></div>
+                    <div class="service-image"><img src="images/generated/service_outdoor.png" alt="Outdoor Signage"></div>
                     <h3>Outdoor Signage</h3>
                     <p>Weatherproof storefront signs, pylon signs, and LED lightboxes built to withstand Riyadh's intense climate.</p>
-                    <a href="outdoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="outdoor-signage.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-print"></i></div>
+                    <div class="service-image"><img src="images/generated/service_print.png" alt="Print Services"></div>
                     <h3>Print Services</h3>
                     <p>Business cards, brochures, flyers, banners, and all marketing collateral printed on premium paper stocks.</p>
-                    <a href="printing-services.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="printing-services.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-gift"></i></div>
+                    <div class="service-image"><img src="images/generated/service_promo.png" alt="Promotional Items"></div>
                     <h3>Promotional Items</h3>
                     <p>Custom branded merchandise — t-shirts, mugs, pens, and giveaways that keep your brand top of mind.</p>
-                    <a href="promotional-gifts.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="promotional-gifts.html" class="btn btn-secondary">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -302,7 +304,7 @@
                     </div>
                 </div>
                 <div class="why-image">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="AQSA Print Team">
+                    <img src="images/generated/why_choose.png" alt="AQSA Print Team">
                 </div>
             </div>
         </div>
@@ -351,7 +353,7 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="3D Signage Project">
+                    <img src="images/generated/work_led.png" alt="3D Signage Project">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>Premium 3D Logo Sign</h4>
@@ -360,7 +362,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1619984807973-2c10e9a2c3bf?w=600&q=80" alt="Vehicle Wrap">
+                    <img src="images/generated/work_vehicle.png" alt="Vehicle Wrap">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>Full Vehicle Wrap</h4>
@@ -369,7 +371,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80" alt="Business Cards">
+                    <img src="images/generated/work_print.png" alt="Business Cards">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>Luxury Business Cards</h4>
@@ -378,7 +380,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Storefront Sign">
+                    <img src="images/generated/work_led.png" alt="Storefront Sign">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>LED Storefront Sign</h4>
@@ -387,7 +389,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1589149098258-3e9102ca63d3?w=600&q=80" alt="Interior Signage">
+                    <img src="images/generated/work_wayfinding.png" alt="Interior Signage">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>Office Wayfinding System</h4>
@@ -396,7 +398,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?w=600&q=80" alt="Promotional Materials">
+                    <img src="images/generated/service_print.png" alt="Promotional Materials">
                     <div class="portfolio-overlay">
                         <div class="portfolio-info">
                             <h4>Marketing Collateral</h4>

@@ -15,15 +15,15 @@
         *{scroll-margin-top:80px}
         .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
         .fade-in.visible{opacity:1;transform:translateY(0)}
-        .lp-hero{position:relative;min-height:92vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero{position:relative;min-height:70vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
         .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
         .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.7) 50%,rgba(45,184,168,.2) 100%)}
         .lp-hero .container{position:relative;z-index:2;width:100%}
-        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-content{max-width:900px;margin:0 auto;text-align:center;padding:100px 20px;display:flex;flex-direction:column;align-items:center}
         .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
         .lp-hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
         .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px}
         .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
         .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
         .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
@@ -81,7 +81,7 @@
         .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
         .lp-cta > p{font-size:19px;color:rgba(255,255,255,.95);margin-bottom:40px;font-weight:500}
         .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
-        .cta-buttons .btn{min-width:220px}display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-buttons .btn{min-width:220px}
         .cta-note{display:flex;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.85);font-size:16px;margin-top:24px}
         .cta-note i{color:var(--teal-primary);font-size:18px}
 
@@ -134,7 +134,7 @@
 
     <!-- HERO -->
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1601929862217-f1175f0fce47?w=1600&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('images/generated/service_vehicle.png')"></div>
         <div class="container">
             <div class="lp-hero-content">
                 <span class="lp-hero-badge">Fleet Branding Specialists — Riyadh</span>
@@ -159,7 +159,7 @@
         <div class="container">
             <div class="intro-grid">
                 <div class="intro-img">
-                    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&q=80" alt="Van Branding Riyadh" loading="lazy">
+                    <img src="images/generated/service_vehicle.png" alt="Van Branding Riyadh" loading="lazy">
                 </div>
                 <div class="intro-content">
                     <h2>Your Fleet is Your Biggest Advertising Asset</h2>
@@ -226,7 +226,7 @@
                     </div>
                 </div>
                 <div class="details-img">
-                    <img src="https://images.unsplash.com/photo-1586191582056-94399e46a7be?w=800&q=80" alt="Truck Branding Details Riyadh" loading="lazy">
+                    <img src="images/generated/work_vehicle.png" alt="Truck Branding Details Riyadh" loading="lazy">
                 </div>
             </div>
         </div>
@@ -352,3 +352,4 @@
     </script>
 </body>
 </html>
+
