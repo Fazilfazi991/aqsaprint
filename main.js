@@ -1,29 +1,6 @@
 /* ============================================
-    AQSA PRINT - CORE JAVASCRIPT
-    ============================================ */
-
-// Kimi/Minimax API Integration
-const MINIMAX_API_KEY = 'your-api-key-here';
-const MINIMAX_BASE_URL = 'https://api.minimax.io/v1';
-
-async function chatWithAI(prompt) {
-    const response = await fetch(`${MINIMAX_BASE_URL}/chat/completions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${MINIMAX_API_KEY}`
-        },
-        body: JSON.stringify({
-            model: 'MiniMax-M2.7',
-            messages: [
-                { role: 'system', content: 'You are a helpful assistant for Aqsa Print, a printing company.' },
-                { role: 'user', content: prompt }
-            ]
-        })
-    });
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content || 'No response';
-}
+   AQSA PRINT - CORE JAVASCRIPT
+   ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle

@@ -3,13 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signages in Riyadh | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Professional signages in Riyadh. 3D signs, LED signs, acrylic signs, and illuminated signages. Get a free quote today.">
+    <title>Custom Signages in Riyadh | 3D, LED & Acrylic Signs | AQSA Print</title>
+    <meta name="description" content="Professional signages in Riyadh. 3D signs, LED illuminated signs, acrylic name plates, outdoor & indoor signage. Free quote & fast installation across KSA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== HERO ===== */
+        .lp-hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.75) 50%,rgba(45,184,168,.25) 100%)}
+        .lp-hero .container{position:relative;z-index:2;width:100%}
+        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(40px,6vw,68px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+        .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+        .hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+        .hero-trust-item i{color:#2DB8A8;font-size:16px}
+
+        /* ===== AFTER HERO / VALUE ===== */
+        .lp-value{padding:100px 0 80px;background:var(--white)}
+        .value-header{text-align:center;max-width:720px;margin:0 auto 60px}
+        .value-header h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--gray-900);margin-bottom:16px;line-height:1.2}
+        .value-header p{font-size:18px;color:var(--gray-500);line-height:1.7}
+        .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+        .value-card{background:var(--gray-50);border-radius:var(--radius-xl);padding:36px 28px;text-align:center;transition:all .25s ease;border:1px solid transparent}
+        .value-card:hover{background:#fff;border-color:var(--teal-primary);box-shadow:var(--shadow-lg);transform:translateY(-6px)}
+        .value-icon{width:72px;height:72px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;color:var(--teal-dark);box-shadow:0 8px 24px rgba(45,184,168,.15)}
+        .value-card h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:10px}
+        .value-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+
+        /* ===== SERVICES ===== */
+        .lp-services{padding:80px 0;background:linear-gradient(180deg,var(--gray-50) 0%,#fff 100%)}
+        .service-type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+        .service-type-card{background:#fff;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--gray-100);transition:all .25s ease;display:flex;flex-direction:column}
+        .service-type-card:hover{box-shadow:var(--shadow-xl);transform:translateY(-8px);border-color:var(--teal-light)}
+        .service-type-img{width:100%;aspect-ratio:16/9;overflow:hidden}
+        .service-type-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+        .service-type-card:hover .service-type-img img{transform:scale(1.08)}
+        .service-type-body{padding:28px;flex:1;display:flex;flex-direction:column}
+        .service-type-body h3{font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:10px}
+        .service-type-body p{font-size:14px;color:var(--gray-600);line-height:1.65;margin-bottom:20px;flex:1}
+        .service-type-body .btn{align-self:flex-start}
+
+        /* ===== WHY ===== */
+        .lp-why{padding:100px 0;background:#fff}
+        .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:48px}
+        .why-card{text-align:center;padding:40px 24px;border-radius:var(--radius-xl);background:var(--gray-50);transition:all .2s ease}
+        .why-card:hover{background:#fff;box-shadow:var(--shadow-lg)}
+        .why-icon{width:68px;height:68px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;color:var(--teal-dark)}
+        .why-card h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .why-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+
+        /* ===== WORK ===== */
+        .lp-work{padding:100px 0;background:var(--gray-50)}
+        .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px;position:relative}
+        .work-step{text-align:center;position:relative;z-index:1}
+        .work-num{width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 18px;box-shadow:0 8px 24px rgba(45,184,168,.3)}
+        .work-step h4{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .work-step p{font-size:14px;color:var(--gray-600);line-height:1.65}
+
+        /* ===== PRICING ===== */
+        .lp-pricing{padding:100px 0;background:#fff}
+        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px;align-items:start}
+        .pricing-card{background:#fff;border:2px solid var(--gray-100);border-radius:var(--radius-xl);padding:40px 28px;text-align:center;position:relative;transition:all .2s ease}
+        .pricing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl)}
+        .pricing-card.popular{border-color:var(--teal-primary);box-shadow:var(--shadow-lg)}
+        .pricing-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gradient-primary);color:#fff;padding:8px 20px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .pricing-card h3{font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+        .pricing-amount{font-size:40px;font-weight:800;color:var(--gray-900);margin-bottom:6px}
+        .pricing-amount span{font-size:14px;font-weight:500;color:var(--gray-500)}
+        .pricing-card>p{font-size:14px;color:var(--gray-500);margin-bottom:28px}
+        .pricing-features{list-style:none;padding:0;margin:0 0 28px;text-align:left}
+        .pricing-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--gray-700);margin-bottom:12px}
+        .pricing-features li i{color:var(--teal-primary);font-size:12px;margin-top:3px;flex-shrink:0}
+        .pricing-card .btn{width:100%}
+
+        /* ===== FAQ ===== */
+        .lp-faq{padding:100px 0;background:var(--gray-50)}
+        .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:48px}
+        .faq-item{background:#fff;border-radius:var(--radius-xl);padding:28px;border:1px solid var(--gray-100);transition:all .2s ease}
+        .faq-item:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md)}
+        .faq-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .faq-item h4 i{color:var(--teal-primary);font-size:18px;flex-shrink:0}
+        .faq-item p{font-size:14px;color:var(--gray-600);line-height:1.7}
+
+        /* ===== CTA ===== */
+        .lp-cta{padding:110px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta::after{content:'';position:absolute;bottom:-50%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,165,184,.12) 0%,transparent 70%);border-radius:50%}
+        .lp-cta .container{position:relative;z-index:1}
+        .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-note{color:rgba(255,255,255,.55);font-size:14px}
+        .cta-note i{color:var(--teal-primary);margin-right:6px}
+
+        /* ===== STICKY ===== */
+        .sticky-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--gray-200);padding:14px 24px;display:flex;justify-content:center;gap:12px;z-index:999;box-shadow:0 -4px 24px rgba(0,0,0,.08)}
+        .sticky-bar .btn{padding:14px 28px;font-size:14px}
+
+        @media(max-width:768px){
+            .lp-hero-content{padding:140px 20px 80px}
+            .lp-hero-ctas{flex-direction:column;align-items:center}
+            .lp-hero-ctas .btn{width:100%;max-width:320px}
+            .sticky-bar{padding:10px 16px}
+            .sticky-bar .btn{flex:1;padding:12px 16px;font-size:13px}
+            .value-grid,.service-type-grid,.pricing-grid{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -20,209 +130,286 @@
                         <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
+                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="services.html" class="nav-link">Services</a>
-                    <a href="shop.html" class="nav-link">Products</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html" class="nav-link active nav-dropdown-trigger">Services <i class="fas fa-chevron-down" style="font-size:10px"></i></a>
+                        <div class="nav-dropdown-menu">
+                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
+                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
+                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
+                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
+                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
+                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
+                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
+                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
+                        </div>
+                    </div>
+                    <div class="nav-dropdown">
+                        <a href="shop.html" class="nav-link nav-dropdown-trigger">Products <i class="fas fa-chevron-down" style="font-size:10px"></i></a>
+                        <div class="nav-dropdown-menu">
+                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
+                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
+                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
+                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
+                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
+                        </div>
+                    </div>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary">Get Quote</a>
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
                 </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="shop.html" class="mobile-menu-link">Products</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta">
+                <a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- HERO -->
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
-        <div class="overlay"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <span class="section-badge" style="color: white; border-color: rgba(255,255,255,0.3);">Saudi Arabia's #1 Printing Company</span>
-                <h1>Professional Signages in Riyadh</h1>
-                <p class="hero-subtitle">Make your business stand out with custom 3D signs, LED signs, acrylic signs, and illuminated signages that work day and night.</p>
+                <span class="lp-hero-badge"><i class="fas fa-star" style="margin-right:6px;color:#E8A5B8"></i> Riyadh's #1 Signage Company</span>
+                <h1>Custom Signages That Make Your Business <span>Unmissable</span></h1>
+                <p class="hero-subtitle">3D signs, LED illuminated signs, acrylic name plates, and outdoor signage — designed, manufactured & installed across Riyadh & KSA. Get noticed 24/7.</p>
                 <div class="lp-hero-ctas">
-                    <a href="quote.html" class="btn btn-primary btn-lg">Get Free Quote</a>
+                    <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
                     <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
                 </div>
                 <div class="hero-trust">
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 500+ Happy Clients</div>
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 10,000+ Projects Done</div>
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 24hr Delivery</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 500+ Businesses Served</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> RTA Approval Assistance</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 3-Year Warranty</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <section class="lp-logos">
+    <!-- AFTER HERO / VALUE -->
+    <section class="lp-value">
         <div class="container">
-            <p class="lp-logos-title">Trusted by leading businesses in Riyadh</p>
-            <div class="lp-logos-grid">
-                <div class="lp-logo-item"><i class="fas fa-building"></i><span>Corporate Co.</span></div>
-                <div class="lp-logo-item"><i class="fas fa-hospital"></i><span>Healthcare</span></div>
-                <div class="lp-logo-item"><i class="fas fa-university"></i><span>Education</span></div>
-                <div class="lp-logo-item"><i class="fas fa-shopping-mall"></i><span>Retail</span></div>
-                <div class="lp-logo-item"><i class="fas fa-hotdog"></i><span>F&B</span></div>
+            <div class="value-header">
+                <span class="section-badge">Why Invest in Signage</span>
+                <h2>Your Signage Is Working Harder Than Your Sales Team</h2>
+                <p>A well-designed sign generates 24/7 impressions, builds trust instantly, and converts passing traffic into paying customers — all without saying a word.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Problem/Solution -->
-    <section class="lp-problem">
-        <div class="container">
-            <div class="lp-problem-grid">
-                <div class="lp-problem-content">
-                    <h2>Why Professional Signages Matter</h2>
-                    <ul class="lp-problem-list">
-                        <li><i class="fas fa-check"></i> First impressions that capture attention instantly</li>
-                        <li><i class="fas fa-check"></i> 24/7 advertising even when you're closed</li>
-                        <li><i class="fas fa-check"></i> Professional image that builds trust</li>
-                        <li><i class="fas fa-check"></i> Stand out from competitors on the street</li>
-                    </ul>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-eye"></i></div>
+                    <h4>50,000+ Daily Impressions</h4>
+                    <p>A single storefront sign in a busy Riyadh street gets seen by tens of thousands of potential customers every single day.</p>
                 </div>
-                <div class="lp-problem-image">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Signages">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h4>Instant Credibility</h4>
+                    <p>75% of consumers say they've entered a store they've never visited before purely because of its signage.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Signage Types -->
-    <section class="lp-features">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Our Services</span>
-                <h2 class="section-title">Signage Options</h2>
-                <p class="section-subtitle">Choose the perfect sign for your business</p>
-            </div>
-            <div class="lp-features-grid">
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-cube"></i></div>
-                    <h3>3D Signs</h3>
-                    <p>Stand out with dimensional letters and logos. Premium acrylic and metal finishes.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Acrylic & Metal</li>
-                        <li><i class="fas fa-check"></i> Illuminated Options</li>
-                        <li><i class="fas fa-check"></i> Custom Colors</li>
-                    </ul>
-                    <a href="3d-signage.html" class="btn btn-primary">View Details</a>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-coins"></i></div>
+                    <h4>Lowest Cost Per Impression</h4>
+                    <p>Compared to digital ads or print, signage delivers the lowest cost per thousand impressions over its lifetime.</p>
                 </div>
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>LED Signs</h3>
-                    <p>Eye-catching illuminated signs that glow day and night. Custom LED solutions.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Energy Efficient</li>
-                        <li><i class="fas fa-check"></i> Bright Colors</li>
-                        <li><i class="fas fa-check"></i> Programmable</li>
-                    </ul>
-                    <a href="indoor-signage.html" class="btn btn-primary">View Details</a>
-                </div>
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-border-all"></i></div>
-                    <h3>Acrylic Signs</h3>
-                    <p>Modern and sleek acrylic signs with standoff mounting or adhesive fixings.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Frosted Finish</li>
-                        <li><i class="fas fa-check"></i> Various Thickness</li>
-                        <li><i class="fas fa-check"></i> Wall Mounted</li>
-                    </ul>
-                    <a href="acrylic-name-signages.html" class="btn btn-primary">View Details</a>
-                </div>
-                <div class="lp-feature-card">
-                    <div class="lp-feature-icon"><i class="fas fa-sign"></i></div>
-                    <h3>Directional Signs</h3>
-                    <p>Wayfinding and directional signage for offices, malls, and buildings.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Clear Navigation</li>
-                        <li><i class="fas fa-check"></i> ADA Compliant</li>
-                        <li><i class="fas fa-check"></i> Indoor/Outdoor</li>
-                    </ul>
-                    <a href="directional-signage.html" class="btn btn-primary">View Details</a>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Targets Local Customers</h4>
+                    <p>85% of your customers live or work within 8km of your business. Signage reaches them when they're closest to buying.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing -->
-    <section class="lp-pricing">
+    <!-- SERVICE TYPES -->
+    <section class="lp-services">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Simple Pricing</span>
-                <h2 class="section-title">Choose Your Package</h2>
+                <span class="section-badge">What We Make</span>
+                <h2 class="section-title">Every Type of Signage You Need</h2>
+                <p class="section-subtitle">From storefront signs to wayfinding systems — all designed, built, and installed by our Riyadh team.</p>
             </div>
-            <div class="lp-pricing-grid">
-                <div class="lp-pricing-card">
-                    <h3>Starter</h3>
-                    <div class="lp-pricing-price">Starting from SAR 300</div>
-                    <p>Perfect for small businesses</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Acrylic signage</li>
-                        <li><i class="fas fa-check"></i> Standard size</li>
-                        <li><i class="fas fa-check"></i> Wall mount</li>
-                    </ul>
-                    <a href="quote.html" class="btn btn-secondary">Get Quote</a>
+            <div class="service-type-grid">
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="3D Signage"></div>
+                    <div class="service-type-body">
+                        <h3>3D Signs</h3>
+                        <p>Dimensional acrylic and metal letters that pop off the wall. Illuminated or non-lit options for maximum impact.</p>
+                        <a href="3d-signage.html" class="btn btn-secondary">Explore 3D Signs</a>
+                    </div>
                 </div>
-                <div class="lp-pricing-card popular">
-                    <span class="lp-pricing-badge">Most Popular</span>
-                    <h3>Professional</h3>
-                    <div class="lp-pricing-price">Starting from SAR 800</div>
-                    <p>Best for visibility</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> 3D illuminated</li>
-                        <li><i class="fas fa-check"></i> Custom size</li>
-                        <li><i class="fas fa-check"></i> Installation included</li>
-                    </ul>
-                    <a href="quote.html" class="btn btn-primary">Get Quote</a>
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1513506003011-3b03c80175e8?w=600&q=80" alt="LED Signage"></div>
+                    <div class="service-type-body">
+                        <h3>LED & Lightbox Signs</h3>
+                        <p>Bright, energy-efficient illuminated signs. Perfect for storefronts, malls, and outdoor visibility after dark.</p>
+                        <a href="indoor-signage.html" class="btn btn-secondary">Explore LED Signs</a>
+                    </div>
                 </div>
-                <div class="lp-pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="lp-pricing-price">Custom Pricing</div>
-                    <p>For large projects</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Full building signage</li>
-                        <li><i class="fas fa-check"></i> LED displays</li>
-                        <li><i class="fas fa-check"></i> Multi-location</li>
-                    </ul>
-                    <a href="quote.html" class="btn btn-secondary">Contact Us</a>
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80" alt="Acrylic Signs"></div>
+                    <div class="service-type-body">
+                        <h3>Acrylic Name Plates</h3>
+                        <p>Sleek, modern acrylic signs with standoff mounts. Ideal for offices, reception areas, and professional spaces.</p>
+                        <a href="acrylic-name-signages.html" class="btn btn-secondary">Explore Acrylic</a>
+                    </div>
+                </div>
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1504384308090-c54be3857833?w=600&q=80" alt="Outdoor Signage"></div>
+                    <div class="service-type-body">
+                        <h3>Outdoor Signage</h3>
+                        <p>Weather-resistant pylons, flex faces, and building signs built to withstand Riyadh's heat and sandstorms.</p>
+                        <a href="outdoor-signage.html" class="btn btn-secondary">Explore Outdoor</a>
+                    </div>
+                </div>
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80" alt="Indoor Signage"></div>
+                    <div class="service-type-body">
+                        <h3>Indoor Signage</h3>
+                        <p>Wayfinding, directories, and wall signs for offices, malls, hospitals, and retail spaces across Riyadh.</p>
+                        <a href="indoor-signage.html" class="btn btn-secondary">Explore Indoor</a>
+                    </div>
+                </div>
+                <div class="service-type-card">
+                    <div class="service-type-img"><img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80" alt="Directional Signage"></div>
+                    <div class="service-type-body">
+                        <h3>Directional & Safety Signs</h3>
+                        <p>Clear wayfinding and compliant safety signage. RTA-approved designs for public and commercial buildings.</p>
+                        <a href="directional-signage.html" class="btn btn-secondary">Explore Wayfinding</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process -->
-    <section class="lp-process">
+    <!-- WHY AQSA -->
+    <section class="lp-why">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Choose Us</span>
+                <h2 class="section-title">Riyadh's Signage Experts Since 2015</h2>
+                <p class="section-subtitle">We don't just print signs — we engineer visibility for your brand.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-gem"></i></div>
+                    <h4>Premium Materials</h4>
+                    <p>UV-resistant acrylics, marine-grade aluminum, and automotive paints that survive Riyadh's harsh climate.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>5-10 Day Turnaround</h4>
+                    <p>Most signage projects delivered in under 10 days. Rush orders available for urgent launches.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-tools"></i></div>
+                    <h4>Full Installation</h4>
+                    <p>Our certified team handles mounting, wiring, and cleanup. You don't lift a finger.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-file-signature"></i></div>
+                    <h4>RTA Assistance</h4>
+                    <p>We guide you through municipal approvals and ensure your signage meets all Saudi compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="lp-work">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Simple Process</span>
-                <h2 class="section-title">How It Works</h2>
+                <h2 class="section-title">From Idea to Installation in 4 Steps</h2>
+                <p class="section-subtitle">No headaches. No hidden steps. We handle everything.</p>
             </div>
-            <div class="lp-process-grid">
-                <div class="lp-process-step">
-                    <div class="lp-process-icon">1</div>
-                    <h3>Share Your Vision</h3>
-                    <p>Tell us about your needs. Our experts listen and suggest the best solution.</p>
+            <div class="work-grid">
+                <div class="work-step">
+                    <div class="work-num">1</div>
+                    <h4>Free Consultation</h4>
+                    <p>Share your vision, location, and budget. We survey your site and recommend the best signage solution.</p>
                 </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-icon">2</div>
-                    <h3>Get a Quote</h3>
-                    <p>We provide a detailed quote within hours. No hidden fees, transparent pricing.</p>
+                <div class="work-step">
+                    <div class="work-num">2</div>
+                    <h4>Design & Quote</h4>
+                    <p>Get a 3D mockup and detailed quote within 24 hours. Revisions included until you're 100% satisfied.</p>
                 </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-icon">3</div>
-                    <h3>We Create</h3>
-                    <p>Our team brings your vision to life with precision and care.</p>
+                <div class="work-step">
+                    <div class="work-num">3</div>
+                    <h4>Manufacturing</h4>
+                    <p>We build your sign using precision CNC, laser cutting, and premium finishing in our Riyadh facility.</p>
                 </div>
-                <div class="lp-process-step">
-                    <div class="lp-process-icon">4</div>
-                    <h3>Fast Delivery</h3>
-                    <p>Your completed project delivered to your door in Riyadh.</p>
+                <div class="work-step">
+                    <div class="work-num">4</div>
+                    <h4>Installation</h4>
+                    <p>Our certified team installs your sign safely — including wiring, testing, and full site cleanup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="lp-pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Transparent Pricing</span>
+                <h2 class="section-title">Choose Your Package</h2>
+                <p class="section-subtitle">No hidden fees. No surprises. Just great signs at fair prices.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="pricing-amount">SAR 350</div>
+                    <p>Small acrylic or vinyl sign</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Up to 60 x 40 cm</li>
+                        <li><i class="fas fa-check"></i> Standard acrylic or vinyl</li>
+                        <li><i class="fas fa-check"></i> Wall mounting included</li>
+                        <li><i class="fas fa-check"></i> 5-day turnaround</li>
+                    </ul>
+                    <a href="quote.html" class="btn btn-secondary">Get Quote</a>
+                </div>
+                <div class="pricing-card popular">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Business</h3>
+                    <div class="pricing-amount">SAR 1,200</div>
+                    <p>3D or illuminated storefront sign</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Up to 150 x 100 cm</li>
+                        <li><i class="fas fa-check"></i> 3D acrylic or LED backlit</li>
+                        <li><i class="fas fa-check"></i> Professional installation</li>
+                        <li><i class="fas fa-check"></i> 7-day turnaround</li>
+                        <li><i class="fas fa-check"></i> 2-year warranty</li>
+                    </ul>
+                    <a href="quote.html" class="btn btn-primary">Get Quote</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="pricing-amount">Custom</div>
+                    <p>Large-scale or multi-location</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Any size or configuration</li>
+                        <li><i class="fas fa-check"></i> Pylon, facade, or LED display</li>
+                        <li><i class="fas fa-check"></i> Full project management</li>
+                        <li><i class="fas fa-check"></i> Priority scheduling</li>
+                        <li><i class="fas fa-check"></i> 3-year warranty</li>
+                    </ul>
+                    <a href="quote.html" class="btn btn-secondary">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -232,79 +419,124 @@
     <section class="lp-faq">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Questions?</span>
+                <span class="section-badge">Common Questions</span>
                 <h2 class="section-title">Frequently Asked Questions</h2>
             </div>
-            <div class="lp-faq-grid">
-                <div class="lp-faq-item">
-                    <h3><i class="fas fa-question-circle"></i> How long does signage production take?</h3>
-                    <p>Most orders are completed within 5-10 business days. Rush orders available.</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do I need RTA approval for signage?</h4>
+                    <p>Yes, most outdoor commercial signage requires RTA approval in Riyadh. We handle the entire documentation and submission process for you — it's included in our Business and Enterprise packages.</p>
                 </div>
-                <div class="lp-faq-item">
-                    <h3><i class="fas fa-question-circle"></i> Do you handle installation?</h3>
-                    <p>Yes, professional installation is included in most packages.</p>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How long does signage last outdoors?</h4>
+                    <p>Our outdoor signage is built with UV-resistant and weatherproof materials designed to last 5-7 years in Riyadh's climate. We offer warranties up to 3 years for complete peace of mind.</p>
                 </div>
-                <div class="lp-faq-item">
-                    <h3><i class="fas fa-question-circle"></i> What about RTA approvals?</h3>
-                    <p>We can assist with necessary documentation for signage permits.</p>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Can you install at my location?</h4>
+                    <p>Absolutely. Our certified installation team covers all of Riyadh and surrounding areas. We handle mounting, electrical connections for illuminated signs, and full site cleanup.</p>
                 </div>
-                <div class="lp-faq-item">
-                    <h3><i class="fas fa-question-circle"></i> What file formats do you need?</h3>
-                    <p>PDF, AI, or vector files. Our team can work from logos and concepts.</p>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> What file do you need for design?</h4>
+                    <p>We work with AI, PDF, EPS, or even hand-drawn sketches. If you don't have a design, our in-house designers can create one for you at no extra charge when you book a package.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How fast can you deliver?</h4>
+                    <p>Standard turnaround is 5-10 days depending on complexity. Rush orders can be completed in as little as 3 days. Contact us and we'll confirm based on your specific project.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do you offer maintenance?</h4>
+                    <p>Yes. We offer annual maintenance contracts to keep your signage looking brand new — including cleaning, bulb replacement, and structural checks.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="lp-final-cta">
+    <!-- CTA -->
+    <section class="lp-cta">
         <div class="container">
-            <h2>Ready to Make Your Mark?</h2>
-            <p>Join 500+ businesses who trust AQSA Print for their signage needs.</p>
-            <div class="lp-final-cta-buttons">
-                <a href="quote.html" class="btn btn-primary btn-lg">Get Free Quote</a>
+            <h2>Ready for a Sign That Sells?</h2>
+            <p>Join 500+ businesses across Riyadh who trust AQSA Print for their signage.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
                 <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
             </div>
-            <p class="lp-cta-note"><i class="fas fa-phone"></i> Or call us: +966 55 668 3044</p>
+            <p class="cta-note"><i class="fas fa-phone"></i> Or call us directly: +966 55 668 3044</p>
         </div>
     </section>
 
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <a href="quote.html" class="btn btn-primary"><i class="fas fa-quote-left"></i> Get Quote</a>
-        <a href="https://wa.me/966556683044" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <!-- STICKY BAR -->
+    <div class="sticky-bar">
+        <a href="quote.html" class="btn btn-primary"><i class="fas fa-file-invoice" style="margin-right:6px"></i> Get Free Quote</a>
+        <a href="https://wa.me/966556683044" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>AQSA Print</h4>
-                    <p>Riyadh's trusted printing company since 2015. Quality printing solutions for businesses across Saudi Arabia.</p>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="digital-printing.html">Digital Printing</a></li>
-                        <li><a href="offset-printing.html">Offset Printing</a></li>
-                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
                         <li><a href="signages.html">Signages</a></li>
+                        <li><a href="3d-signage.html">3D Signs</a></li>
+                        <li><a href="indoor-signage.html">Indoor Signs</a></li>
+                        <li><a href="outdoor-signage.html">Outdoor Signs</a></li>
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +966 55 668 3044</li>
-                        <li><i class="fas fa-envelope"></i> info@aqsaprint.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Riyadh, KSA</li>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="shop.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="quote.html">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044<br>+966 55 989 6763</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fab fa-whatsapp"></i><span>+966 55 668 3044</span></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 AQSA Print. All rights reserved.</p>
+                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <div class="floating-buttons">
+        <a href="https://wa.me/966556683044" class="floating-btn floating-btn-whatsapp" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+966556683044" class="floating-btn floating-btn-phone" aria-label="Call us"><i class="fas fa-phone"></i></a>
+    </div>
 
     <script src="main.js"></script>
 </body>
