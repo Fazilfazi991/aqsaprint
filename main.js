@@ -82,4 +82,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
     }
+
+    // Animated Counters
+    const counters = document.querySelectorAll('.counter');
+    if (counters.length > 0 && 'IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const finalValue = parseInt(target.dataset.target);
+                    const suffix = target.dataset.suffix || '';
+                    const duration = 2000; // ms
+                    const startTime = performance.now();
+                    
+                    function updateCounter(currentTime) {
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / duration, 1);
+                        
+                        // Easing function (easeOutQuad)
+                        const easeProgress = progress * (2 - progress);
+                        
+                        const currentValue = Math.floor(easeProgress * finalValue);
+                        target.innerText = currentValue + suffix;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            target.innerText = finalValue + suffix;
+                        }
+                    }
+                    
+                    requestAnimationFrame(updateCounter);
+                    observer.unobserve(target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
 });

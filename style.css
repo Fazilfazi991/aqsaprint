@@ -1019,6 +1019,18 @@ ul {
         padding: 0 20px;
     }
 
+    .header-inner {
+        padding: 10px 0;
+    }
+
+    .hero {
+        padding: 120px 0 60px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
     .hero-cta {
         flex-direction: column;
     }
@@ -1026,4 +1038,84 @@ ul {
     .hero-cta .btn {
         width: 100%;
     }
+
+    .floating-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+}
+
+/* ============================================
+   NEW SERVICE PAGE COMPONENTS
+   ============================================ */
+/* Page Hero */
+.page-hero {
+    padding: 160px 0 80px;
+}
+
+.page-hero h1 {
+    font-size: clamp(36px, 5vw, 48px);
+}
+
+/* Process Steps */
+.process-step {
+    position: relative;
+    padding: 24px;
+}
+
+.process-step-number {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* FAQ Accordion */
+.faq-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 24px 0;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.faq-answer {
+    color: var(--gray-600);
+    margin-top: 16px;
+    line-height: 1.8;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Service Cards */
+.service-list-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+
+.service-list-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateX(4px);
 }
