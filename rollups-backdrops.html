@@ -3,13 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rollups & Backdrops | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Portable displays in Riyadh.">
+    <title>Rollups & Backdrops in Riyadh | Portable Event Displays | AQSA Print</title>
+    <meta name="description" content="High-quality roll-up stands, pop-up backdrops, and portable exhibition displays in Riyadh. Fast production, durable hardware, and vibrant printing.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        *{scroll-margin-top:80px}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:92vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.7) 50%,rgba(45,184,168,.2) 100%)}
+        .lp-hero .container{position:relative;z-index:2;width:100%}
+        .lp-hero-content{max-width:780px;margin:0 auto;text-align:center;padding:160px 0 100px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(17px,2.2vw,21px);color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+        .lp-hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:40px}
+        .btn-lg{padding:18px 40px;font-size:16px;font-weight:700}
+        .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.35)}
+        .btn-whatsapp:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+        .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+        .hero-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px;font-weight:500}
+        .hero-trust-item i{color:#2DB8A8;font-size:16px}
+        .lp-intro{padding:100px 0 60px;background:#fff}
+        .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .intro-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .intro-img img{width:100%;height:auto;display:block}
+        .intro-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px;line-height:1.2}
+        .intro-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:20px}
+        .intro-list{list-style:none;padding:0;margin:0}
+        .intro-list li{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;font-size:15px;color:var(--gray-700)}
+        .intro-list li i{color:var(--teal-primary);font-size:18px;margin-top:2px;flex-shrink:0}
+        .lp-features{padding:80px 0;background:var(--gray-50)}
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:48px}
+        .feature-card{background:#fff;border-radius:var(--radius-xl);padding:36px 28px;text-align:center;border:1px solid var(--gray-100);transition:all .25s ease}
+        .feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--teal-light)}
+        .feature-icon{width:68px;height:68px;border-radius:50%;background:var(--gradient-light);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;color:var(--teal-dark)}
+        .feature-card h4{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .feature-card p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-details{padding:100px 0;background:#fff}
+        .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .details-content h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--gray-900);margin-bottom:18px}
+        .details-content p{font-size:16px;color:var(--gray-600);line-height:1.8;margin-bottom:24px}
+        .details-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl)}
+        .details-img img{width:100%;height:auto;display:block}
+        .details-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        .spec-item{background:var(--gray-50);border-radius:var(--radius-lg);padding:20px}
+        .spec-item h5{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
+        .spec-item p{font-size:13px;color:var(--gray-500);margin:0}
+        .lp-process{padding:100px 0;background:var(--gray-50)}
+        .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-top:48px}
+        .work-step{text-align:center}
+        .work-num{width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 18px;box-shadow:0 8px 24px rgba(45,184,168,.3)}
+        .work-step h4{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+        .work-step p{font-size:14px;color:var(--gray-600);line-height:1.65}
+        .lp-faq{padding:100px 0;background:var(--gray-50)}
+        .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:48px}
+        .faq-item{background:#fff;border-radius:var(--radius-xl);padding:28px;border:1px solid var(--gray-100);transition:all .2s ease}
+        .faq-item:hover{border-color:var(--teal-light);box-shadow:var(--shadow-md)}
+        .faq-item h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .faq-item h4 i{color:var(--teal-primary);font-size:18px;flex-shrink:0}
+        .faq-item p{font-size:14px;color:var(--gray-600);line-height:1.7}
+        .lp-cta{padding:110px 0;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);text-align:center;position:relative;overflow:hidden}
+        .lp-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,184,168,.15) 0%,transparent 70%);border-radius:50%}
+        .lp-cta h2{font-size:clamp(32px,5vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15}
+        .lp-cta>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+        .cta-note{color:rgba(255,255,255,.55);font-size:14px}
+        .cta-note i{color:var(--teal-primary);margin-right:6px}
+        @media(max-width:768px){
+            .lp-hero-content{padding:140px 20px 80px}
+            .lp-hero-ctas{flex-direction:column;align-items:center}
+            .lp-hero-ctas .btn{width:100%;max-width:320px}
+            .intro-grid,.details-grid{grid-template-columns:1fr;gap:40px}
+            .feature-grid{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -17,43 +92,51 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                <stop offset="100%" style="stop-color:#2DB8A8"/>
-                            </linearGradient>
-                        </defs>
+                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
                         <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span></div>
+                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
                 </a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="services.html" class="nav-link active">Services</a>
-                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary btn-quote">Get Quote</a>
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
                 </div>
             </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%"><i class="fab fa-whatsapp"></i> Get Free Quote</a></div>
         </div>
     </header>
 
     <section class="lp-hero">
-        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
+        <div class="lp-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80')"></div>
         <div class="container">
             <div class="lp-hero-content">
-                <h1 class="text-white">Rollup Banners & Backdrops</h1>
-                <h2 class="text-white">Make a statement at any event</h2>
+                <span class="lp-hero-badge">Portable Event Displays</span>
+                <h1>Make a Statement at <span>Any Event</span></h1>
+                <p class="hero-subtitle">High-quality, portable roll-up banners and massive exhibition backdrops in Riyadh. Engineered for rapid setup, maximum visual impact, and easy transportation.</p>
                 <div class="lp-hero-ctas">
-                    <a href="quote.html" class="btn btn-primary">Get Free Quote</a>
-                    <a href="portfolio.html" class="btn btn-outline-white">View Our Work</a>
-                    <a href="https://wa.me/966556683044" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                    <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+                </div>
+                <div class="hero-trust">
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Quick 1-Minute Setup</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Premium Anti-Curl Media</div>
+                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Durable Hardware</div>
                 </div>
             </div>
         </div>
@@ -61,80 +144,129 @@
 
     <section class="lp-intro">
         <div class="container">
-            <div class="lp-intro-inner">
-                <h2 class="section-title">What Is Rollups & Backdrops?</h2>
-                <p>High-quality portable displays.</p>
+            <div class="intro-grid">
+                <div class="intro-img">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Rollups and Backdrops Riyadh" loading="lazy">
+                </div>
+                <div class="intro-content">
+                    <h2>Professional Branding, Anywhere</h2>
+                    <p>Whether you're presenting at a major trade show, setting up a temporary kiosk in a mall, or conducting a press conference, your portable signage is often the first thing people notice.</p>
+                    <p>Our roll-up banners and pop-up backdrops are designed to deliver a massive visual punch while being incredibly easy to transport and assemble. We use high-grade aluminum hardware combined with premium, no-curl print media that stays perfectly flat and vibrant.</p>
+                    <ul class="intro-list">
+                        <li><i class="fas fa-check-circle"></i> Premium photo-quality printing with rich, accurate brand colors</li>
+                        <li><i class="fas fa-check-circle"></i> Heavy-duty bases that prevent leaning or tipping</li>
+                        <li><i class="fas fa-check-circle"></i> Includes padded carrying bags for safe transport</li>
+                        <li><i class="fas fa-check-circle"></i> Interchangeable graphics — keep the hardware, update the message</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-features">
+    <section class="lp-features fade-in">
         <div class="container">
-            <h2 class="section-title text-center">What's Included in Our Rollups & Backdrops</h2>
-            <div class="lp-features-grid"><div class="lp-feature-card"><div class="lp-feature-icon"><i class="fas fa-scroll"></i></div><h3>Standard Rollups</h3><p>85x200cm banners.</p></div></div>
-        </div>
-    </section>
-
-    <section class="lp-benefits">
-        <div class="container">
-            <h2 class="section-title text-center">Why Choose Our Rollups & Backdrops?</h2>
-            <div class="lp-benefits-grid"><div class="lp-benefit-item"><div class="lp-benefit-check"><i class="fas fa-check"></i></div><div><h4>Lightweight</h4><p>Easy to transport.</p></div></div></div>
-        </div>
-    </section>
-
-    <section class="lp-process">
-        <div class="container">
-            <h2 class="section-title text-center">Our Simple 4-Step Process</h2>
-            <div class="lp-process-grid">
-                <div class="lp-process-step"><div class="lp-process-num">1</div><h3>Consultation</h3><p>Discuss your needs.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">2</div><h3>Design/Quote</h3><p>We create a plan.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">3</div><h3>Production</h3><p>High-quality build.</p></div>
-                <div class="lp-process-step"><div class="lp-process-num">4</div><h3>Delivery</h3><p>Fast arrival.</p></div>
+            <div class="section-header">
+                <span class="section-badge">Our Products</span>
+                <h2 class="section-title">Portable Display Options</h2>
+                <p class="section-subtitle">Choose the perfect display size and style for your next event.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-scroll"></i></div>
+                    <h4>Standard Roll-Ups</h4>
+                    <p>The industry standard 85x200cm portable banner. Features a lightweight aluminum cassette, perfect for daily sales reps and small exhibitions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                    <h4>Wide & Luxury Roll-Ups</h4>
+                    <p>Available in 100cm, 120cm, and 150cm widths. Features a heavier, sleek teardrop base with no visible twist-out feet for a premium look.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-th"></i></div>
+                    <h4>Pop-Up Backdrops</h4>
+                    <p>Massive 3x3 or 3x4 meter collapsible frames. The fabric or magnetic PVC panels attach to create a seamless, professional step-and-repeat wall.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-flag"></i></div>
+                    <h4>X-Banners & Flags</h4>
+                    <p>Ultra-lightweight X-frame banners and outdoor teardrop flags. Highly cost-effective for large-scale promotional distribution.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-pricing">
+    <section class="lp-details fade-in">
         <div class="container">
-            <h2 class="section-title text-center">Rollups & Backdrops Options & Pricing</h2>
-            <table class="pricing-table">
-                <thead><tr><th>Option</th><th>Description</th><th>Starting From</th></tr></thead>
-                <tbody><tr><td>Standard Rollup</td><td>With case</td><td><span class="price-tag">From SAR 180</span></td></tr></tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="lp-portfolio">
-        <div class="container">
-            <h2 class="section-title text-center">Our Recent Rollups & Backdrops Projects</h2>
-            <div class="lp-portfolio-grid"><div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Expo Stand</h4><p>Tech Future</p></div></div>
-        </div>
-    </section>
-
-    <section class="lp-faq">
-        <div class="container">
-            <h2 class="section-title text-center">Frequently Asked Questions</h2>
-            <div class="lp-faq-list"><div class="lp-faq-item"><button class="lp-faq-question">Turnaround time?</button><div class="lp-faq-answer">3-7 days.</div></div></div>
-        </div>
-    </section>
-
-    <section class="lp-testimonials">
-        <div class="container">
-            <h2 class="section-title text-center">What Our Clients Say</h2>
-            <div class="lp-testimonials-grid">
-                <div class="lp-testi-card"><p>"Great service and quality."</p><strong>Mohammed</strong></div>
-                <div class="lp-testi-card"><p>"Best in Riyadh."</p><strong>Sami</strong></div>
+            <div class="details-grid">
+                <div class="details-content">
+                    <h2>Quality That Stands Up</h2>
+                    <p>A common issue with cheap roll-up banners is that the edges curl inward over time, obscuring your message and looking unprofessional. At AQSA Print, we combat this by using specialized multi-layered PET blockout material.</p>
+                    <p>This premium material is engineered specifically for tension displays. It blocks all light from behind (so the hardware pole doesn't cast a shadow through the print) and features an anti-curl backing that ensures the sides remain perfectly straight, even after hundreds of uses.</p>
+                    <div class="details-specs">
+                        <div class="spec-item"><h5>Standard Size</h5><p>85cm × 200cm</p></div>
+                        <div class="spec-item"><h5>Backdrop Sizes</h5><p>Up to 3m × 4m</p></div>
+                        <div class="spec-item"><h5>Media Material</h5><p>Anti-Curl PET Blockout</p></div>
+                        <div class="spec-item"><h5>Hardware</h5><p>Anodized Aluminum</p></div>
+                    </div>
+                </div>
+                <div class="details-img">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="Rollup Display Quality" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="lp-final-cta">
+    <section class="lp-process fade-in">
         <div class="container">
-            <h2>Ready to Get Started with Rollups & Backdrops?</h2>
-            <div class="lp-final-cta-btns">
-                <a href="quote.html" class="btn-white">Get Free Quote</a>
-                <a href="https://wa.me/966556683044" class="btn-wa">WhatsApp</a>
+            <div class="section-header">
+                <span class="section-badge">How We Work</span>
+                <h2 class="section-title">Order Process</h2>
             </div>
+            <div class="work-grid">
+                <div class="work-step"><div class="work-num">1</div><h4>Select Hardware</h4><p>Choose between standard, premium wide-base roll-ups, or specify the size of the pop-up backdrop you need.</p></div>
+                <div class="work-step"><div class="work-num">2</div><h4>Artwork Setup</h4><p>We provide exact templates. Ensure your artwork accounts for the bleed area at the bottom that rolls into the cassette.</p></div>
+                <div class="work-step"><div class="work-num">3</div><h4>High-Res Printing</h4><p>We print your graphics at high resolution using vibrant, scratch-resistant eco-solvent or latex inks.</p></div>
+                <div class="work-step"><div class="work-num">4</div><h4>Assembly & Test</h4><p>We mount the print into the hardware, test the tension mechanism, and pack it securely in its carry bag.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-faq fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Can I change the banner graphic later?</h4>
+                    <p>Yes. If you invest in our premium hardware, you can bring the unit back to us and we will print and install a new graphic into your existing cassette, saving you money.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How long does production take?</h4>
+                    <p>For standard quantities of roll-ups (1-10 units), turnaround is typically 24-48 hours. Large backdrops may take 3-4 days depending on hardware availability.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Are these displays suitable for outdoor use?</h4>
+                    <p>Standard roll-ups are designed for indoor use. For outdoors, wind is a major factor. We recommend specific heavy-base outdoor roll-ups or water-weighted teardrop flags.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How heavy is a pop-up backdrop to carry?</h4>
+                    <p>A standard 3x3 meter fabric pop-up backdrop weighs approximately 15-20kg and packs down into a wheeled transit case that fits easily in the back of an SUV.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-cta">
+        <div class="container">
+            <h2>Ready to Upgrade Your Event Presence?</h2>
+            <p>Contact us for rapid production of premium roll-ups and backdrops.</p>
+            <div class="cta-buttons">
+                <a href="quote.html" class="btn btn-primary btn-lg"><i class="fas fa-file-invoice" style="margin-right:8px"></i> Get Free Quote</a>
+                <a href="https://wa.me/966556683044" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
+            <p class="cta-note"><i class="fas fa-phone"></i> Or call us: +966 55 668 3044</p>
         </div>
     </section>
 
@@ -142,24 +274,44 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="footer-logo-text">AQSA</span>
-                    <p>Your partner for all printing needs in KSA.</p>
+                    <div class="footer-logo">
+                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
+                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
+                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
+                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
+                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
+                        </svg>
+                        <span class="footer-logo-text">AQSA</span>
+                    </div>
+                    <p class="footer-description">Your trusted partner for all printing and signage needs in Riyadh, KSA.</p>
                 </div>
                 <div>
-                    <h4 class="footer-title">Contact Us</h4>
-                    <p>Riyadh, Saudi Arabia<br>+966 55 668 3044<br>info@aqsaprint.com</p>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                        <li><a href="signages.html">Signages</a></li>
+                        <li><a href="3d-signage.html">3D Signs</a></li>
+                        <li><a href="printing-services.html">Print Services</a></li>
+                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
                 </div>
             </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p></div>
         </div>
     </footer>
 
     <script src="main.js"></script>
     <script>
-        document.querySelectorAll('.lp-faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                button.parentElement.classList.toggle('active');
-            });
-        });
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
     </script>
 </body>
 </html>
