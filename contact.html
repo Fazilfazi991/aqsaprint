@@ -4,189 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Get in touch with AQSA Print for all your printing needs in Saudi Arabia. Visit our Riyadh office or contact us online for a free consultation.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .contact-section {
-            padding: 100px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-
-        @media (min-width: 1024px) {
-            .contact-grid {
-                grid-template-columns: 1fr 1.5fr;
-            }
-        }
-
-        .contact-info-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .contact-info-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--gray-100);
-            display: flex;
-            gap: 20px;
-            transition: all var(--transition-base);
-        }
-
-        .contact-info-card:hover {
-            border-color: var(--teal-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .info-card-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--teal-dark);
-            flex-shrink: 0;
-        }
-
-        .info-card-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-        }
-
-        .info-card-text {
-            font-size: 15px;
-            color: var(--gray-500);
-            line-height: 1.6;
-        }
-
-        .contact-form-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--gray-100);
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 8px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--gray-200);
-            font-family: inherit;
-            font-size: 15px;
-            transition: all var(--transition-fast);
-            outline: none;
-        }
-
-        .form-control:focus {
-            border-color: var(--teal-primary);
-            box-shadow: 0 0 0 4px rgba(45, 184, 168, 0.1);
-        }
-
-        textarea.form-control {
-            height: 150px;
-            resize: none;
-        }
-
-        .map-section {
-            height: 450px;
-            background: var(--gray-100);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .map-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=80') center/cover;
-        }
-
-        .map-overlay {
-            position: absolute;
-            background: var(--white);
-            padding: 24px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            max-width: 300px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .social-connect {
-            padding: 80px 0;
-            background: var(--gray-50);
-            text-align: center;
-        }
-
-        .social-links-large {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .social-link-large {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--gray-700);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-base);
-        }
-
-        .social-link-large:hover {
-            background: var(--gradient-primary);
-            color: var(--white);
-            transform: translateY(-5px);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
@@ -200,259 +21,67 @@
                         </defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
-                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div>
-                        <span class="logo-text text-gradient">AQSA</span>
-                        <span class="logo-text-ar">أقصى</span>
-                    </div>
+                    <div><span class="logo-text text-gradient">AQSA</span></div>
                 </a>
-
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <div class="nav-dropdown">
-                        <a href="services.html" class="nav-link nav-dropdown-trigger">
-                            Services <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
-                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
-                        </div>
-                    </div>
-                    <div class="nav-dropdown">
-                        <a href="shop.html" class="nav-link nav-dropdown-trigger">
-                            Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
-                        </div>
-                    </div>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link active">Contact</a>
                 </nav>
-
-                <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary btn-quote">
-                        <i class="fas fa-calendar-check"></i> Get Quote
-                    </a>
-                </div>
             </div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="lp-hero">
+        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
         <div class="container">
-            <div class="page-hero-content">
-                <h1 class="section-title">Contact <span class="text-gradient">Us</span></h1>
-                <p class="section-subtitle">Have a project in mind? We'd love to hear from you. Get in touch today.</p>
+            <div class="lp-hero-content">
+                <h1 class="text-white">Contact Us</h1>
+                <h2 class="text-white">Let's discuss your project and bring your brand to life.</h2>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
+    <section class="lp-intro">
         <div class="container">
-            <div class="contact-grid">
-                <!-- Contact Info -->
+            <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
                 <div class="contact-info">
-                    <span class="section-badge">Get In Touch</span>
-                    <h2 class="section-title" style="text-align: left;">Let's Start a <span class="text-gradient">Conversation</span></h2>
-                    <div class="contact-info-cards">
-                        <div class="contact-info-card">
-                            <div class="info-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <h3 class="info-card-title">Our Office</h3>
-                                <p class="info-card-text">Riyadh, Saudi Arabia<br>Olaya District, Building 10, Office 504</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-card">
-                            <div class="info-card-icon"><i class="fas fa-phone"></i></div>
-                            <div>
-                                <h3 class="info-card-title">Call Us</h3>
-                                <p class="info-card-text">Main: +966 55 668 3044<br>Mob 2: +966 55 989 6763</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-card">
-                            <div class="info-card-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h3 class="info-card-title">Email Us</h3>
-                                <p class="info-card-text">info@aqsaprint.com<br>sales@aqsaprint.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-card">
-                            <div class="info-card-icon"><i class="fab fa-whatsapp"></i></div>
-                            <div>
-                                <h3 class="info-card-title">WhatsApp</h3>
-                                <p class="info-card-text">Instant Chat: +966 55 668 3044<br>Available 24/7 for inquiries</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p style="margin-bottom: 24px;">Our team is ready to help you with any inquiries.</p>
+                    <div style="margin-bottom: 16px;"><i class="fas fa-phone" style="color: var(--teal-primary); margin-right: 12px;"></i> +966 55 668 3044</div>
+                    <div style="margin-bottom: 16px;"><i class="fab fa-whatsapp" style="color: var(--teal-primary); margin-right: 12px;"></i> +966 55 668 3044</div>
+                    <div style="margin-bottom: 16px;"><i class="fas fa-envelope" style="color: var(--teal-primary); margin-right: 12px;"></i> info@aqsaprint.com</div>
+                    <div style="margin-bottom: 16px;"><i class="fas fa-map-marker-alt" style="color: var(--teal-primary); margin-right: 12px;"></i> Riyadh, Saudi Arabia</div>
                 </div>
-
-                <!-- Contact Form -->
                 <div class="contact-form">
-                    <div class="contact-form-box">
-                        <form id="contact-form">
-                            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div class="form-group">
-                                    <label class="form-label">First Name</label>
-                                    <input type="text" class="form-control" placeholder="John" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Doe" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" placeholder="john@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Service Interested In</label>
-                                <select class="form-control">
-                                    <option>Business Printing</option>
-                                    <option>Signage & Banners</option>
-                                    <option>Vehicle Branding</option>
-                                    <option>Promotional Items</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Your Message</label>
-                                <textarea class="form-control" placeholder="Tell us about your project..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                        </form>
-                    </div>
+                    <form action="#" method="POST" style="background: white; padding: 32px; border-radius: 16px; box-shadow: var(--shadow-lg);">
+                        <div style="margin-bottom: 16px;">
+                            <label>Name</label>
+                            <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label>Email</label>
+                            <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label>Message</label>
+                            <textarea placeholder="Your Message" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid var(--gray-200); border-radius: 8px; height: 120px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="map-section">
-        <div class="map-placeholder">
-            <div class="map-overlay">
-                <h3 class="info-card-title">AQSA Print Riyadh</h3>
-                <p class="info-card-text" style="margin-bottom: 16px;">Olaya District, Riyadh, KSA</p>
-                <a href="#" class="btn btn-primary btn-sm" target="_blank">Get Directions</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Connect -->
-    <section class="social-connect">
-        <div class="container">
-            <h2 class="section-title">Connect With <span class="text-gradient">Social Media</span></h2>
-            <p class="section-subtitle">Follow us for latest updates, projects, and printing tips.</p>
-            <div class="social-links-large">
-                <a href="#" class="social-link-large"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-link-large"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link-large"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-link-large"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs>
-                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
-                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
-                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
-                        </svg>
-                        <span class="footer-logo-text">AQSA</span>
-                    </div>
-                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
-                        <li><a href="signages.html">Signages</a></li>
-                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
-                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
-                        <li><a href="flags.html">Flags</a></li>
-                        <li><a href="promotional-gifts.html">Promotional Gifts</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="quote.html">Get a Quote</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riyadh, Saudi Arabia</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+966 55 668 3044<br>+966 55 989 6763</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@aqsaprint.com</span>
-                        </li>
-                        <li>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+966 55 668 3044</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
+            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
         </div>
     </footer>
-
-    <!-- Shared JavaScript -->
-    <script src="main.js"></script>
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! Our team will get back to you shortly.');
-            e.target.reset();
-        });
-    </script>
 </body>
 </html>

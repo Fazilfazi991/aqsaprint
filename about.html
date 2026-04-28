@@ -4,179 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Learn about AQSA Print, your premium printing partner in Saudi Arabia. Our mission, values, and the expert team behind our success.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .about-section {
-            padding: 100px 0;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        @media (min-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .about-experience {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .exp-number {
-            font-size: 40px;
-            font-weight: 800;
-            display: block;
-            line-height: 1;
-        }
-
-        .exp-text {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .mission-vision {
-            background: var(--gray-50);
-            padding: 100px 0;
-        }
-
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .mission-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-        }
-
-        .mission-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 28px;
-            color: var(--teal-dark);
-        }
-
-        .values-section {
-            padding: 100px 0;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
-        }
-
-        .value-item {
-            text-align: center;
-        }
-
-        .value-icon {
-            font-size: 32px;
-            color: var(--pink-primary);
-            margin-bottom: 20px;
-        }
-
-        .team-section {
-            padding: 100px 0;
-            background: var(--gray-50);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .team-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: transform var(--transition-base);
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .team-img {
-            height: 300px;
-            background: var(--gray-200);
-        }
-
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-info {
-            padding: 24px;
-            text-align: center;
-        }
-
-        .team-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 4px;
-        }
-
-        .team-role {
-            font-size: 14px;
-            color: var(--teal-primary);
-            font-weight: 600;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
@@ -190,291 +21,66 @@
                         </defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
-                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div>
-                        <span class="logo-text text-gradient">AQSA</span>
-                        <span class="logo-text-ar">أقصى</span>
-                    </div>
+                    <div><span class="logo-text text-gradient">AQSA</span></div>
                 </a>
-
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <div class="nav-dropdown">
-                        <a href="services.html" class="nav-link nav-dropdown-trigger">
-                            Services <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
-                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
-                        </div>
-                    </div>
-                    <div class="nav-dropdown">
-                        <a href="shop.html" class="nav-link nav-dropdown-trigger">
-                            Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
-                        </div>
-                    </div>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link active">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
-
-                <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary btn-quote">
-                        <i class="fas fa-calendar-check"></i> Get Quote
-                    </a>
-                </div>
             </div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="lp-hero">
+        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80')"></div>
         <div class="container">
-            <div class="page-hero-content">
-                <h1 class="section-title">Our <span class="text-gradient">Story</span></h1>
-                <p class="section-subtitle">Dedicated to delivering excellence in printing and branding solutions since 2020.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80" alt="AQSA Print Office">
-                    <div class="about-experience">
-                        <span class="exp-number">5+</span>
-                        <span class="exp-text">Years Excellence</span>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <span class="section-badge">Who We Are</span>
-                    <h2 class="section-title">We Print Your <span class="text-gradient">Vision</span> Into Reality</h2>
-                    <p class="section-subtitle" style="text-align: left; margin: 0 0 24px;">Founded in 2020, AQSA Print has rapidly grown to become one of the KSA's most trusted names in the printing industry. Based in Riyadh, we serve a diverse range of clients from small startups to multinational corporations.</p>
-                    <p style="margin-bottom: 30px; color: var(--gray-500);">Our state-of-the-art facility is equipped with the latest technology in offset, digital, and large format printing. We combine technical expertise with a passion for creative design to deliver products that not only meet but exceed expectations.</p>
-                    <div class="hero-cta">
-                        <a href="portfolio.html" class="btn btn-primary">View Our Work</a>
-                    </div>
+            <div class="lp-hero-content">
+                <h1 class="text-white">About AQSA Print</h1>
+                <h2 class="text-white">Your Trusted Printing Partner in Saudi Arabia since 2020.</h2>
+                <div class="lp-hero-ctas">
+                    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: #F9FAFB;">
+    <section class="lp-intro">
         <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Our Facilities</span>
-                <h2 class="section-title">State-of-the-Art <span class="text-gradient">Equipment</span></h2>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
-                <div style="background: white; padding: 32px; border-radius: 16px; text-align: center;">
-                    <i class="fas fa-print" style="font-size: 48px; color: #2DB8A8; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Large Format Printers</h3>
-                    <p style="color: #6B7280; font-size: 14px;">High-quality large format printing up to 5 meters wide</p>
-                </div>
-                <div style="background: white; padding: 32px; border-radius: 16px; text-align: center;">
-                    <i class="fas fa-cut" style="font-size: 48px; color: #2DB8A8; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Vinyl Cutters</h3>
-                    <p style="color: #6B7280; font-size: 14px;">Precision contour cutting for stickers and graphics</p>
-                </div>
-                <div style="background: white; padding: 32px; border-radius: 16px; text-align: center;">
-                    <i class="fas fa-tshirt" style="font-size: 48px; color: #2DB8A8; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">DTF Printers</h3>
-                    <p style="color: #6B7280; font-size: 14px;">Direct-to-film fabric printing machines</p>
-                </div>
-                <div style="background: white; padding: 32px; border-radius: 16px; text-align: center;">
-                    <i class="fas fa-sun" style="font-size: 48px; color: #2DB8A8; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">UV Printers</h3>
-                    <p style="color: #6B7280; font-size: 14px;">Direct-to-product UV printing technology</p>
-                </div>
+            <div class="lp-intro-inner">
+                <h2 class="section-title">Our Story</h2>
+                <p>AQSA Print started with a vision to provide premium quality printing and branding solutions to businesses in Riyadh. Over the years, we have grown into a leading partner for major corporations and SMEs alike.</p>
+                <p>Our commitment to quality, speed, and customer satisfaction has made us a trusted name in the KSA printing industry.</p>
             </div>
         </div>
     </section>
 
-    <!-- Mission & Vision -->
-    <section style="padding: 80px 0;">
+    <section class="lp-features">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
-                <div>
-                    <span class="section-badge">Our Mission</span>
-                    <h2 style="font-size: 32px; font-weight: 700; margin: 16px 0 24px;">Mission</h2>
-                    <p style="color: #6B7280; line-height: 1.8;">To deliver innovative and high-quality printing and branding solutions that help businesses stand out, connect with their audience, and grow their visibility across KSA.</p>
-                </div>
-                <div>
-                    <span class="section-badge">Our Vision</span>
-                    <h2 style="font-size: 32px; font-weight: 700; margin: 16px 0 24px;">Vision</h2>
-                    <p style="color: #6B7280; line-height: 1.8;">To be Saudi Arabia's most trusted and creative printing partner, recognized for transforming ideas into powerful visual identities through innovation, reliability, and excellence.</p>
-                </div>
+            <h2 class="section-title text-center">Our Values</h2>
+            <div class="lp-features-grid">
+                <div class="lp-feature-card"><h3>Quality First</h3><p>We never compromise on the materials or the final finish of our projects.</p></div>
+                <div class="lp-feature-card"><h3>Customer Centric</h3><p>Your success is our success. We work closely with you to achieve your goals.</p></div>
+                <div class="lp-feature-card"><h3>Innovation</h3><p>We use the latest printing technology to deliver cutting-edge results.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Core Values -->
-    <section style="padding: 80px 0; background: linear-gradient(135deg, #E8A5B8 0%, #2DB8A8 100%); color: white;">
+    <section class="lp-final-cta">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 48px;">
-                <h2 style="font-size: 40px; font-weight: 800;">Our Core Values</h2>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: center;">
-                <div>
-                    <i class="fas fa-medal" style="font-size: 36px; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Quality</h3>
-                    <p style="opacity: 0.9; font-size: 14px;">Premium materials and craftsmanship</p>
-                </div>
-                <div>
-                    <i class="fas fa-lightbulb" style="font-size: 36px; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Innovation</h3>
-                    <p style="opacity: 0.9; font-size: 14px;">Latest technology and creative solutions</p>
-                </div>
-                <div>
-                    <i class="fas fa-handshake" style="font-size: 36px; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Reliability</h3>
-                    <p style="opacity: 0.9; font-size: 14px;">Consistent delivery and support</p>
-                </div>
-                <div>
-                    <i class="fas fa-leaf" style="font-size: 36px; margin-bottom: 16px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Sustainability</h3>
-                    <p style="opacity: 0.9; font-size: 14px;">Eco-friendly practices and materials</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Our Team</span>
-                <h2 class="section-title">The Experts Behind <span class="text-gradient">AQSA Print</span></h2>
-            </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="CEO"></div>
-                    <div class="team-info">
-                        <h4 class="team-name">Ahmed Al-Mansoori</h4>
-                        <p class="team-role">Founder & CEO</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Marketing Director"></div>
-                    <div class="team-info">
-                        <h4 class="team-name">Fatima Khalid</h4>
-                        <p class="team-role">Creative Director</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Production Manager"></div>
-                    <div class="team-info">
-                        <h4 class="team-name">Rajesh Kumar</h4>
-                        <p class="team-role">Production Manager</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Customer Support"></div>
-                    <div class="team-info">
-                        <h4 class="team-name">Sarah Wilson</h4>
-                        <p class="team-role">Operations Manager</p>
-                    </div>
-                </div>
-            </div>
+            <h2>Ready to Work Together?</h2>
+            <a href="quote.html" class="btn-white">Request a Quote</a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs>
-                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
-                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
-                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
-                        </svg>
-                        <span class="footer-logo-text">AQSA</span>
-                    </div>
-                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
-                        <li><a href="signages.html">Signages</a></li>
-                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
-                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
-                        <li><a href="flags.html">Flags</a></li>
-                        <li><a href="promotional-gifts.html">Promotional Gifts</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="quote.html">Get a Quote</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riyadh, Saudi Arabia</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+966 55 668 3044<br>+966 55 989 6763</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@aqsaprint.com</span>
-                        </li>
-                        <li>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+966 55 668 3044</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
+            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
         </div>
     </footer>
-
-    <!-- Shared JavaScript -->
-    <script src="main.js"></script>
 </body>
 </html>

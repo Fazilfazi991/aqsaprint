@@ -3,222 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Portfolio | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="View our featured printing and branding projects across Saudi Arabia. Signage, vehicle wraps, corporate identity, and exhibition stands.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Shared Styles -->
+    <title>Portfolio | AQSA Print Saudi Arabia</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .portfolio-section {
-            padding: 60px 0 100px;
-        }
-
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-
-        .portfolio-filter {
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            background: var(--gray-100);
-            color: var(--gray-600);
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .portfolio-filter.active {
-            background: var(--gradient-primary);
-            color: var(--white);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 24px;
-        }
-
-        @media (min-width: 640px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .portfolio-card {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            aspect-ratio: 1/1;
-            cursor: pointer;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-
-        .portfolio-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .portfolio-card:hover .portfolio-card-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-card-category {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--teal-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .portfolio-card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .portfolio-card-client {
-            font-size: 14px;
-            color: var(--gray-300);
-        }
-
-        /* Lightbox Modal */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 40px;
-            color: var(--white);
-            cursor: pointer;
-        }
-
-        .lightbox-content {
-            background: var(--white);
-            max-width: 1000px;
-            width: 100%;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        @media (min-width: 768px) {
-            .lightbox-content {
-                grid-template-columns: 1fr 400px;
-            }
-        }
-
-        .lightbox-img {
-            background: var(--gray-100);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-img img {
-            max-width: 100%;
-            max-height: 70vh;
-        }
-
-        .lightbox-details {
-            padding: 40px;
-            color: var(--gray-700);
-        }
-
-        .lightbox-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--gray-900);
-        }
-
-        .lightbox-client {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--teal-primary);
-            margin-bottom: 20px;
-        }
-
-        .lightbox-desc {
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 24px;
-            color: var(--gray-500);
-        }
-
-        .lightbox-info {
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .info-label {
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-right: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
@@ -232,339 +21,48 @@
                         </defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
-                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div>
-                        <span class="logo-text text-gradient">AQSA</span>
-                        <span class="logo-text-ar">أقصى</span>
-                    </div>
+                    <div><span class="logo-text text-gradient">AQSA</span></div>
                 </a>
-
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <div class="nav-dropdown">
-                        <a href="services.html" class="nav-link nav-dropdown-trigger">
-                            Services <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
-                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
-                        </div>
-                    </div>
-                    <div class="nav-dropdown">
-                        <a href="shop.html" class="nav-link nav-dropdown-trigger">
-                            Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
-                        </div>
-                    </div>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link active">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
-
-                <div class="header-actions">
-                    <a href="quote.html" class="btn btn-primary btn-quote">
-                        <i class="fas fa-calendar-check"></i> Get Quote
-                    </a>
-                </div>
             </div>
         </div>
     </header>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="lp-hero">
+        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80')"></div>
         <div class="container">
-            <div class="page-hero-content">
-                <h1 class="section-title">Our <span class="text-gradient">Portfolio</span></h1>
-                <p class="section-subtitle">Showcasing our commitment to quality and creative excellence across KSA.</p>
+            <div class="lp-hero-content">
+                <h1 class="text-white">Our Portfolio</h1>
+                <h2 class="text-white">See our latest work in action across Riyadh and KSA.</h2>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio-section">
+    <section class="lp-portfolio">
         <div class="container">
-            <div class="portfolio-filters">
-                <button class="portfolio-filter active" data-filter="all">All</button>
-                <button class="portfolio-filter" data-filter="signage">Signage</button>
-                <button class="portfolio-filter" data-filter="vehicle">Vehicle</button>
-                <button class="portfolio-filter" data-filter="branding">Branding</button>
-                <button class="portfolio-filter" data-filter="events">Events</button>
-                <button class="portfolio-filter" data-filter="packaging">Packaging</button>
-            </div>
-
-            <div class="portfolio-grid">
-                <!-- 1. Delivery Fleet -->
-                <div class="portfolio-card" data-cat="vehicle" onclick="openLightbox('Delivery Fleet Wrap', 'DeliveryPro KSA', 'Full branding suite for a fleet of 50 delivery vans using high-quality UV-resistant vinyl wraps.', 'Vehicle Branding, Design', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Delivery Fleet">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Vehicle Branding</span>
-                        <h3 class="portfolio-card-title">Delivery Fleet Wrap</h3>
-                        <p class="portfolio-card-client">Client: DeliveryPro KSA</p>
-                    </div>
-                </div>
-
-                <!-- 2. Office Signage -->
-                <div class="portfolio-card" data-cat="signage" onclick="openLightbox('Corporate Office Signage', 'TechCorp Riyadh', 'Elegant acrylic standoff signs and 3D illuminated lobby branding.', 'Signage, Installation', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office Signage">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Signage</span>
-                        <h3 class="portfolio-card-title">Corporate Office Signage</h3>
-                        <p class="portfolio-card-client">Client: TechCorp Riyadh</p>
-                    </div>
-                </div>
-
-                <!-- 3. Exhibition Stand -->
-                <div class="portfolio-card" data-cat="events" onclick="openLightbox('Exhibition Booth Design', 'Global Trade Expo', 'Custom modular exhibition stand with back-lit fabric displays and interactive counters.', 'Events, Fabrication', 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80" alt="Exhibition Stand">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Events</span>
-                        <h3 class="portfolio-card-title">Exhibition Booth</h3>
-                        <p class="portfolio-card-client">Client: Global Expo</p>
-                    </div>
-                </div>
-
-                <!-- 4. Packaging -->
-                <div class="portfolio-card" data-cat="packaging" onclick="openLightbox('Premium Gift Boxes', 'Luxe Delights', 'Custom rigid boxes with foil stamping and velvet insert for luxury confectionery.', 'Packaging, Finishes', 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Packaging">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Packaging</span>
-                        <h3 class="portfolio-card-title">Luxury Gift Boxes</h3>
-                        <p class="portfolio-card-client">Client: Luxe Delights</p>
-                    </div>
-                </div>
-
-                <!-- 5. Branding -->
-                <div class="portfolio-card" data-cat="branding" onclick="openLightbox('Restaurant Brand Package', 'The Green Grill', 'Full brand identity development including logo, menus, and internal signage.', 'Branding, Design', 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Branding">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Branding</span>
-                        <h3 class="portfolio-card-title">Restaurant Package</h3>
-                        <p class="portfolio-card-client">Client: The Green Grill</p>
-                    </div>
-                </div>
-
-                <!-- 6. Outdoor Billboard -->
-                <div class="portfolio-card" data-cat="signage" onclick="openLightbox('City Billboard Campaign', 'Skyline Reality', 'High-impact outdoor flex banner for a real estate launch in Riyadh.', 'Large Format, Signage', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Billboard">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Signage</span>
-                        <h3 class="portfolio-card-title">City Billboard</h3>
-                        <p class="portfolio-card-client">Client: Skyline Reality</p>
-                    </div>
-                </div>
-
-                <!-- 7. Apparel -->
-                <div class="portfolio-card" data-cat="branding" onclick="openLightbox('Staff Uniforms', 'Hotel Pearl', 'Embroidered polo shirts and screen-printed aprons for hospitality staff.', 'Promotional, Branding', 'https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=600&q=80" alt="Apparel">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Branding</span>
-                        <h3 class="portfolio-card-title">Staff Uniforms</h3>
-                        <p class="portfolio-card-client">Client: Hotel Pearl</p>
-                    </div>
-                </div>
-
-                <!-- 8. Retail Signage -->
-                <div class="portfolio-card" data-cat="signage" onclick="openLightbox('Retail Shop Front', 'Modern Styles', 'Illuminated 3D channel letters and window vinyl graphics for a boutique.', 'Signage, Retail', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Retail Sign">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Signage</span>
-                        <h3 class="portfolio-card-title">Shop Front Signage</h3>
-                        <p class="portfolio-card-client">Client: Modern Styles</p>
-                    </div>
-                </div>
-
-                <!-- 9. Bus Branding -->
-                <div class="portfolio-card" data-cat="vehicle" onclick="openLightbox('Public Transport Branding', 'RTA Partners', 'Full bus wrap campaign for a major public awareness drive.', 'Vehicle Branding', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Bus Wrap">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Vehicle</span>
-                        <h3 class="portfolio-card-title">Bus Wrap Campaign</h3>
-                        <p class="portfolio-card-client">Client: RTA Partners</p>
-                    </div>
-                </div>
-
-                <!-- 10. Product Labels -->
-                <div class="portfolio-card" data-cat="packaging" onclick="openLightbox('Organic Juice Labels', 'Fresh Pick', 'Custom shaped waterproof labels with matte finish for beverage bottles.', 'Packaging, Labels', 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Labels">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Packaging</span>
-                        <h3 class="portfolio-card-title">Product Labels</h3>
-                        <p class="portfolio-card-client">Client: Fresh Pick</p>
-                    </div>
-                </div>
-
-                <!-- 11. Event Backdrop -->
-                <div class="portfolio-card" data-cat="events" onclick="openLightbox('Conference Backdrop', 'Future Tech Riyadh', 'Large-scale tension fabric backdrop and stage podium branding.', 'Events, Signage', 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80" alt="Backdrop">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Events</span>
-                        <h3 class="portfolio-card-title">Conference Branding</h3>
-                        <p class="portfolio-card-client">Client: Future Tech</p>
-                    </div>
-                </div>
-
-                <!-- 12. Corporate Gifts -->
-                <div class="portfolio-card" data-cat="branding" onclick="openLightbox('VIP Welcome Kit', 'Elite Real Estate', 'Curated gift sets including leather notebooks, metal pens, and power banks.', 'Promotional, Branding', 'https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=800&q=80')">
-                    <img src="https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?w=600&q=80" alt="Gifts">
-                    <div class="portfolio-card-overlay">
-                        <span class="portfolio-card-category">Branding</span>
-                        <h3 class="portfolio-card-title">VIP Welcome Kit</h3>
-                        <p class="portfolio-card-client">Client: Elite Reality</p>
-                    </div>
-                </div>
+            <div class="lp-portfolio-grid">
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Vehicle Wrap</h4><p>Logistics Co.</p></div>
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Storefront Sign</h4><p>Retail Mall</p></div>
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Office Interior</h4><p>Bank Headquarters</p></div>
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Exhibition Stall</h4><p>Expo Center</p></div>
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Promotional flags</h4><p>Car Show</p></div>
+                <div class="lp-portfolio-card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" class="lp-portfolio-img"><h4>Corporate Gifts</h4><p>Govt. Agency</p></div>
             </div>
         </div>
     </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="portfolio-lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-content">
-            <div class="lightbox-img">
-                <img id="lb-img" src="" alt="">
-            </div>
-            <div class="lightbox-details">
-                <h2 class="lightbox-title" id="lb-title"></h2>
-                <p class="lightbox-client" id="lb-client"></p>
-                <p class="lightbox-desc" id="lb-desc"></p>
-                <div class="lightbox-info">
-                    <div class="info-item"><span class="info-label">Services:</span> <span id="lb-services"></span></div>
-                    <div class="info-item"><span class="info-label">Location:</span> Saudi Arabia</div>
-                </div>
-                <a href="quote.html" class="btn btn-primary" style="width: 100%;">Request Similar Project</a>
-            </div>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs>
-                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
-                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
-                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
-                        </svg>
-                        <span class="footer-logo-text">AQSA</span>
-                    </div>
-                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
-                        <li><a href="signages.html">Signages</a></li>
-                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
-                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
-                        <li><a href="flags.html">Flags</a></li>
-                        <li><a href="promotional-gifts.html">Promotional Gifts</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="quote.html">Get a Quote</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riyadh, Saudi Arabia</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+966 55 668 3044<br>+966 55 989 6763</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@aqsaprint.com</span>
-                        </li>
-                        <li>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+966 55 668 3044</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
+            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
         </div>
     </footer>
-
-    <!-- Shared JavaScript -->
-    <script src="main.js"></script>
-    <script>
-        function openLightbox(title, client, desc, services, img) {
-            document.getElementById('lb-title').innerText = title;
-            document.getElementById('lb-client').innerText = client;
-            document.getElementById('lb-desc').innerText = desc;
-            document.getElementById('lb-services').innerText = services;
-            document.getElementById('lb-img').src = img;
-            document.getElementById('portfolio-lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('portfolio-lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Filter functionality
-        const filters = document.querySelectorAll('.portfolio-filter');
-        const cards = document.querySelectorAll('.portfolio-card');
-
-        filters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                filters.forEach(f => f.classList.remove('active'));
-                filter.classList.add('active');
-
-                const cat = filter.dataset.filter;
-                cards.forEach(card => {
-                    if (cat === 'all' || card.dataset.cat === cat) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>

@@ -3,230 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request a Quote | AQSA Print Saudi Arabia</title>
-    <meta name="description" content="Get an instant quote for your printing project. Our multi-step wizard helps you select the right options and get pricing fast.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Shared Styles -->
+    <title>Get a Quote | AQSA Print Saudi Arabia</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        .quote-wizard-section {
-            padding: 60px 0 100px;
-            background: var(--gray-50);
-            min-height: calc(100vh - 80px);
-        }
-
-        .wizard-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-xl);
-            padding: 40px;
-            border: 1px solid var(--gray-100);
-        }
-
-        /* Wizard Progress Bar */
-        .wizard-progress {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .wizard-progress::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gray-200);
-            z-index: 0;
-        }
-
-        .progress-step {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--gray-400);
-            position: relative;
-            z-index: 1;
-            transition: all var(--transition-base);
-        }
-
-        .progress-step.active {
-            border-color: var(--teal-primary);
-            color: var(--teal-primary);
-            box-shadow: 0 0 0 4px rgba(45, 184, 168, 0.1);
-        }
-
-        .progress-step.completed {
-            background: var(--teal-primary);
-            border-color: var(--teal-primary);
-            color: var(--white);
-        }
-
-        /* Wizard Steps */
-        .wizard-step {
-            display: none;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        .wizard-step.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .step-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        /* Category Selection */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .category-option {
-            padding: 24px;
-            border: 2px solid var(--gray-100);
-            border-radius: var(--radius-lg);
-            text-align: center;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .category-option:hover {
-            border-color: var(--pink-primary);
-            background: var(--gray-50);
-        }
-
-        .category-option.selected {
-            border-color: var(--teal-primary);
-            background: rgba(45, 184, 168, 0.05);
-        }
-
-        .category-option i {
-            font-size: 32px;
-            color: var(--gray-400);
-            margin-bottom: 12px;
-            transition: color var(--transition-base);
-        }
-
-        .category-option.selected i {
-            color: var(--teal-primary);
-        }
-
-        .category-option span {
-            display: block;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--gray-700);
-        }
-
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 8px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--gray-200);
-            font-family: inherit;
-            font-size: 15px;
-            outline: none;
-            transition: all var(--transition-fast);
-        }
-
-        .form-control:focus {
-            border-color: var(--teal-primary);
-            box-shadow: 0 0 0 4px rgba(45, 184, 168, 0.1);
-        }
-
-        /* File Upload Area */
-        .upload-area {
-            border: 2px dashed var(--gray-300);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .upload-area:hover {
-            border-color: var(--teal-primary);
-            background: var(--gray-50);
-        }
-
-        .upload-icon {
-            font-size: 40px;
-            color: var(--gray-400);
-            margin-bottom: 16px;
-        }
-
-        /* Wizard Actions */
-        .wizard-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--gray-100);
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .summary-label {
-            font-weight: 600;
-            color: var(--gray-500);
-        }
-
-        .summary-value {
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-inner">
@@ -240,372 +21,103 @@
                         </defs>
                         <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
                         <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
-                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
                     </svg>
-                    <div>
-                        <span class="logo-text text-gradient">AQSA</span>
-                        <span class="logo-text-ar">أقصى</span>
-                    </div>
+                    <div><span class="logo-text text-gradient">AQSA</span></div>
                 </a>
-
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link">Home</a>
-                    <div class="nav-dropdown">
-                        <a href="services.html" class="nav-link nav-dropdown-trigger">
-                            Services <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="indoor-outdoor-branding.html" class="nav-dropdown-item">Indoor & Outdoor Branding</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="design-development.html" class="nav-dropdown-item">Design & Development</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups & Backdrops</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Promotional Gifts</a>
-                            <a href="printing-services.html" class="nav-dropdown-item">Printing Services</a>
-                        </div>
-                    </div>
-                    <div class="nav-dropdown">
-                        <a href="shop.html" class="nav-link nav-dropdown-trigger">
-                            Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                        </a>
-                        <div class="nav-dropdown-menu">
-                            <a href="signages.html" class="nav-dropdown-item">Signages</a>
-                            <a href="vehicle-branding.html" class="nav-dropdown-item">Vehicle Branding</a>
-                            <a href="flags.html" class="nav-dropdown-item">Flags</a>
-                            <a href="rollups-backdrops.html" class="nav-dropdown-item">Rollups</a>
-                            <a href="promotional-gifts.html" class="nav-dropdown-item">Gifts</a>
-                        </div>
-                    </div>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="shop.html" class="nav-link">Products</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </nav>
-
-                <div class="header-actions">
-                    <button class="mobile-menu-btn" aria-label="Toggle menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
             </div>
         </div>
     </header>
 
-    <section class="quote-wizard-section">
+    <section class="lp-hero" style="min-height: 400px; padding: 120px 0 60px;">
+        <div class="lp-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1589149098258-3e9102ca63d3?w=1200&q=80')"></div>
         <div class="container">
-            <div class="wizard-container">
-                <!-- Progress -->
-                <div class="wizard-progress">
-                    <div class="progress-step active" data-step="1">1</div>
-                    <div class="progress-step" data-step="2">2</div>
-                    <div class="progress-step" data-step="3">3</div>
-                    <div class="progress-step" data-step="4">4</div>
-                    <div class="progress-step" data-step="5">5</div>
-                </div>
-
-                <!-- Step 1: Category -->
-                <div class="wizard-step active" id="step-1">
-                    <h2 class="step-title">What are you looking for?</h2>
-                    <div class="category-grid">
-                        <div class="category-option" onclick="selectCategory('Business Printing', this)">
-                            <i class="fas fa-id-card"></i>
-                            <span>Business Cards</span>
-                        </div>
-                        <div class="category-option" onclick="selectCategory('Signage', this)">
-                            <i class="fas fa-sign"></i>
-                            <span>Signage</span>
-                        </div>
-                        <div class="category-option" onclick="selectCategory('Vehicle', this)">
-                            <i class="fas fa-car"></i>
-                            <span>Vehicle Branding</span>
-                        </div>
-                        <div class="category-option" onclick="selectCategory('Packaging', this)">
-                            <i class="fas fa-box"></i>
-                            <span>Packaging</span>
-                        </div>
-                        <div class="category-option" onclick="selectCategory('Apparel', this)">
-                            <i class="fas fa-tshirt"></i>
-                            <span>Apparel</span>
-                        </div>
-                        <div class="category-option" onclick="selectCategory('Other', this)">
-                            <i class="fas fa-ellipsis-h"></i>
-                            <span>Other</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2: Details -->
-                <div class="wizard-step" id="step-2">
-                    <h2 class="step-title">Project Specifications</h2>
-                    <div class="form-group">
-                        <label class="form-label">Product Type</label>
-                        <select class="form-control" id="product-type">
-                            <option>Standard Business Cards</option>
-                            <option>Premium Silk Cards</option>
-                            <option>Glossy Flyers</option>
-                            <option>Matte Brochures</option>
-                            <option>Rollup Banner</option>
-                        </select>
-                    </div>
-                    <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="form-group">
-                            <label class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" placeholder="e.g. 500">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Timeline</label>
-                            <select class="form-control" id="timeline">
-                                <option>Urgent (24h)</option>
-                                <option>Standard (3-5 days)</option>
-                                <option>Flexible (1 week+)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3: Design & Files -->
-                <div class="wizard-step" id="step-3">
-                    <h2 class="step-title">Design & Files</h2>
-                    <div class="form-group">
-                        <label class="form-label">Do you have a design?</label>
-                        <select class="form-control" id="has-design">
-                            <option>Yes, I have print-ready files</option>
-                            <option>I need professional design help</option>
-                            <option>I have basic sketches only</option>
-                        </select>
-                    </div>
-                    <div class="upload-area" onclick="document.getElementById('file-input').click()">
-                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                        <p style="font-weight: 600; color: var(--gray-700);">Click to upload your design</p>
-                        <p style="font-size: 13px; color: var(--gray-400);">PDF, AI, PSD, or High-res JPG (Max 50MB)</p>
-                        <input type="file" id="file-input" style="display: none;">
-                    </div>
-                </div>
-
-                <!-- Step 4: Contact -->
-                <div class="wizard-step" id="step-4">
-                    <h2 class="step-title">Your Contact Information</h2>
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="cust-name" placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="cust-email" placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Phone Number (WhatsApp Preferred)</label>
-                        <input type="tel" class="form-control" id="cust-phone" placeholder="+966 50 000 0000">
-                    </div>
-                </div>
-
-                <!-- Step 5: Review -->
-                <div class="wizard-step" id="step-5">
-                    <h2 class="step-title">Review & Submit</h2>
-                    <div id="quote-summary">
-                        <div class="summary-item">
-                            <span class="summary-label">Category:</span>
-                            <span class="summary-value" id="sum-cat">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Product:</span>
-                            <span class="summary-value" id="sum-prod">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Quantity:</span>
-                            <span class="summary-value" id="sum-qty">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Timeline:</span>
-                            <span class="summary-value" id="sum-time">-</span>
-                        </div>
-                        <div class="summary-item">
-                            <span class="summary-label">Name:</span>
-                            <span class="summary-value" id="sum-name">-</span>
-                        </div>
-                    </div>
-                    <div style="margin-top: 30px; text-align: center;">
-                        <p style="font-size: 14px; color: var(--gray-500); margin-bottom: 20px;">Submitting will send your request to our team via WhatsApp for instant pricing.</p>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="wizard-actions">
-                    <button class="btn btn-secondary" id="prev-btn" onclick="prevStep()" style="visibility: hidden;">Back</button>
-                    <button class="btn btn-primary" id="next-btn" onclick="nextStep()">Continue</button>
-                </div>
+            <div class="lp-hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h1 class="text-white">Get Your Free Quote Today</h1>
+                <p class="text-white">Tell us about your project and we'll respond within 24 hours.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <section class="lp-intro" style="background: var(--gray-50);">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs>
-                                <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#E8A5B8"/>
-                                    <stop offset="100%" style="stop-color:#2DB8A8"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
-                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
-                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
-                        </svg>
-                        <span class="footer-logo-text">AQSA</span>
+            <div class="quote-form-container" style="max-width: 900px; margin: -100px auto 0; position: relative; z-index: 10;">
+                <form action="#" method="POST" style="background: white; padding: 48px; border-radius: 24px; box-shadow: var(--shadow-xl);">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Name (Required)</label>
+                            <input type="text" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Email (Required)</label>
+                            <input type="email" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
                     </div>
-                    <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Phone (Required)</label>
+                            <input type="tel" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Company</label>
+                            <input type="text" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h4 class="footer-title">Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
-                        <li><a href="signages.html">Signages</a></li>
-                        <li><a href="flex-banner-printing.html">Flex & Banners</a></li>
-                        <li><a href="rollups-backdrops.html">Rollups & Backdrops</a></li>
-                        <li><a href="flags.html">Flags</a></li>
-                        <li><a href="promotional-gifts.html">Promotional Gifts</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="quote.html">Get a Quote</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riyadh, Saudi Arabia</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+966 55 668 3044<br>+966 55 989 6763</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@aqsaprint.com</span>
-                        </li>
-                        <li>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+966 55 668 3044</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">© 2025 AQSA Print. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px;">Service Type</label>
+                        <select style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <option>Indoor & Outdoor Branding</option>
+                            <option>Vehicle Branding</option>
+                            <option>Signages</option>
+                            <option>Design & Development</option>
+                            <option>Rollups & Backdrops</option>
+                            <option>Flags</option>
+                            <option>Promotional Gifts</option>
+                            <option>Printing Services</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px;">Project Details</label>
+                        <textarea style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px; height: 120px;" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Quantity/Dimensions</label>
+                            <input type="text" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Timeline</label>
+                            <input type="text" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Budget Range</label>
+                            <input type="text" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">File Upload</label>
+                            <input type="file" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Get My Free Quote</button>
+                    <p style="text-align: center; margin-top: 24px; color: var(--gray-500); font-size: 14px;">No obligation quote. Your information is secure.</p>
+                </form>
             </div>
         </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 AQSA Print. Riyadh, KSA.</p>
+        </div>
     </footer>
-
-    <!-- Shared JavaScript -->
-    <script src="main.js"></script>
-    <script>
-        let currentStep = 1;
-        const totalSteps = 5;
-        const wizardData = {
-            category: '',
-            product: '',
-            quantity: '',
-            timeline: '',
-            name: '',
-            email: '',
-            phone: ''
-        };
-
-        function selectCategory(cat, el) {
-            wizardData.category = cat;
-            document.querySelectorAll('.category-option').forEach(opt => opt.classList.remove('selected'));
-            el.classList.add('selected');
-            nextStep();
-        }
-
-        function updateProgress() {
-            document.querySelectorAll('.progress-step').forEach(step => {
-                const s = parseInt(step.dataset.step);
-                if (s < currentStep) step.className = 'progress-step completed';
-                else if (s === currentStep) step.className = 'progress-step active';
-                else step.className = 'progress-step';
-            });
-
-            document.getElementById('prev-btn').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
-            
-            if (currentStep === totalSteps) {
-                document.getElementById('next-btn').innerHTML = '<i class="fab fa-whatsapp"></i> Submit via WhatsApp';
-                updateSummary();
-            } else {
-                document.getElementById('next-btn').innerText = 'Continue';
-            }
-        }
-
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                document.getElementById(`step-${currentStep}`).classList.remove('active');
-                currentStep++;
-                document.getElementById(`step-${currentStep}`).classList.add('active');
-                updateProgress();
-            } else {
-                submitQuote();
-            }
-        }
-
-        function prevStep() {
-            if (currentStep > 1) {
-                document.getElementById(`step-${currentStep}`).classList.remove('active');
-                currentStep--;
-                document.getElementById(`step-${currentStep}`).classList.add('active');
-                updateProgress();
-            }
-        }
-
-        function updateSummary() {
-            wizardData.product = document.getElementById('product-type').value;
-            wizardData.quantity = document.getElementById('quantity').value;
-            wizardData.timeline = document.getElementById('timeline').value;
-            wizardData.name = document.getElementById('cust-name').value;
-            wizardData.phone = document.getElementById('cust-phone').value;
-
-            document.getElementById('sum-cat').innerText = wizardData.category;
-            document.getElementById('sum-prod').innerText = wizardData.product;
-            document.getElementById('sum-qty').innerText = wizardData.quantity;
-            document.getElementById('sum-time').innerText = wizardData.timeline;
-            document.getElementById('sum-name').innerText = wizardData.name;
-        }
-
-        function submitQuote() {
-            const message = `Hello AQSA Print! I would like a quote for:\n\n` +
-                          `Category: ${wizardData.category}\n` +
-                          `Product: ${wizardData.product}\n` +
-                          `Quantity: ${wizardData.quantity}\n` +
-                          `Timeline: ${wizardData.timeline}\n` +
-                          `Name: ${wizardData.name}\n` +
-                          `Phone: ${wizardData.phone}`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/966556683044?text=${encodedMessage}`, '_blank');
-        }
-    </script>
 </body>
 </html>
