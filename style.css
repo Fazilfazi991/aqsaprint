@@ -1868,3 +1868,33 @@ ul {
     display: flex;
     gap: 16px;
 }
+
+/* GLOBAL FAQ & CTA REFINEMENTS */
+.faq-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    margin-top: 48px !important;
+}
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.lp-cta p, .cta-section p {
+    font-size: 18px !important;
+    color: rgba(255,255,255,0.9) !important;
+    max-width: 700px !important;
+    margin: 0 auto 32px !important;
+    line-height: 1.6 !important;
+    font-weight: 500 !important;
+}
+
+.lp-cta h2, .cta-section h2 {
+    font-size: clamp(32px, 5vw, 48px) !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin-bottom: 16px !important;
+    letter-spacing: -1px !important;
+}
