@@ -119,5 +119,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.5 });
         
         counters.forEach(counter => counterObserver.observe(counter));
+    // Chatbot Toggle
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const closeChat = document.getElementById('closeChat');
+    const sendMessage = document.getElementById('sendMessage');
+    const chatInput = document.getElementById('chatInput');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    if (chatbotToggle && chatbotWindow) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+        });
+
+        if (closeChat) {
+            closeChat.addEventListener('click', () => {
+                chatbotWindow.classList.remove('active');
+            });
+        }
+
+        const handleSend = () => {
+            const text = chatInput.value.trim();
+            if (text) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'message user';
+                userMsg.textContent = text;
+                chatbotMessages.appendChild(userMsg);
+                chatInput.value = '';
+                
+                // Scroll to bottom
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+                // Simulate bot response (Gemini integration later)
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'message bot';
+                    botMsg.textContent = "Thanks for your message! Our team will get back to you shortly, or you can use WhatsApp for an immediate response.";
+                    chatbotMessages.appendChild(botMsg);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 1000);
+            }
+        };
+
+        if (sendMessage && chatInput) {
+            sendMessage.addEventListener('click', handleSend);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSend();
+            });
+        }
     }
 });

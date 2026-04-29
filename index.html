@@ -134,15 +134,7 @@
     <header class="header">
         <div class="container">
             <div class="header-inner">
-                <a href="index.html" class="logo">
-                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
-                        <circle cx="12" cy="24" r="10" fill="url(#logoGradient)" opacity="0.6"/>
-                        <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradient)"/>
-                        <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradient)"/>
-                    </svg>
-                    <div><span class="logo-text text-gradient">AQSA</span><span class="logo-text-ar">أقصى</span></div>
-                </a>
+                <a href="index.html" class="logo"><img src="images/logo.png" alt="AQSA Print Logo" class="logo-img"></a>
                 <nav class="nav-desktop">
                     <a href="index.html" class="nav-link active">Home</a>
                     <a href="services.html" class="nav-link">Services</a>
@@ -484,15 +476,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 48 48" fill="none">
-                            <defs><linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8A5B8"/><stop offset="100%" style="stop-color:#2DB8A8"/></linearGradient></defs>
-                            <circle cx="12" cy="24" r="10" fill="url(#logoGradientFooter)" opacity="0.6"/>
-                            <path d="M24 6L40 42H32L28 32H20L16 42H8L24 6Z" fill="url(#logoGradientFooter)"/>
-                            <rect x="4" y="42" width="40" height="4" rx="2" fill="url(#logoGradientFooter)"/>
-                        </svg>
-                        <span class="footer-logo-text">AQSA</span>
-                    </div>
+                    <div class="footer-logo"><img src="images/logo.png" alt="AQSA Print Logo" class="footer-logo-img"></div>
                     <p class="footer-description">Your trusted partner for all printing needs in KSA. Premium quality, fast turnaround, and exceptional service since 2020.</p>
                 </div>
                 <div>
@@ -535,5 +519,24 @@
     <script>
         
     </script>
+
+    <!-- CHATBOT -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h4>AQSA Assistant</h4>
+            <button id="closeChat" style="background:none; border:none; color:#fff; cursor:pointer;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">Hello! I'm AQSA's AI assistant. How can I help you today?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message..." id="chatInput">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
 </body>
 </html>
