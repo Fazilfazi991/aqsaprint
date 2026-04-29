@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.5 });
         
         counters.forEach(counter => counterObserver.observe(counter));
+    }
+
     // Chatbot Toggle
     const chatbotToggle = document.getElementById('chatbotToggle');
     const chatbotWindow = document.getElementById('chatbotWindow');
