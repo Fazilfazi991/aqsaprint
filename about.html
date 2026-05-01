@@ -93,16 +93,19 @@
         .cta-content h2{font-size:clamp(36px,6vw,58px);font-weight:900;color:#fff;margin-bottom:24px;line-height:1.15}
         .cta-content p{font-size:20px;color:rgba(255,255,255,.8);margin-bottom:40px;line-height:1.6}
         .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
-        .cta-buttons .btn{min-width:220px}display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+        .cta-buttons .btn{min-width:220px}
 
         /* RESPONSIVE */
         @media(max-width:768px){
             .about-hero-content{padding:120px 20px 60px}
-            .story-grid,.mv-grid,.why-grid{grid-template-columns:1fr;gap:40px}
-            .values-grid,.stats-grid,.team-grid{grid-template-columns:1fr}
+            .story-grid, .mv-grid, .why-grid{grid-template-columns:1fr !important;gap:40px}
+            .values-grid, .stats-grid, .team-grid{grid-template-columns:1fr}
             .why-grid{direction:ltr}
-            .why-grid .why-image{order:1}
+            .why-grid .why-image{order:1; min-height: 300px; height: auto;}
             .why-grid .why-content{order:2}
+            .story-image{margin-bottom: 30px;}
+            .mv-card{padding: 30px 24px;}
+            .stat-number{font-size: 48px;}
         }
     </style>
 </head>
