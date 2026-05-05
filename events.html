@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Gallery | AQSA Print Riyadh</title>
+    <meta name="description" content="Check out our upcoming events and browse through our recent event galleries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html{scroll-behavior:smooth}
+        .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .lp-hero{position:relative;min-height:50vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .lp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+        .lp-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.6) 0%,rgba(15,23,42,.4) 50%,rgba(45,184,168,.1) 100%)}
+        .lp-hero .container{position:relative;z-index:2}
+        .lp-hero-content{max-width:700px;margin:0 auto;text-align:center;padding:140px 0 80px}
+        .lp-hero-badge{display:inline-block;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(10px)}
+        .lp-hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+        .lp-hero h1 span{background:linear-gradient(135deg,#E8A5B8,#2DB8A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-subtitle{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.8);line-height:1.7;max-width:560px;margin:0 auto}
+
+        /* Upcoming Events Section */
+        .events-section{padding:80px 0;background:var(--gray-50)}
+        .section-header{text-align:center;margin-bottom:50px}
+        .section-header h2{font-size:36px;font-weight:800;color:var(--gray-900);margin-bottom:12px}
+        .events-list{display:flex;flex-direction:column;gap:24px;max-width:900px;margin:0 auto}
+        .event-card{display:flex;background:#fff;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--gray-100);box-shadow:var(--shadow-md);transition:all .3s ease;align-items:center}
+        .event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal-light)}
+        .event-date{min-width:120px;background:var(--gradient-primary);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px;align-self:stretch}
+        .event-date .day{font-size:36px;font-weight:800;line-height:1}
+        .event-date .month{font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+        .event-details{padding:30px;flex:1}
+        .event-details h3{font-size:22px;font-weight:700;color:var(--gray-900);margin-bottom:10px}
+        .event-details p{font-size:15px;color:var(--gray-600);line-height:1.6;margin-bottom:16px}
+        .event-meta{display:flex;gap:20px;font-size:14px;color:var(--gray-500);font-weight:500}
+        .event-meta i{color:var(--teal-primary);margin-right:6px}
+
+        /* Gallery Section */
+        .gallery-section{padding:80px 0;background:#fff}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+        .gallery-item{border-radius:var(--radius-lg);overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+        .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.8) 0%,transparent 100%);opacity:0;transition:opacity .3s ease;display:flex;align-items:flex-end;padding:24px}
+        .gallery-item:hover img{transform:scale(1.08)}
+        .gallery-item:hover .gallery-overlay{opacity:1}
+        .gallery-info h4{color:#fff;font-size:18px;font-weight:700;margin-bottom:4px}
+        .gallery-info p{color:rgba(255,255,255,.8);font-size:13px}
+
+        @media(max-width:768px){
+            .event-card{flex-direction:column}
+            .event-date{padding:20px;flex-direction:row;gap:10px;justify-content:flex-start;align-self:stretch;width:100%}
+            .event-date .day{font-size:24px}
+            .event-date .month{margin-top:0}
+            .event-details{padding:20px}
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo"><img decoding="async" src="images/logo.png" alt="AQSA Print Logo" class="logo-img"></a>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="events.html" class="nav-link active">Events</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="quote.html" class="btn btn-primary btn-quote"><i class="fas fa-calendar-check"></i> Get Quote</a>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="services.html" class="mobile-menu-link">Services</a>
+            <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+            <a href="events.html" class="mobile-menu-link active">Events</a>
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+            <div class="mobile-menu-cta"><a href="quote.html" class="btn btn-primary" style="width:100%">Get Free Quote</a></div>
+        </div>
+    </header>
+
+    <section class="lp-hero">
+        <div class="lp-hero-bg" style="background-image:url('images/generated/service_outdoor.png')"></div>
+        <div class="container">
+            <div class="lp-hero-content">
+                <span class="lp-hero-badge">AQSA Print Events</span>
+                <h1>Upcoming & <span>Past Events</span></h1>
+                <p class="hero-subtitle">Join us in our upcoming exhibitions and explore the galleries of our past successful events across Saudi Arabia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <p style="color:var(--gray-600)">Mark your calendars and meet our team at these upcoming events.</p>
+            </div>
+            <div class="events-list">
+                <!-- Event 1 Placeholder -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">Oct</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Saudi Print & Pack Exhibition 2026</h3>
+                        <p>Join us at the largest printing and packaging exhibition in the region. Discover our latest innovations in large format printing and 3D signages.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Riyadh International Convention Center</span>
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event 2 Placeholder -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">05</span>
+                        <span class="month">Nov</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Future of Branding Summit</h3>
+                        <p>Our experts will be speaking about the impact of indoor and vehicle branding on consumer behavior. Don't miss this insightful summit.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> King Abdullah Financial District, Riyadh</span>
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Event Gallery</h2>
+                <p style="color:var(--gray-600)">A look back at some of our recent exhibitions and corporate events.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/generated/service_3d.png" alt="Exhibition Stall Setup" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Riyadh Expo 2025</h4>
+                            <p>Custom Stall Design & Setup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/generated/work_print.png" alt="Corporate Event Banner" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Tech Summit Branding</h4>
+                            <p>Complete Event Printing Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/generated/work_vehicle.png" alt="Auto Show Branding" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Jeddah Auto Show</h4>
+                            <p>Live Vehicle Wrap Demonstration</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/generated/work_led.png" alt="Launch Event" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Brand Launch Night</h4>
+                            <p>3D Signage & Stage Backdrop</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/generated/service_promo.png" alt="Gift Distribution" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Annual Corporate Gala</h4>
+                            <p>Premium Promotional Gifts Distribution</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/generated/service_indoor.png" alt="Conference Branding" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>Business Leaders Conference</h4>
+                            <p>Indoor Wayfinding & Stage Branding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><img decoding="async" src="images/logo.png" alt="AQSA Print Logo" class="footer-logo-img"></div>
+                    <p class="footer-description">Your trusted partner for all printing and branding needs in Riyadh, KSA.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="digital-printing.html">Digital Printing</a></li>
+                        <li><a href="offset-printing.html">Offset Printing</a></li>
+                        <li><a href="promotional-gifts.html">Corporate Gifts</a></li>
+                        <li><a href="rollup-banners.html">Roll-up & Banners</a></li>
+                        <li><a href="signages.html">Signage</a></li>
+                        <li><a href="vehicle-branding.html">Vehicle Branding</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i><span>+966 55 668 3044</span></li>
+                        <li><i class="fas fa-envelope"></i><span>info@aqsaprint.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Riyadh, Saudi Arabia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><p class="footer-copyright">© 2026 AQSA Print. All rights reserved. <a href="admin-panel.html" style="color:var(--gray-500);text-decoration:none;margin-left:15px;font-size:12px;">Admin Panel</a></p></div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    </script>
+</body>
+</html>
