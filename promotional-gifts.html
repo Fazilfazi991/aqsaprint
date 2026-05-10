@@ -78,6 +78,10 @@
         .cta-buttons .btn{min-width:220px}
         .cta-note{display:flex;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.85);font-size:16px;margin-top:24px}
         .cta-note i{color:var(--teal-primary);font-size:18px}
+        .cat-card { display: flex; flex-direction: column; align-items: center; }
+        .cat-card p { flex: 1; }
+        .btn-enquire { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 12px 28px; background: #25D366; color: #fff; border-radius: 999px; font-size: 14px; font-weight: 700; transition: all .25s ease; text-decoration: none; }
+        .btn-enquire:hover { background: #20BD5A; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,.4); }
         @media(max-width:768px){
             .lp-hero-content{padding:140px 20px 80px}
             .lp-hero-ctas{flex-direction:column;align-items:center}
@@ -165,41 +169,69 @@
                 <h2 class="section-title">Explore Our Range</h2>
             </div>
             <div class="feature-grid">
-                <a href="promotional-apparel.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Apparel & Uniforms"></div>
-                    <h4>Apparel & Uniforms</h4>
-                    <p>Branded t-shirts, caps, and uniforms.</p>
-                </a>
-                <a href="promotional-drinkware.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Drinkware"></div>
+                <!-- Apparel & Uniforms -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="images/generated/service_promo.png" alt="Apparel &amp; Uniforms" onerror="this.src='https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80'">
+                    </div>
+                    <h4>Apparel &amp; Uniforms</h4>
+                    <p>Branded t-shirts, caps, polos, and custom uniforms for your team.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Apparel%20%26%20Uniforms." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Drinkware -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="Drinkware">
+                    </div>
                     <h4>Drinkware</h4>
-                    <p>Custom flasks, mugs, and bottles.</p>
-                </a>
-                <a href="promotional-gadgets.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Tech Gadgets"></div>
+                    <p>Custom engraved thermal flasks, branded mugs, and water bottles.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Drinkware." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Tech Gadgets -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80" alt="Tech Gadgets">
+                    </div>
                     <h4>Tech Gadgets</h4>
-                    <p>Power banks, USBs, and more.</p>
-                </a>
-                <a href="promotional-stationery.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_print.png" alt="Stationery"></div>
+                    <p>Branded power banks, USB drives, wireless chargers, and more.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Tech%20Gadgets." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Stationery -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="images/generated/service_print.png" alt="Stationery">
+                    </div>
                     <h4>Stationery</h4>
-                    <p>Custom pens, notebooks, and sets.</p>
-                </a>
-                <a href="gift-sets.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Gift Sets"></div>
+                    <p>Custom pens, branded notebooks, sticky notes, and pen sets.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Stationery." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Gift Sets -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80" alt="Gift Sets">
+                    </div>
                     <h4>Gift Sets</h4>
-                    <p>Luxury executive gift boxes.</p>
-                </a>
-                <a href="promotional-bags.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Bags"></div>
+                    <p>Luxury executive gift boxes with custom foam inserts and branding.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Gift%20Sets." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Bags -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Bags">
+                    </div>
                     <h4>Bags</h4>
-                    <p>Eco-friendly and branded bags.</p>
-                </a>
-                <a href="lanyards.html" class="feature-card">
-                    <div class="feature-img-container"><img decoding="async" src="images/generated/service_promo.png" alt="Lanyards"></div>
+                    <p>Eco-friendly tote bags, branded backpacks, and non-woven bags.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Bags." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
+                <!-- Lanyards -->
+                <div class="feature-card cat-card">
+                    <div class="feature-img-container">
+                        <img decoding="async" src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&q=80" alt="Lanyards">
+                    </div>
                     <h4>Lanyards</h4>
-                    <p>Custom printed lanyards & IDs.</p>
-                </a>
+                    <p>Custom printed lanyards, ID card holders, and badge reels.</p>
+                    <a href="https://wa.me/966556683044?text=Hi%20AQSA%20Print!%20I%27d%20like%20to%20enquire%20about%20Lanyards." class="btn btn-enquire" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+                </div>
             </div>
         </div>
     </section>
