@@ -12,15 +12,22 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* HERO SECTION */
-        .hero{position:relative;min-height:80vh;display:flex;align-items:center;background:#0f172a;overflow:hidden}
+        .hero{position:relative;background:#0f172a;overflow:hidden}
         .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.85) 40%,rgba(45,184,168,.25) 100%)}
         .hero-bg::before{content:'';position:absolute;inset:0;background-image:url('images/hero_laptop.png');background-size:cover;background-position:center;opacity:.4}
         @media(max-width:768px){
             .hero-bg::before{background-image:url('images/hero_mobile.png')}
         }
-        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,#fff 0%,transparent 100%)}
-        .hero .container{position:relative;z-index:2}
+        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,#fff 0%,transparent 100%); z-index: 1;}
+        .hero-slider { display: grid; position: relative; z-index: 2; min-height: 80vh; width: 100%; }
+        .hero-slide { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; transform: translateY(15px); pointer-events: none; }
+        .hero-slide.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+        .slider-controls { position: absolute; bottom: 50px; left: 0; right: 0; display: flex; justify-content: center; gap: 12px; z-index: 10; }
+        .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
+        .slider-dot.active { background: #2DB8A8; transform: scale(1.2); }
+        .hero .container{position:relative; width: 100%;}
         .hero-content{max-width:900px;margin:0 auto;text-align:center;padding:180px 20px 120px}
+        .hero-logo{max-width:240px;margin:0 auto 32px;display:block;filter:brightness(0) invert(1);opacity:0.95;}
         .hero-badge{display:inline-block;padding:10px 24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px;backdrop-filter:blur(10px)}
         .hero h1{font-size:clamp(42px,7vw,76px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:28px;letter-spacing:-1.5px}
         .hero h1 .gradient-text{background:linear-gradient(135deg,#E8A5B8 0%,#2DB8A8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
@@ -133,6 +140,38 @@
             .sticky-cta{padding:12px 16px;gap:8px}
             .sticky-cta .btn{flex:1;padding:12px 16px;font-size:14px}
         }
+        /* FLOATING WHATSAPP */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* FAQ SECTION */
+        .faq-grid { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
+        .faq-item { border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; background: #fff; }
+        .faq-item summary { padding: 24px; background: var(--gray-50); font-weight: 700; font-size: 18px; color: var(--gray-900); cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--teal-primary); transition: transform 0.3s; }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-item-content { padding: 24px; border-top: 1px solid var(--gray-200); line-height: 1.7; color: var(--gray-600); }
     </style>
 </head>
 <body>
@@ -172,21 +211,51 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-badge">Riyadh's Premier Print & Signage</span>
-                <h1>Transform your brand with <span class="gradient-text">Premium Printing</span> & Advertising Solutions</h1>
-                <p class="hero-subtitle">Expert <strong>Digital Printing</strong>, <strong>Offset Printing</strong> &amp; <strong>Large Format Printing</strong> in Riyadh — from business cards &amp; brochures to massive banners, signage &amp; vehicle branding, we deliver precision print solutions across Saudi Arabia.</p>
-                <div class="hero-ctas">
-                    <a href="quote.html" class="btn btn-primary-hero"><i class="fas fa-paper-plane" style="margin-right:10px"></i> Get Free Quote</a>
-                    <a href="https://wa.me/966556683044" class="btn btn-secondary-hero"><i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp Us</a>
-                </div>
-                <div class="hero-trust">
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 500+ Happy Clients</div>
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 10,000+ Projects</div>
-                    <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 24-48hr Turnaround</div>
+        <div class="hero-slider">
+            <!-- Slide 1 (English) -->
+            <div class="hero-slide active">
+                <div class="container">
+                    <div class="hero-content">
+                        <img src="images/logo.png" alt="AQSA Print Logo" class="hero-logo">
+                        <span class="hero-badge">Riyadh's Premier Print & Signage</span>
+                        <h1>Transform your brand with <span class="gradient-text">Premium Printing</span> & Advertising Solutions</h1>
+                        <p class="hero-subtitle">Expert <strong>Digital Printing</strong>, <strong>Offset Printing</strong> &amp; <strong>Large Format Printing</strong> in Riyadh — from business cards &amp; brochures to massive banners, signage &amp; vehicle branding, we deliver precision print solutions across Saudi Arabia.</p>
+                        <div class="hero-ctas">
+                            <a href="quote.html" class="btn btn-primary-hero"><i class="fas fa-paper-plane" style="margin-right:10px"></i> Get Free Quote</a>
+                            <a href="https://wa.me/966556683044" class="btn btn-secondary-hero"><i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp Us</a>
+                        </div>
+                        <div class="hero-trust">
+                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 500+ Happy Clients</div>
+                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 10,000+ Projects</div>
+                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 24-48hr Turnaround</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Slide 2 (Arabic) -->
+            <div class="hero-slide" dir="rtl">
+                <div class="container">
+                    <div class="hero-content">
+                        <img src="images/logo.png" alt="AQSA Print Logo" class="hero-logo">
+                        <span class="hero-badge" style="font-family: 'Noto Sans Arabic', sans-serif;">أفضل خدمات الطباعة واللوحات في الرياض</span>
+                        <h1 style="font-family: 'Noto Sans Arabic', sans-serif;">ارتقِ بعلامتك التجارية مع حلول <span class="gradient-text">الطباعة والإعلان</span> المتميزة</h1>
+                        <p class="hero-subtitle" style="font-family: 'Noto Sans Arabic', sans-serif;">خبراء <strong>الطباعة الرقمية</strong>، <strong>طباعة الأوفست</strong> و<strong>الطباعة ذات التنسيق العريض</strong> في الرياض — من بطاقات العمل والكتيبات إلى اللافتات الضخمة وتغليف السيارات، نقدم حلول طباعة دقيقة في جميع أنحاء المملكة.</p>
+                        <div class="hero-ctas">
+                            <a href="quote.html" class="btn btn-primary-hero" style="font-family: 'Noto Sans Arabic', sans-serif;"><i class="fas fa-paper-plane" style="margin-left:10px; margin-right:0;"></i> احصل على عرض سعر مجاني</a>
+                            <a href="https://wa.me/966556683044" class="btn btn-secondary-hero" style="font-family: 'Noto Sans Arabic', sans-serif;"><i class="fab fa-whatsapp" style="margin-left:10px; margin-right:0;"></i> راسلنا على الواتساب</a>
+                        </div>
+                        <div class="hero-trust">
+                            <div class="hero-trust-item" style="font-family: 'Noto Sans Arabic', sans-serif;"><i class="fas fa-check-circle"></i> 500+ عميل سعيد</div>
+                            <div class="hero-trust-item" style="font-family: 'Noto Sans Arabic', sans-serif;"><i class="fas fa-check-circle"></i> 10,000+ مشروع</div>
+                            <div class="hero-trust-item" style="font-family: 'Noto Sans Arabic', sans-serif;"><i class="fas fa-check-circle"></i> إنجاز خلال 24-48 ساعة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-dot active" onclick="goToHeroSlide(0)" aria-label="Slide 1"></button>
+            <button class="slider-dot" onclick="goToHeroSlide(1)" aria-label="Slide 2"></button>
         </div>
     </section>
 
@@ -536,39 +605,23 @@
                 <h2 class="section-title">Frequently Asked Questions</h2>
                 <p class="section-subtitle">Find answers to common questions about our printing and branding services.</p>
             </div>
-            <div class="faq-grid" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
-                <div class="faq-item" style="border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden;">
-                    <div class="faq-question" style="padding: 24px; background: var(--gray-50); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; color: var(--gray-900);" onclick="var ans = this.nextElementSibling; if(ans.style.maxHeight){ans.style.maxHeight=null; this.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');}else{ans.style.maxHeight=ans.scrollHeight+'px'; this.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');}">
-                        What is your typical turnaround time? <i class="fas fa-chevron-down" style="color: var(--teal-primary); transition: transform 0.3s;"></i>
-                    </div>
-                    <div class="faq-answer" style="padding: 0 24px; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; line-height: 1.7; color: var(--gray-600);">
-                        <div style="padding: 20px 0;">Most standard printing orders (like business cards and flyers) are completed within 24-48 hours. Larger projects like vehicle branding or custom 3D signage typically take 5-10 business days depending on the scope of work.</div>
-                    </div>
-                </div>
-                <div class="faq-item" style="border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden;">
-                    <div class="faq-question" style="padding: 24px; background: var(--gray-50); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; color: var(--gray-900);" onclick="var ans = this.nextElementSibling; if(ans.style.maxHeight){ans.style.maxHeight=null; this.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');}else{ans.style.maxHeight=ans.scrollHeight+'px'; this.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');}">
-                        Do you offer design services? <i class="fas fa-chevron-down" style="color: var(--teal-primary); transition: transform 0.3s;"></i>
-                    </div>
-                    <div class="faq-answer" style="padding: 0 24px; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; line-height: 1.7; color: var(--gray-600);">
-                        <div style="padding: 20px 0;">Yes! We have an in-house team of professional graphic designers who can help bring your vision to life, whether you need a new logo, brochure layout, or full vehicle wrap design.</div>
-                    </div>
-                </div>
-                <div class="faq-item" style="border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden;">
-                    <div class="faq-question" style="padding: 24px; background: var(--gray-50); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; color: var(--gray-900);" onclick="var ans = this.nextElementSibling; if(ans.style.maxHeight){ans.style.maxHeight=null; this.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');}else{ans.style.maxHeight=ans.scrollHeight+'px'; this.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');}">
-                        Do you provide installation across Saudi Arabia? <i class="fas fa-chevron-down" style="color: var(--teal-primary); transition: transform 0.3s;"></i>
-                    </div>
-                    <div class="faq-answer" style="padding: 0 24px; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; line-height: 1.7; color: var(--gray-600);">
-                        <div style="padding: 20px 0;">While we are based in Riyadh, we do provide professional installation services for signage and large-scale branding projects across major cities in Saudi Arabia.</div>
-                    </div>
-                </div>
-                <div class="faq-item" style="border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden;">
-                    <div class="faq-question" style="padding: 24px; background: var(--gray-50); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; color: var(--gray-900);" onclick="var ans = this.nextElementSibling; if(ans.style.maxHeight){ans.style.maxHeight=null; this.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');}else{ans.style.maxHeight=ans.scrollHeight+'px'; this.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');}">
-                        What materials do you use for outdoor signs? <i class="fas fa-chevron-down" style="color: var(--teal-primary); transition: transform 0.3s;"></i>
-                    </div>
-                    <div class="faq-answer" style="padding: 0 24px; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; line-height: 1.7; color: var(--gray-600);">
-                        <div style="padding: 20px 0;">We use premium, weather-resistant materials designed to withstand the harsh Saudi climate. This includes UV-protected acrylics, brushed aluminum, stainless steel, and high-quality outdoor-rated LED modules.</div>
-                    </div>
-                </div>
+            <div class="faq-grid">
+                <details class="faq-item">
+                    <summary>What is your typical turnaround time?</summary>
+                    <div class="faq-item-content">Most standard printing orders (like business cards and flyers) are completed within 24-48 hours. Larger projects like vehicle branding or custom 3D signage typically take 5-10 business days depending on the scope of work.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you offer design services?</summary>
+                    <div class="faq-item-content">Yes! We have an in-house team of professional graphic designers who can help bring your vision to life, whether you need a new logo, brochure layout, or full vehicle wrap design.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you provide installation across Saudi Arabia?</summary>
+                    <div class="faq-item-content">While we are based in Riyadh, we do provide professional installation services for signage and large-scale branding projects across major cities in Saudi Arabia.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What materials do you use for outdoor signs?</summary>
+                    <div class="faq-item-content">We use premium, weather-resistant materials designed to withstand the harsh Saudi climate. This includes UV-protected acrylics, brushed aluminum, stainless steel, and high-quality outdoor-rated LED modules.</div>
+                </details>
             </div>
         </div>
     </section>
@@ -639,8 +692,42 @@
 
     <script src="main.js"></script>
     <script>
-        
+        // Hero Slider Functionality
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroDots = document.querySelectorAll('.slider-dot');
+        let heroSliderInterval;
+
+        function goToHeroSlide(index) {
+            if (!heroSlides.length) return;
+            heroSlides[currentHeroSlide].classList.remove('active');
+            heroDots[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = index;
+            heroSlides[currentHeroSlide].classList.add('active');
+            heroDots[currentHeroSlide].classList.add('active');
+            resetHeroInterval();
+        }
+
+        function nextHeroSlide() {
+            if (!heroSlides.length) return;
+            let nextSlide = (currentHeroSlide + 1) % heroSlides.length;
+            goToHeroSlide(nextSlide);
+        }
+
+        function resetHeroInterval() {
+            clearInterval(heroSliderInterval);
+            heroSliderInterval = setInterval(nextHeroSlide, 6000);
+        }
+
+        if (heroSlides.length > 0) {
+            resetHeroInterval();
+        }
     </script>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/966556683044" class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- CHATBOT -->
     <div class="chatbot-toggle" id="chatbotToggle">
