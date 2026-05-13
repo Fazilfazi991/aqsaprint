@@ -13,12 +13,16 @@
     <style>
         /* HERO SECTION */
         .hero{position:relative;background:#0f172a;overflow:hidden}
-        .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.85) 40%,rgba(45,184,168,.25) 100%)}
-        .hero-bg::before{content:'';position:absolute;inset:0;background-image:url('images/hero_laptop.png');background-size:cover;background-position:center;opacity:.4}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.85) 40%,rgba(45,184,168,.25) 100%); z-index: 1;}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,#fff 0%,transparent 100%); z-index: 3;}
+        .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0; transition: opacity 0.8s ease-in-out; z-index: 0;}
+        .hero-bg.active{opacity:.4;}
+        .bg-slide-1{background-image:url('images/hero_laptop.png');}
+        .bg-slide-2{background-image:url('images/hero_arabic_laptop.png');}
         @media(max-width:768px){
-            .hero-bg::before{background-image:url('images/hero_mobile.png')}
+            .bg-slide-1{background-image:url('images/hero_mobile.png');}
+            .bg-slide-2{background-image:url('images/hero_mobile.png');}
         }
-        .hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,#fff 0%,transparent 100%); z-index: 1;}
         .hero-slider { display: grid; position: relative; z-index: 2; min-height: 80vh; width: 100%; }
         .hero-slide { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; transform: translateY(15px); pointer-events: none; }
         .hero-slide.active { opacity: 1; transform: translateY(0); pointer-events: all; }
@@ -210,7 +214,9 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg bg-slide-1 active"></div>
+        <div class="hero-bg bg-slide-2"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-slider">
             <!-- Slide 1 (English) -->
             <div class="hero-slide active">
@@ -696,15 +702,20 @@
         let currentHeroSlide = 0;
         const heroSlides = document.querySelectorAll('.hero-slide');
         const heroDots = document.querySelectorAll('.slider-dot');
+        const heroBgs = document.querySelectorAll('.hero-bg');
         let heroSliderInterval;
 
         function goToHeroSlide(index) {
             if (!heroSlides.length) return;
             heroSlides[currentHeroSlide].classList.remove('active');
             heroDots[currentHeroSlide].classList.remove('active');
+            if(heroBgs[currentHeroSlide]) heroBgs[currentHeroSlide].classList.remove('active');
+            
             currentHeroSlide = index;
             heroSlides[currentHeroSlide].classList.add('active');
             heroDots[currentHeroSlide].classList.add('active');
+            if(heroBgs[currentHeroSlide]) heroBgs[currentHeroSlide].classList.add('active');
+            
             resetHeroInterval();
         }
 
