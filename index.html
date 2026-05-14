@@ -19,11 +19,9 @@
         .hero-bg.active{opacity:.4;}
         .bg-slide-1{background-image:url('images/hero_laptop.png');}
         .bg-slide-2{background-image:url('images/hero_arabic_laptop.png');}
-        .bg-slide-3{background-image:none;}
         @media(max-width:768px){
             .bg-slide-1{background-image:url('images/hero_mobile.png');}
-            .bg-slide-2{background-image:url('images/hero_mobile.png');}
-            .bg-slide-3{background-image:url('images/hero_mobile_3.png');}
+            .bg-slide-2{background-image:url('images/hero_mobile_3.png');}
         }
         .hero-slider { display: grid; position: relative; z-index: 2; min-height: 80vh; width: 100%; }
         .hero-slide { grid-area: 1 / 1; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; transform: translateY(15px); pointer-events: none; }
@@ -218,7 +216,6 @@
     <section class="hero">
         <div class="hero-bg bg-slide-1 active"></div>
         <div class="hero-bg bg-slide-2"></div>
-        <div class="hero-bg bg-slide-3"></div>
         <div class="hero-overlay"></div>
         <div class="hero-slider">
             <!-- Slide 1 (English) -->
@@ -261,31 +258,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Slide 3 (Mobile Showcase) -->
-            <div class="hero-slide">
-                <div class="container">
-                    <div class="hero-content">
-                        <img src="images/logo.png" alt="AQSA Print Logo" class="hero-logo">
-                        <span class="hero-badge">Premium Print & Branding — Riyadh</span>
-                        <h1>Your Brand, <span class="gradient-text">Everywhere</span> — Indoors & Out</h1>
-                        <p class="hero-subtitle">From <strong>Eye-Catching Signage</strong> to <strong>Fleet Vehicle Wraps</strong> &amp; <strong>Branded Merchandise</strong> — AQSA Print brings your vision to life with precision across Saudi Arabia.</p>
-                        <div class="hero-ctas">
-                            <a href="quote.html" class="btn btn-primary-hero"><i class="fas fa-paper-plane" style="margin-right:10px"></i> Get Free Quote</a>
-                            <a href="https://wa.me/966556683044" class="btn btn-secondary-hero"><i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp Us</a>
-                        </div>
-                        <div class="hero-trust">
-                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Full Vehicle Wraps</div>
-                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> 3D LED Signage</div>
-                            <div class="hero-trust-item"><i class="fas fa-check-circle"></i> Corporate Gifts</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="slider-controls">
             <button class="slider-dot active" onclick="goToHeroSlide(0)" aria-label="Slide 1"></button>
             <button class="slider-dot" onclick="goToHeroSlide(1)" aria-label="Slide 2"></button>
-            <button class="slider-dot" onclick="goToHeroSlide(2)" aria-label="Slide 3"></button>
         </div>
     </section>
 
