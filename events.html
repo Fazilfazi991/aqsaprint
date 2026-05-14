@@ -130,11 +130,11 @@
     <script src="supabase-client.js"></script>
 
     <script>
-        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         async function loadEvents() {
             try {
-                const { data: events, error } = await supabase
+                const { data: events, error } = await _supabase
                     .from('events')
                     .select('*')
                     .order('date', { ascending: false });

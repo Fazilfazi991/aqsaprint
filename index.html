@@ -444,11 +444,11 @@
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
             <script src="supabase-client.js"></script>
             <script>
-                const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
                 async function loadHomePortfolio() {
                     try {
-                        const { data: portfolio, error } = await supabase
+                        const { data: portfolio, error } = await _supabase
                             .from('portfolio')
                             .select('*')
                             .order('created_at', { ascending: false })

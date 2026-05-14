@@ -239,9 +239,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
 
-    <script>
         // Initialize Supabase
-        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Update all references in admin-panel to use _supabase
+
 
         // Security Check
         const token = localStorage.getItem('aqsa_admin_token');
@@ -266,14 +268,14 @@
             const fileName = `${Date.now()}_${file.name}`;
             const filePath = `${folder}/${fileName}`;
 
-            const { data, error } = await supabase.storage
-                .from('images')
-                .upload(filePath, file);
+                const { data, error } = await _supabase.storage
+                    .from('images')
+                    .upload(filePath, file);
 
             if (error) throw error;
 
             // Get Public URL
-            const { data: { publicUrl } } = supabase.storage
+            const { data: { publicUrl } } = _supabase.storage
                 .from('images')
                 .getPublicUrl(filePath);
 
@@ -297,7 +299,7 @@
                 const imageUrl = await uploadImage(imageFile, 'portfolio');
 
                 // 2. Save to Database
-                const { data, error } = await supabase
+                const { data, error } = await _supabase
                     .from('portfolio')
                     .insert([{ title, category, location, image_url: imageUrl }]);
 
@@ -333,7 +335,7 @@
                 const imageUrl = await uploadImage(imageFile, 'events');
 
                 // 2. Save to Database
-                const { data, error } = await supabase
+                const { data, error } = await _supabase
                     .from('events')
                     .insert([{ title, type, date, location, description, image_url: imageUrl }]);
 
