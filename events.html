@@ -127,22 +127,32 @@
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-client.js"></script>
-
     <script>
-        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Supabase Credentials
+        const SUPABASE_URL = "https://enfoikpsxghjbhtnprei.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuZm9pa3BzeGdoamJodG5wcmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTkzMjEsImV4cCI6MjA5NDMzNTMyMX0.DJqi2V9GmjzeAH-sbmrJHzsh4CgEfEW3-jhF6sKILS4";
+
+        let _supabase;
 
         async function loadEvents() {
             try {
+                if (typeof window.supabase === 'undefined') {
+                    console.error("Supabase not loaded yet, retrying...");
+                    setTimeout(loadEvents, 500);
+                    return;
+                }
+
+                _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
                 const { data: events, error } = await _supabase
                     .from('events')
                     .select('*')
                     .order('date', { ascending: false });
 
                 if (error) throw error;
-                
+
                 const upcomingContainer = document.getElementById('upcoming-events-container');
-                const pastContainer = document.getElementById('past-gallery-container');
+                const pastContainer = document.getElementById('past-events-grid');
                 
                 upcomingContainer.innerHTML = '';
                 pastContainer.innerHTML = '';
@@ -154,7 +164,7 @@
 
                     if (event.type === 'upcoming') {
                         const eventCard = document.createElement('div');
-                        eventCard.className = 'event-card';
+                        eventCard.className = 'event-card visible'; // Force visible
                         eventCard.innerHTML = `
                             <div class="event-date">
                                 <span class="day">${day}</span>
@@ -172,7 +182,7 @@
                         upcomingContainer.appendChild(eventCard);
                     } else {
                         const galleryItem = document.createElement('div');
-                        galleryItem.className = 'gallery-item';
+                        galleryItem.className = 'gallery-item visible'; // Force visible
                         galleryItem.innerHTML = `
                             <img src="${event.image_url}" alt="${event.title}" loading="lazy">
                             <div class="gallery-overlay">
@@ -185,17 +195,14 @@
                         pastContainer.appendChild(galleryItem);
                     }
                 });
-
-                // Re-observe for fade-in
-                if (typeof obs !== 'undefined') {
-                    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-                }
             } catch (err) {
                 console.error('Error loading events:', err);
             }
         }
+        
         loadEvents();
     </script>
+
 
     <footer class="footer">
         <div class="container">
