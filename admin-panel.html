@@ -237,154 +237,110 @@
         const SUPABASE_URL = "https://enfoikpsxghjbhtnprei.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuZm9pa3BzeGdoamJodG5wcmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTkzMjEsImV4cCI6MjA5NDMzNTMyMX0.DJqi2V9GmjzeAH-sbmrJHzsh4CgEfEW3-jhF6sKILS4";
 
-        let _supabase;
-
-        function startAdmin() {
-            if (typeof window.supabase === 'undefined') {
-                console.error("Supabase not loaded yet, retrying...");
-                setTimeout(startAdmin, 500);
-                return;
-            }
-
-            _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            console.log("Admin initialized");
-
-            // Attach event listeners after initialization
-            setupTabs();
-            setupForms();
-        }
-
-        function setupTabs() {
-            document.querySelectorAll('.nav-item[data-target]').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                    document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
-                    this.classList.add('active');
-                    document.getElementById('page-title').innerText = this.innerText.trim();
-                    const targetId = this.getAttribute('data-target');
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
-        }
-
-        // Security Check
-        const token = localStorage.getItem('aqsa_admin_token');
-        if (!token) {
+        // Security Check (immediate)
+        if (!localStorage.getItem('aqsa_admin_token')) {
             window.location.href = 'login.html';
         }
 
-        // Start everything
-        startAdmin();
-
+        // Initialize Supabase once
+        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Helper to upload image to Supabase Storage
         async function uploadImage(file, folder) {
             if (!file) throw new Error("No image file selected");
-            
+            const fileName = `${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
+            const filePath = `${folder}/${fileName}`;
+
+            const { data, error } = await _supabase.storage
+                .from('images')
+                .upload(filePath, file);
+
+            if (error) throw new Error(`Upload failed: ${error.message}`);
+
+            const { data: { publicUrl } } = _supabase.storage
+                .from('images')
+                .getPublicUrl(filePath);
+
+            return publicUrl;
+        }
+
+        // Navigation / Tabs
+        document.querySelectorAll('.nav-item[data-target]').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('page-title').innerText = this.innerText.trim();
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Portfolio Form
+        document.getElementById('portfolioForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+
             try {
-                const fileName = `${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
-                const filePath = `${folder}/${fileName}`;
+                const title = this.title.value;
+                const category = this.category.value;
+                const location = this.location.value;
+                const imageFile = this.image.files[0];
 
-                console.log(`Uploading to: ${filePath}`);
+                const imageUrl = await uploadImage(imageFile, 'portfolio');
 
-                const { data, error } = await _supabase.storage
-                    .from('images')
-                    .upload(filePath, file, {
-                        cacheControl: '3600',
-                        upsert: false
-                    });
+                const { error } = await _supabase
+                    .from('portfolio')
+                    .insert([{ title, category, location, image_url: imageUrl }]);
 
-                if (error) {
-                    console.error("Storage Error:", error);
-                    throw new Error(`Upload failed: ${error.message}`);
-                }
+                if (error) throw error;
 
-                // Get Public URL
-                const { data: { publicUrl } } = _supabase.storage
-                    .from('images')
-                    .getPublicUrl(filePath);
-
-                console.log("Public URL:", publicUrl);
-                return publicUrl;
+                alert('Project published successfully!');
+                this.reset();
             } catch (err) {
-                console.error("Upload Helper Error:", err);
-                throw err;
+                console.error(err);
+                alert('Error: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-save"></i> Publish Project';
             }
-        }
+        });
 
+        // Event Form
+        document.getElementById('eventForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
 
-        function setupForms() {
-            // Handle Portfolio Submission
-            document.getElementById('portfolioForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const btn = this.querySelector('button[type="submit"]');
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+            try {
+                const title = this.title.value;
+                const type = this.type.value;
+                const date = this.date.value;
+                const location = this.location.value;
+                const description = this.description.value;
+                const imageFile = this.image.files[0];
 
-                try {
-                    const title = this.title.value;
-                    const category = this.category.value;
-                    const location = this.location.value;
-                    const imageFile = this.image.files[0];
+                const imageUrl = await uploadImage(imageFile, 'events');
 
-                    // 1. Upload Image
-                    const imageUrl = await uploadImage(imageFile, 'portfolio');
+                const { error } = await _supabase
+                    .from('events')
+                    .insert([{ title, type, date, location, description, image_url: imageUrl }]);
 
-                    // 2. Save to Database
-                    const { data, error } = await _supabase
-                        .from('portfolio')
-                        .insert([{ title, category, location, image_url: imageUrl }]);
+                if (error) throw error;
 
-                    if (error) throw error;
-
-                    alert('Project published successfully!');
-                    this.reset();
-                } catch (err) {
-                    console.error(err);
-                    alert('Error: ' + err.message);
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-save"></i> Publish Project';
-                }
-            });
-
-            // Handle Event Submission
-            document.getElementById('eventForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const btn = this.querySelector('button[type="submit"]');
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
-
-                try {
-                    const title = this.title.value;
-                    const type = this.type.value;
-                    const date = this.date.value;
-                    const location = this.location.value;
-                    const description = this.description.value;
-                    const imageFile = this.image.files[0];
-
-                    // 1. Upload Image
-                    const imageUrl = await uploadImage(imageFile, 'events');
-
-                    // 2. Save to Database
-                    const { data, error } = await _supabase
-                        .from('events')
-                        .insert([{ title, type, date, location, description, image_url: imageUrl }]);
-
-                    if (error) throw error;
-
-                    alert('Event added successfully!');
-                    this.reset();
-                } catch (err) {
-                    console.error(err);
-                    alert('Error: ' + err.message);
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-calendar-check"></i> Add Event';
-                }
-            });
-        }
-
+                alert('Event added successfully!');
+                this.reset();
+            } catch (err) {
+                console.error(err);
+                alert('Error: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-calendar-check"></i> Add Event';
+            }
+        });
 
         function logout() {
             localStorage.removeItem('aqsa_admin_token');
