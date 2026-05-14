@@ -81,6 +81,13 @@
         /* Alerts */
         .alert { padding: 16px; border-radius: 8px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
         .alert-info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .admin-table th { font-weight: 600; color: #666; }
+        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+        .btn-delete { color: #dc3545; background: none; border: none; cursor: pointer; padding: 5px; }
+        .btn-delete:hover { color: #bd2130; }
+        .table-responsive { overflow-x: auto; }
     </style>
 </head>
 <body>
@@ -175,6 +182,28 @@
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Publish Project</button>
                     </div>
                 </form>
+
+                <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;">
+
+                <div class="panel-header">
+                    <h2>Current Portfolio Items</h2>
+                    <p>View and manage projects currently shown on the website.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="portfolio-list">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Events Panel -->
@@ -231,6 +260,28 @@
                         <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Add Event</button>
                     </div>
                 </form>
+
+                <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;">
+
+                <div class="panel-header">
+                    <h2>Current Events</h2>
+                    <p>Manage existing upcoming and past events.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="events-list">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
         </div>
@@ -326,6 +377,9 @@
 
                 alert('Project published successfully!');
                 
+                // Refresh list
+                loadItems();
+                
                 // Reset preview
                 document.getElementById('portfolio-preview-container').style.display = 'none';
                 document.getElementById('portfolio-upload-prompt').style.display = 'block';
@@ -365,6 +419,10 @@
                 if (error) throw error;
 
                 alert('Event added successfully!');
+                
+                // Refresh list
+                loadItems();
+                
                 this.reset();
             } catch (err) {
                 console.error(err);
@@ -374,6 +432,52 @@
                 btn.innerHTML = '<i class="fas fa-calendar-check"></i> Add Event';
             }
         });
+
+        // Load Items List
+        async function loadItems() {
+            try {
+                // Portfolio
+                const { data: portfolio } = await _supabase.from('portfolio').select('*').order('created_at', { ascending: false });
+                const pList = document.getElementById('portfolio-list');
+                pList.innerHTML = portfolio.map(item => `
+                    <tr>
+                        <td><img src="${item.image_url}" alt=""></td>
+                        <td>${item.title}</td>
+                        <td>${item.category}</td>
+                        <td>
+                            <button class="btn-delete" onclick="deleteItem('portfolio', ${item.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Events
+                const { data: events } = await _supabase.from('events').select('*').order('created_at', { ascending: false });
+                const eList = document.getElementById('events-list');
+                eList.innerHTML = events.map(item => `
+                    <tr>
+                        <td><img src="${item.image_url}" alt=""></td>
+                        <td>${item.title}</td>
+                        <td>${item.type}</td>
+                        <td>
+                            <button class="btn-delete" onclick="deleteItem('events', ${item.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (err) { console.error(err); }
+        }
+
+        async function deleteItem(table, id) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+            try {
+                const { error } = await _supabase.from(table).delete().eq('id', id);
+                if (error) throw error;
+                loadItems();
+                alert('Item deleted successfully');
+            } catch (err) { alert('Error: ' + err.message); }
+        }
+
+        // Initialize lists
+        loadItems();
 
         function logout() {
             localStorage.removeItem('aqsa_admin_token');
