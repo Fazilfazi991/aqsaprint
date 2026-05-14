@@ -235,14 +235,21 @@
         </div>
     </main>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+
     <script>
+        // Initialize Supabase
+        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         // Security Check
         const token = localStorage.getItem('aqsa_admin_token');
         if (!token) {
             window.location.href = 'login.html';
         }
 
-        // Simple tabs logic for the admin panel
+        // Tabs logic
         document.querySelectorAll('.nav-item[data-target]').forEach(item => {
             item.addEventListener('click', function() {
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
@@ -254,30 +261,53 @@
             });
         });
 
+        // Helper to upload image to Supabase Storage
+        async function uploadImage(file, folder) {
+            const fileName = `${Date.now()}_${file.name}`;
+            const filePath = `${folder}/${fileName}`;
+
+            const { data, error } = await supabase.storage
+                .from('images')
+                .upload(filePath, file);
+
+            if (error) throw error;
+
+            // Get Public URL
+            const { data: { publicUrl } } = supabase.storage
+                .from('images')
+                .getPublicUrl(filePath);
+
+            return publicUrl;
+        }
+
         // Handle Portfolio Submission
         document.getElementById('portfolioForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
             const btn = this.querySelector('button[type="submit"]');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
 
             try {
-                const response = await fetch('/api/portfolio', {
-                    method: 'POST',
-                    headers: { 'Authorization': token },
-                    body: formData
-                });
+                const title = this.title.value;
+                const category = this.category.value;
+                const location = this.location.value;
+                const imageFile = this.image.files[0];
 
-                if (response.ok) {
-                    alert('Project published successfully!');
-                    this.reset();
-                } else {
-                    const err = await response.json();
-                    alert('Error: ' + (err.error || 'Failed to save'));
-                }
+                // 1. Upload Image
+                const imageUrl = await uploadImage(imageFile, 'portfolio');
+
+                // 2. Save to Database
+                const { data, error } = await supabase
+                    .from('portfolio')
+                    .insert([{ title, category, location, image_url: imageUrl }]);
+
+                if (error) throw error;
+
+                alert('Project published successfully!');
+                this.reset();
             } catch (err) {
-                alert('Connection error. Is the server running?');
+                console.error(err);
+                alert('Error: ' + err.message);
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-save"></i> Publish Project';
@@ -287,34 +317,39 @@
         // Handle Event Submission
         document.getElementById('eventForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
             const btn = this.querySelector('button[type="submit"]');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
 
             try {
-                const response = await fetch('/api/events', {
-                    method: 'POST',
-                    headers: { 'Authorization': token },
-                    body: formData
-                });
+                const title = this.title.value;
+                const type = this.type.value;
+                const date = this.date.value;
+                const location = this.location.value;
+                const description = this.description.value;
+                const imageFile = this.image.files[0];
 
-                if (response.ok) {
-                    alert('Event added successfully!');
-                    this.reset();
-                } else {
-                    const err = await response.json();
-                    alert('Error: ' + (err.error || 'Failed to save'));
-                }
+                // 1. Upload Image
+                const imageUrl = await uploadImage(imageFile, 'events');
+
+                // 2. Save to Database
+                const { data, error } = await supabase
+                    .from('events')
+                    .insert([{ title, type, date, location, description, image_url: imageUrl }]);
+
+                if (error) throw error;
+
+                alert('Event added successfully!');
+                this.reset();
             } catch (err) {
-                alert('Connection error. Is the server running?');
+                console.error(err);
+                alert('Error: ' + err.message);
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-calendar-check"></i> Add Event';
             }
         });
 
-        // Logout
         function logout() {
             localStorage.removeItem('aqsa_admin_token');
             window.location.href = 'login.html';

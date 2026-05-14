@@ -125,11 +125,21 @@
         </div>
     </section>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+
     <script>
+        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         async function loadEvents() {
             try {
-                const response = await fetch('data.json');
-                const data = await response.json();
+                const { data: events, error } = await supabase
+                    .from('events')
+                    .select('*')
+                    .order('date', { ascending: false });
+
+                if (error) throw error;
                 
                 const upcomingContainer = document.getElementById('upcoming-events-container');
                 const pastContainer = document.getElementById('past-gallery-container');
@@ -137,7 +147,7 @@
                 upcomingContainer.innerHTML = '';
                 pastContainer.innerHTML = '';
 
-                data.events.forEach(event => {
+                events.forEach(event => {
                     const date = new Date(event.date);
                     const day = date.getDate();
                     const month = date.toLocaleString('default', { month: 'short' });
@@ -164,7 +174,7 @@
                         const galleryItem = document.createElement('div');
                         galleryItem.className = 'gallery-item';
                         galleryItem.innerHTML = `
-                            <img src="${event.image}" alt="${event.title}" loading="lazy">
+                            <img src="${event.image_url}" alt="${event.title}" loading="lazy">
                             <div class="gallery-overlay">
                                 <div class="gallery-info">
                                     <h4>${event.title}</h4>
@@ -177,7 +187,9 @@
                 });
 
                 // Re-observe for fade-in
-                document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+                if (typeof obs !== 'undefined') {
+                    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+                }
             } catch (err) {
                 console.error('Error loading events:', err);
             }

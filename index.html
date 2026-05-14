@@ -464,20 +464,30 @@
             <div id="home-portfolio-container" class="portfolio-grid">
                 <!-- Data loaded dynamically -->
             </div>
+            <!-- Supabase SDK -->
+            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            <script src="supabase-client.js"></script>
             <script>
+                const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
                 async function loadHomePortfolio() {
                     try {
-                        const response = await fetch('data.json');
-                        const data = await response.json();
+                        const { data: portfolio, error } = await supabase
+                            .from('portfolio')
+                            .select('*')
+                            .order('created_at', { ascending: false })
+                            .limit(6);
+
+                        if (error) throw error;
+
                         const container = document.getElementById('home-portfolio-container');
                         container.innerHTML = '';
 
-                        // Show only top 6 recent items
-                        data.portfolio.slice(0, 6).forEach(item => {
+                        portfolio.forEach(item => {
                             const div = document.createElement('div');
                             div.className = 'portfolio-item';
                             div.innerHTML = `
-                                <img src="${item.image}" alt="${item.title}">
+                                <img src="${item.image_url}" alt="${item.title}">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-info">
                                         <h4>${item.title}</h4>

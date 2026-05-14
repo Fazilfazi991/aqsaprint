@@ -128,21 +128,32 @@
         </div>
     </section>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+
     <script>
+        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         async function loadPortfolio() {
             try {
-                const response = await fetch('data.json');
-                const data = await response.json();
+                const { data: portfolio, error } = await supabase
+                    .from('portfolio')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
                 const container = document.getElementById('portfolio-container');
                 container.innerHTML = '';
 
-                data.portfolio.forEach(item => {
+                portfolio.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'portfolio-card';
                     card.dataset.category = item.category;
                     card.innerHTML = `
                         <div class="portfolio-card-img">
-                            <img src="${item.image}" alt="${item.title}">
+                            <img src="${item.image_url}" alt="${item.title}">
                             <div class="portfolio-card-overlay"></div>
                         </div>
                         <div class="portfolio-card-body">
@@ -155,7 +166,9 @@
                 });
                 
                 // Initialize observer for new items
-                document.querySelectorAll('.portfolio-card').forEach(el => obs.observe(el));
+                if (typeof obs !== 'undefined') {
+                    document.querySelectorAll('.portfolio-card').forEach(el => obs.observe(el));
+                }
             } catch (err) {
                 console.error('Error loading portfolio:', err);
             }
