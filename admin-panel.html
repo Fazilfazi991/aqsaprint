@@ -279,22 +279,39 @@
 
         // Helper to upload image to Supabase Storage
         async function uploadImage(file, folder) {
-            const fileName = `${Date.now()}_${file.name}`;
-            const filePath = `${folder}/${fileName}`;
+            if (!file) throw new Error("No image file selected");
+            
+            try {
+                const fileName = `${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
+                const filePath = `${folder}/${fileName}`;
+
+                console.log(`Uploading to: ${filePath}`);
 
                 const { data, error } = await _supabase.storage
                     .from('images')
-                    .upload(filePath, file);
+                    .upload(filePath, file, {
+                        cacheControl: '3600',
+                        upsert: false
+                    });
 
-            if (error) throw error;
+                if (error) {
+                    console.error("Storage Error:", error);
+                    throw new Error(`Upload failed: ${error.message}`);
+                }
 
-            // Get Public URL
-            const { data: { publicUrl } } = _supabase.storage
-                .from('images')
-                .getPublicUrl(filePath);
+                // Get Public URL
+                const { data: { publicUrl } } = _supabase.storage
+                    .from('images')
+                    .getPublicUrl(filePath);
 
-            return publicUrl;
+                console.log("Public URL:", publicUrl);
+                return publicUrl;
+            } catch (err) {
+                console.error("Upload Helper Error:", err);
+                throw err;
+            }
         }
+
 
         function setupForms() {
             // Handle Portfolio Submission
