@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | AQSA Print</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2DB8A8;
+            --secondary: #E8A5B8;
+            --dark: #0f172a;
+            --white: #ffffff;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--dark);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Gradients */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(45, 184, 168, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 165, 184, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 48px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-area h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .logo-area p {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gray-200);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            font-size: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 16px 14px 48px;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(45, 184, 168, 0.15);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            border: none;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+            box-shadow: 0 10px 20px -5px rgba(45, 184, 168, 0.3);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(45, 184, 168, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .footer-links {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .error-msg {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="logo-area">
+            <h2>AQSA PRINT</h2>
+            <p>Admin Control Panel</p>
+        </div>
+
+        <div id="errorBox" class="error-msg">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Invalid credentials. Please try again.</span>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Username</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" class="form-control" placeholder="Enter admin username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Sign In <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+            </button>
+        </form>
+
+        <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-left" style="margin-right: 4px;"></i> Back to Website</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorBox = document.getElementById('errorBox');
+
+            // In a real scenario, this calls the backend API
+            // For now, we simulate a login check
+            if (username === 'admin' && password === 'aqsa2025') {
+                localStorage.setItem('aqsa_admin_token', 'session_valid_' + Date.now());
+                window.location.href = 'admin-panel.html';
+            } else {
+                errorBox.style.display = 'flex';
+                // Shake effect
+                const card = document.querySelector('.login-card');
+                card.style.animation = 'shake 0.4s ease';
+                setTimeout(() => card.style.animation = '', 400);
+            }
+        });
+
+        // Simple shake animation in CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-8px); }
+                75% { transform: translateX(8px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

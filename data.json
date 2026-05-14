@@ -1,0 +1,85 @@
+{
+    "portfolio": [
+        {
+            "id": 1,
+            "title": "3D LED Storefront Sign",
+            "category": "signage",
+            "location": "Retail Mall, Riyadh",
+            "image": "images/portfolio/storefront_sign.png"
+        },
+        {
+            "id": 2,
+            "title": "Fleet Branding — 12 Vehicles",
+            "category": "vehicle",
+            "location": "Delivery Company, KSA",
+            "image": "images/portfolio/fleet_branding.png"
+        },
+        {
+            "id": 3,
+            "title": "Custom Exhibition Stall",
+            "category": "exhibition",
+            "location": "Riyadh Expo Center",
+            "image": "images/portfolio/exhibition_stall.png"
+        },
+        {
+            "id": 4,
+            "title": "Glossy Magazine Printing",
+            "category": "printing",
+            "location": "Premium Brand Catalogue",
+            "image": "images/portfolio/magazine_printing.png"
+        },
+        {
+            "id": 5,
+            "title": "Book Printing & Binding",
+            "category": "printing",
+            "location": "Educational / Corporate Publishing",
+            "image": "images/portfolio/book_printing.png"
+        },
+        {
+            "id": 6,
+            "title": "Food Delivery Paper Box Printing",
+            "category": "packaging",
+            "location": "Restaurant & Delivery Brands",
+            "image": "images/portfolio/packaging_box.png"
+        },
+        {
+            "id": 7,
+            "title": "Roll-up Banner Printing",
+            "category": "printing",
+            "location": "Events, Promotions & Exhibitions",
+            "image": "images/portfolio/rollup_banners.png"
+        },
+        {
+            "id": 8,
+            "title": "Framed Photo / Canvas Printing",
+            "category": "printing",
+            "location": "Home Décor & Gifting",
+            "image": "images/portfolio/canvas_decor.png"
+        },
+        {
+            "id": 9,
+            "title": "Corporate Stationery Suite",
+            "category": "printing",
+            "location": "Law Firm, Riyadh",
+            "image": "images/portfolio/stationery_suite.png"
+        },
+        {
+            "id": 10,
+            "title": "Full Office Wall Branding",
+            "category": "branding",
+            "location": "Tech Startup, Riyadh",
+            "image": "images/portfolio/office_wall_branding.png"
+        }
+    ],
+    "events": [
+        {
+            "id": 1,
+            "title": "Saudi Print & Pack 2024",
+            "type": "past",
+            "date": "2024-05-15",
+            "location": "RICC, Riyadh",
+            "description": "Showcasing our latest digital and offset printing technologies.",
+            "image": "images/generated/event_past_1.png"
+        }
+    ]
+}

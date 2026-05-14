@@ -106,7 +106,7 @@
             </a>
         </nav>
         <div class="sidebar-footer">
-            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="javascript:void(0)" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </aside>
 
@@ -135,15 +135,15 @@
                     <p>Upload new projects to showcase on the portfolio page.</p>
                 </div>
                 
-                <form onsubmit="event.preventDefault(); alert('This is a placeholder. Database connection required to save.');">
+                <form id="portfolioForm">
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Project Title *</label>
-                            <input type="text" class="form-control" placeholder="e.g. 3D LED Storefront Sign" required>
+                            <input type="text" name="title" class="form-control" placeholder="e.g. 3D LED Storefront Sign" required>
                         </div>
                         <div class="form-group">
                             <label>Category *</label>
-                            <select class="form-control" required>
+                            <select name="category" class="form-control" required>
                                 <option value="" disabled selected>Select a category</option>
                                 <option value="signage">Signage</option>
                                 <option value="vehicle">Vehicle Branding</option>
@@ -156,13 +156,13 @@
                     
                     <div class="form-group">
                         <label>Client / Location (Optional)</label>
-                        <input type="text" class="form-control" placeholder="e.g. Retail Mall, Riyadh">
+                        <input type="text" name="location" class="form-control" placeholder="e.g. Retail Mall, Riyadh">
                     </div>
                     
                     <div class="form-group">
                         <label>Project Image *</label>
                         <label class="file-upload-area">
-                            <input type="file" accept="image/*" required>
+                            <input type="file" name="image" accept="image/*" required>
                             <i class="fas fa-cloud-upload-alt"></i>
                             <h4>Click to upload or drag and drop</h4>
                             <p>PNG, JPG, or WEBP (Max 5MB)</p>
@@ -183,15 +183,15 @@
                     <p>Add upcoming events or upload a gallery from a past event.</p>
                 </div>
                 
-                <form onsubmit="event.preventDefault(); alert('This is a placeholder. Database connection required to save.');">
+                <form id="eventForm">
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Event Name *</label>
-                            <input type="text" class="form-control" placeholder="e.g. Saudi Print & Pack Exhibition 2026" required>
+                            <input type="text" name="title" class="form-control" placeholder="e.g. Saudi Print & Pack Exhibition 2026" required>
                         </div>
                         <div class="form-group">
                             <label>Event Type *</label>
-                            <select class="form-control" required>
+                            <select name="type" class="form-control" required>
                                 <option value="" disabled selected>Select event type</option>
                                 <option value="upcoming">Upcoming Event (Announcement)</option>
                                 <option value="past">Past Event (Gallery showcase)</option>
@@ -202,23 +202,23 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Event Date *</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" name="date" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Location / Venue</label>
-                            <input type="text" class="form-control" placeholder="e.g. Riyadh International Convention Center">
+                            <input type="text" name="location" class="form-control" placeholder="e.g. Riyadh International Convention Center">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>Event Description</label>
-                        <textarea class="form-control" placeholder="Write a brief description of the event..."></textarea>
+                        <textarea name="description" class="form-control" placeholder="Write a brief description of the event..."></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Cover Image *</label>
                         <label class="file-upload-area">
-                            <input type="file" accept="image/*" required>
+                            <input type="file" name="image" accept="image/*" required>
                             <i class="fas fa-images"></i>
                             <h4>Click to upload event image</h4>
                             <p>For past events, you can upload a gallery preview image.</p>
@@ -236,24 +236,89 @@
     </main>
 
     <script>
+        // Security Check
+        const token = localStorage.getItem('aqsa_admin_token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
         // Simple tabs logic for the admin panel
         document.querySelectorAll('.nav-item[data-target]').forEach(item => {
             item.addEventListener('click', function() {
-                // Remove active classes
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
-                
-                // Add active class to clicked
                 this.classList.add('active');
-                
-                // Update title
                 document.getElementById('page-title').innerText = this.innerText.trim();
-                
-                // Show target panel
                 const targetId = this.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
             });
         });
+
+        // Handle Portfolio Submission
+        document.getElementById('portfolioForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+
+            try {
+                const response = await fetch('/api/portfolio', {
+                    method: 'POST',
+                    headers: { 'Authorization': token },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Project published successfully!');
+                    this.reset();
+                } else {
+                    const err = await response.json();
+                    alert('Error: ' + (err.error || 'Failed to save'));
+                }
+            } catch (err) {
+                alert('Connection error. Is the server running?');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-save"></i> Publish Project';
+            }
+        });
+
+        // Handle Event Submission
+        document.getElementById('eventForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+
+            try {
+                const response = await fetch('/api/events', {
+                    method: 'POST',
+                    headers: { 'Authorization': token },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Event added successfully!');
+                    this.reset();
+                } else {
+                    const err = await response.json();
+                    alert('Error: ' + (err.error || 'Failed to save'));
+                }
+            } catch (err) {
+                alert('Connection error. Is the server running?');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-calendar-check"></i> Add Event';
+            }
+        });
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('aqsa_admin_token');
+            window.location.href = 'login.html';
+        }
     </script>
 </body>
 </html>

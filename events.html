@@ -107,37 +107,8 @@
                 <h2>Upcoming Events</h2>
                 <p style="color:var(--gray-600)">Mark your calendars and meet our team at these upcoming events.</p>
             </div>
-            <div class="events-list">
-                <!-- Event 1 Placeholder -->
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">15</span>
-                        <span class="month">Oct</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Saudi Print & Pack Exhibition 2026</h3>
-                        <p>Join us at the largest printing and packaging exhibition in the region. Discover our latest innovations in large format printing and 3D signages.</p>
-                        <div class="event-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> Riyadh International Convention Center</span>
-                            <span><i class="fas fa-clock"></i> 10:00 AM - 6:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Event 2 Placeholder -->
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">05</span>
-                        <span class="month">Nov</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Future of Branding Summit</h3>
-                        <p>Our experts will be speaking about the impact of indoor and vehicle branding on consumer behavior. Don't miss this insightful summit.</p>
-                        <div class="event-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> King Abdullah Financial District, Riyadh</span>
-                            <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="upcoming-events-container" class="events-list">
+                <!-- Data loaded dynamically -->
             </div>
         </div>
     </section>
@@ -148,64 +119,71 @@
                 <h2>Recent Event Gallery</h2>
                 <p style="color:var(--gray-600)">A look back at some of our recent exhibitions and corporate events.</p>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/generated/service_3d.png" alt="Exhibition Stall Setup" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Riyadh Expo 2025</h4>
-                            <p>Custom Stall Design & Setup</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/generated/work_print.png" alt="Corporate Event Banner" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Tech Summit Branding</h4>
-                            <p>Complete Event Printing Solutions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/generated/work_vehicle.png" alt="Auto Show Branding" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Jeddah Auto Show</h4>
-                            <p>Live Vehicle Wrap Demonstration</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/generated/work_led.png" alt="Launch Event" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Brand Launch Night</h4>
-                            <p>3D Signage & Stage Backdrop</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/generated/service_promo.png" alt="Gift Distribution" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Annual Corporate Gala</h4>
-                            <p>Premium Promotional Gifts Distribution</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/generated/service_indoor.png" alt="Conference Branding" loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h4>Business Leaders Conference</h4>
-                            <p>Indoor Wayfinding & Stage Branding</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="past-gallery-container" class="gallery-grid">
+                <!-- Data loaded dynamically -->
             </div>
         </div>
     </section>
+
+    <script>
+        async function loadEvents() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                const upcomingContainer = document.getElementById('upcoming-events-container');
+                const pastContainer = document.getElementById('past-gallery-container');
+                
+                upcomingContainer.innerHTML = '';
+                pastContainer.innerHTML = '';
+
+                data.events.forEach(event => {
+                    const date = new Date(event.date);
+                    const day = date.getDate();
+                    const month = date.toLocaleString('default', { month: 'short' });
+
+                    if (event.type === 'upcoming') {
+                        const eventCard = document.createElement('div');
+                        eventCard.className = 'event-card';
+                        eventCard.innerHTML = `
+                            <div class="event-date">
+                                <span class="day">${day}</span>
+                                <span class="month">${month}</span>
+                            </div>
+                            <div class="event-details">
+                                <h3>${event.title}</h3>
+                                <p>${event.description}</p>
+                                <div class="event-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
+                                    <span><i class="fas fa-calendar-alt"></i> ${event.date}</span>
+                                </div>
+                            </div>
+                        `;
+                        upcomingContainer.appendChild(eventCard);
+                    } else {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.innerHTML = `
+                            <img src="${event.image}" alt="${event.title}" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-info">
+                                    <h4>${event.title}</h4>
+                                    <p>${event.description}</p>
+                                </div>
+                            </div>
+                        `;
+                        pastContainer.appendChild(galleryItem);
+                    }
+                });
+
+                // Re-observe for fade-in
+                document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+            } catch (err) {
+                console.error('Error loading events:', err);
+            }
+        }
+        loadEvents();
+    </script>
 
     <footer class="footer">
         <div class="container">
