@@ -130,13 +130,23 @@
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-client.js"></script>
-
     <script>
-        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Supabase Credentials
+        const SUPABASE_URL = "https://enfoikpsxghjbhtnprei.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuZm9pa3BzeGdoamJodG5wcmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTkzMjEsImV4cCI6MjA5NDMzNTMyMX0.DJqi2V9GmjzeAH-sbmrJHzsh4CgEfEW3-jhF6sKILS4";
+
+        let _supabase;
 
         async function loadPortfolio() {
             try {
+                if (typeof window.supabase === 'undefined') {
+                    console.error("Supabase not loaded yet, retrying...");
+                    setTimeout(loadPortfolio, 500);
+                    return;
+                }
+
+                _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
                 const { data: portfolio, error } = await _supabase
                     .from('portfolio')
                     .select('*')
@@ -145,11 +155,17 @@
                 if (error) throw error;
 
                 const container = document.getElementById('portfolio-container');
+                if (!container) return;
                 container.innerHTML = '';
+
+                if (portfolio.length === 0) {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No projects found. Add some from the admin panel!</p>';
+                    return;
+                }
 
                 portfolio.forEach(item => {
                     const card = document.createElement('div');
-                    card.className = 'portfolio-card';
+                    card.className = 'portfolio-card visible'; // Force visible
                     card.dataset.category = item.category;
                     card.innerHTML = `
                         <div class="portfolio-card-img">
@@ -164,18 +180,15 @@
                     `;
                     container.appendChild(card);
                 });
-                
-                // Initialize observer for new items
-                if (typeof obs !== 'undefined') {
-                    document.querySelectorAll('.portfolio-card').forEach(el => obs.observe(el));
-                }
             } catch (err) {
                 console.error('Error loading portfolio:', err);
             }
         }
         
+        // Start loading
         loadPortfolio();
     </script>
+
 
     <section class="stats-section fade-in">
         <div class="container">
