@@ -166,11 +166,14 @@
                         const eventCard = document.createElement('div');
                         eventCard.className = 'event-card visible'; // Force visible
                         eventCard.innerHTML = `
-                            <div class="event-date">
-                                <span class="day">${day}</span>
-                                <span class="month">${month}</span>
+                            <div class="event-image-wrapper" style="position:relative; width:280px; height:100%; overflow:hidden; flex-shrink:0;">
+                                <img src="${event.image_url}" alt="${event.title}" style="width:100%; height:100%; object-fit:cover;">
+                                <div class="event-date" style="position:absolute; bottom:0; left:0; min-width:100px; padding:15px; border-radius:0 12px 0 0;">
+                                    <span class="day">${day}</span>
+                                    <span class="month">${month}</span>
+                                </div>
                             </div>
-                            <div class="event-details">
+                            <div class="event-details" style="flex:1; padding:30px;">
                                 <h3>${event.title}</h3>
                                 <p>${event.description}</p>
                                 <div class="event-meta">
