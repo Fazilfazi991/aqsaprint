@@ -143,6 +143,7 @@
                                 <option value="signage">Signage</option>
                                 <option value="vehicle">Vehicle Branding</option>
                                 <option value="printing">Printing Services</option>
+                                <option value="packaging">Packaging</option>
                                 <option value="exhibition">Exhibition & Stall</option>
                                 <option value="branding">Indoor/Outdoor Branding</option>
                             </select>
@@ -156,11 +157,16 @@
                     
                     <div class="form-group">
                         <label>Project Image *</label>
-                        <label class="file-upload-area">
-                            <input type="file" name="image" accept="image/*" required>
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h4>Click to upload or drag and drop</h4>
-                            <p>PNG, JPG, or WEBP (Max 5MB)</p>
+                        <label class="file-upload-area" id="portfolio-drop-area">
+                            <input type="file" name="image" accept="image/*" required id="portfolio-image-input">
+                            <div id="portfolio-preview-container" style="display:none; width:100%;">
+                                <img id="portfolio-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
+                            </div>
+                            <div id="portfolio-upload-prompt">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h4>Click to upload or drag and drop</h4>
+                                <p>PNG, JPG, or WEBP (Max 5MB)</p>
+                            </div>
                         </label>
                     </div>
                     
@@ -276,6 +282,20 @@
             });
         });
 
+        // Image Preview Logic
+        document.getElementById('portfolio-image-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('portfolio-preview-img').src = event.target.result;
+                    document.getElementById('portfolio-preview-container').style.display = 'block';
+                    document.getElementById('portfolio-upload-prompt').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         // Portfolio Form
         document.getElementById('portfolioForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -297,8 +317,21 @@
 
                 if (error) throw error;
 
+                // Success feedback
+                const successMsg = document.createElement('div');
+                successMsg.className = 'alert alert-info';
+                successMsg.style.marginTop = '20px';
+                successMsg.innerHTML = `<i class="fas fa-check-circle"></i> Project published! <a href="portfolio.html" target="_blank">View in Portfolio</a>`;
+                this.appendChild(successMsg);
+
                 alert('Project published successfully!');
+                
+                // Reset preview
+                document.getElementById('portfolio-preview-container').style.display = 'none';
+                document.getElementById('portfolio-upload-prompt').style.display = 'block';
                 this.reset();
+                
+                setTimeout(() => successMsg.remove(), 5000);
             } catch (err) {
                 console.error(err);
                 alert('Error: ' + err.message);
