@@ -88,6 +88,7 @@
         .btn-delete { color: #dc3545; background: none; border: none; cursor: pointer; padding: 5px; }
         .btn-delete:hover { color: #bd2130; }
         .table-responsive { overflow-x: auto; }
+        .file-upload-area.success { border-color: #28a745; background-color: #f8fff9; color: #28a745; }
     </style>
 </head>
 <body>
@@ -247,11 +248,16 @@
                     
                     <div class="form-group">
                         <label>Cover Image *</label>
-                        <label class="file-upload-area">
-                            <input type="file" name="image" accept="image/*" required>
-                            <i class="fas fa-images"></i>
-                            <h4>Click to upload event image</h4>
-                            <p>For past events, you can upload a gallery preview image.</p>
+                        <label class="file-upload-area" id="event-drop-area">
+                            <input type="file" name="image" accept="image/*" required id="event-image-input">
+                            <div id="event-preview-container" style="display:none; width:100%;">
+                                <img id="event-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
+                            </div>
+                            <div id="event-upload-prompt">
+                                <i class="fas fa-images"></i>
+                                <h4>Click to upload event image</h4>
+                                <p>For past events, you can upload a gallery preview image.</p>
+                            </div>
                         </label>
                     </div>
                     
@@ -333,7 +339,7 @@
             });
         });
 
-        // Image Preview Logic
+        // Image Preview Logic (Portfolio)
         document.getElementById('portfolio-image-input').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -342,6 +348,22 @@
                     document.getElementById('portfolio-preview-img').src = event.target.result;
                     document.getElementById('portfolio-preview-container').style.display = 'block';
                     document.getElementById('portfolio-upload-prompt').style.display = 'none';
+                    document.getElementById('portfolio-drop-area').classList.remove('success');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Image Preview Logic (Events)
+        document.getElementById('event-image-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('event-preview-img').src = event.target.result;
+                    document.getElementById('event-preview-container').style.display = 'block';
+                    document.getElementById('event-upload-prompt').style.display = 'none';
+                    document.getElementById('event-drop-area').classList.remove('success');
                 };
                 reader.readAsDataURL(file);
             }
@@ -368,7 +390,13 @@
 
                 if (error) throw error;
 
-                // Success feedback
+                // Success visual state
+                document.getElementById('portfolio-drop-area').classList.add('success');
+                document.getElementById('portfolio-upload-prompt').innerHTML = '<h4><i class="fas fa-check-circle"></i> Image Uploaded!</h4>';
+                document.getElementById('portfolio-upload-prompt').style.display = 'block';
+                document.getElementById('portfolio-preview-container').style.display = 'none';
+
+                // Success feedback message
                 const successMsg = document.createElement('div');
                 successMsg.className = 'alert alert-info';
                 successMsg.style.marginTop = '20px';
@@ -418,12 +446,23 @@
 
                 if (error) throw error;
 
+                // Success visual state
+                document.getElementById('event-drop-area').classList.add('success');
+                document.getElementById('event-upload-prompt').innerHTML = '<h4><i class="fas fa-check-circle"></i> Image Uploaded!</h4>';
+                document.getElementById('event-upload-prompt').style.display = 'block';
+                document.getElementById('event-preview-container').style.display = 'none';
+
                 alert('Event added successfully!');
                 
                 // Refresh list
                 loadItems();
                 
                 this.reset();
+                
+                setTimeout(() => {
+                    document.getElementById('event-drop-area').classList.remove('success');
+                    document.getElementById('event-upload-prompt').innerHTML = '<i class="fas fa-images"></i><h4>Click to upload event image</h4><p>For past events, you can upload a gallery preview image.</p>';
+                }, 5000);
             } catch (err) {
                 console.error(err);
                 alert('Error: ' + err.message);
