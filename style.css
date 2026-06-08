@@ -690,10 +690,16 @@ ul {
 
 /* Page Hero (for inner pages) */
 .page-hero {
-    padding: 120px 0 60px;
+    padding: 160px 0 60px;
     background: var(--gray-50);
     text-align: center;
     border-bottom: 1px solid var(--gray-100);
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 160px 0 40px;
+    }
 }
 
 .page-hero-content {
