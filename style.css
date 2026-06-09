@@ -296,6 +296,11 @@ ul {
     .header { top: 34px; }
 }
 
+/* On pages with NO top-bar, reset header to top:0 */
+body:not(:has(.top-bar)) .header {
+    top: 0 !important;
+}
+
 .header.scrolled {
     box-shadow: var(--shadow-md);
 }

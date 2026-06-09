@@ -2,6 +2,34 @@
    AQSA PRINT - CORE JAVASCRIPT
    ============================================ */
 
+/* Compute actual navbar height and apply to hero sections */
+function applyNavbarOffset() {
+    const topBar = document.querySelector('.top-bar');
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    const topBarH = topBar ? topBar.getBoundingClientRect().height : 0;
+    const headerH = header.getBoundingClientRect().height;
+    const totalH = Math.ceil(topBarH + headerH);
+
+    document.documentElement.style.setProperty('--navbar-height', totalH + 'px');
+
+    // Apply to .hero-content (index page)
+    document.querySelectorAll('.hero-content').forEach(el => {
+        el.style.paddingTop = (totalH + 40) + 'px';
+    });
+    // Apply to .about-hero-content and similar inner-page heroes
+    document.querySelectorAll('.about-hero-content, .page-hero-content').forEach(el => {
+        const section = el.closest('section, .about-hero, .page-hero');
+        if (section) section.style.paddingTop = totalH + 'px';
+        el.style.paddingTop = '40px';
+    });
+    // Apply to .page-hero sections directly
+    document.querySelectorAll('.page-hero').forEach(el => {
+        el.style.paddingTop = (totalH + 20) + 'px';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -172,3 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Run navbar offset on load (after fonts/images render) and resize
+window.addEventListener('load', applyNavbarOffset);
+window.addEventListener('resize', applyNavbarOffset);
+// Also run immediately on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', applyNavbarOffset);
