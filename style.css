@@ -273,7 +273,12 @@ ul {
 
 @media (max-width: 768px) {
     .top-bar-right { display: none; }
-    .top-bar-left { gap: 14px; }
+    .top-bar-inner { justify-content: flex-end; }
+    .top-bar-left {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 14px;
+    }
     .top-bar { font-size: 12px; }
 }
 
