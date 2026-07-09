@@ -149,57 +149,181 @@ document.addEventListener('DOMContentLoaded', () => {
         counters.forEach(counter => counterObserver.observe(counter));
     }
 
-    // Chatbot Toggle
-    const chatbotToggle = document.getElementById('chatbotToggle');
-    const chatbotWindow = document.getElementById('chatbotWindow');
+    initAqsaChatbot();
+});
+
+function initAqsaChatbot() {
+    let chatbotToggle = document.getElementById('chatbotToggle');
+    let chatbotWindow = document.getElementById('chatbotWindow');
+
+    if (!chatbotToggle || !chatbotWindow) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = `
+            <div class="chatbot-toggle" id="chatbotToggle" aria-label="Open AQSA assistant" role="button" tabindex="0">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+            </div>
+            <div class="chatbot-window" id="chatbotWindow" aria-live="polite">
+                <div class="chatbot-header">
+                    <div>
+                        <span class="chatbot-kicker">AQSA Print</span>
+                        <h4>AQSA Assistant</h4>
+                    </div>
+                    <button id="closeChat" class="chatbot-close" aria-label="Minimize chat"><i class="fas fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="chatbot-messages" id="chatbotMessages"></div>
+                <div class="chatbot-input">
+                    <input type="text" placeholder="Type your message..." id="chatInput" maxlength="800" autocomplete="off">
+                    <button id="sendMessage" aria-label="Send message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(wrapper);
+        chatbotToggle = document.getElementById('chatbotToggle');
+        chatbotWindow = document.getElementById('chatbotWindow');
+    }
+
     const closeChat = document.getElementById('closeChat');
     const sendMessage = document.getElementById('sendMessage');
     const chatInput = document.getElementById('chatInput');
     const chatbotMessages = document.getElementById('chatbotMessages');
+    const quickReplies = ['Signage', 'Vehicle Branding', 'Printing', 'Packaging', 'Exhibition', 'Get Quote', 'Contact AQSA'];
+    const fallbackReply = "Sorry, I'm having trouble responding right now. You can share your requirement and phone number, and our team will contact you.";
+    const greeting = "Hi! Welcome to AQSA Print \uD83D\uDC4B What are you looking for today \u2014 signage, vehicle branding, printing, packaging, or exhibition work?";
+    const history = [];
+    let isSending = false;
 
-    if (chatbotToggle && chatbotWindow) {
-        chatbotToggle.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
+    if (!chatbotToggle || !chatbotWindow || !chatInput || !sendMessage || !chatbotMessages) return;
+
+    function scrollToBottom() {
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function addMessage(role, text, className) {
+        const message = document.createElement('div');
+        message.className = `message ${className || role}`;
+        message.textContent = text;
+        chatbotMessages.appendChild(message);
+        scrollToBottom();
+        return message;
+    }
+
+    function renderQuickReplies() {
+        const existingReplies = chatbotMessages.querySelector('.chatbot-quick-replies');
+        if (existingReplies) existingReplies.remove();
+
+        const replies = document.createElement('div');
+        replies.className = 'chatbot-quick-replies';
+        quickReplies.forEach((reply) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = reply;
+            button.addEventListener('click', () => handleSend(reply));
+            replies.appendChild(button);
+        });
+        chatbotMessages.appendChild(replies);
+        scrollToBottom();
+    }
+
+    function showTyping() {
+        const typing = document.createElement('div');
+        typing.className = 'message bot chatbot-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chatbotMessages.appendChild(typing);
+        scrollToBottom();
+        return typing;
+    }
+
+    function setSendingState(nextState) {
+        isSending = nextState;
+        sendMessage.disabled = nextState;
+        chatInput.disabled = nextState;
+        chatbotWindow.classList.toggle('is-loading', nextState);
+    }
+
+    async function requestBotReply(text) {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: text,
+                history: history.slice(-14),
+                sourcePage: window.location.pathname
+            })
         });
 
-        if (closeChat) {
-            closeChat.addEventListener('click', () => {
-                chatbotWindow.classList.remove('active');
-            });
+        if (!response.ok) throw new Error('Chat request failed');
+        const data = await response.json();
+        return data.reply || fallbackReply;
+    }
+
+    async function handleSend(value) {
+        const text = (value || chatInput.value || '').trim();
+        if (!text || isSending) return;
+
+        if (text.length > 800) {
+            addMessage('bot', 'Please keep your message under 800 characters so we can respond clearly.', 'bot');
+            return;
         }
 
-        const handleSend = () => {
-            const text = chatInput.value.trim();
-            if (text) {
-                // Add user message
-                const userMsg = document.createElement('div');
-                userMsg.className = 'message user';
-                userMsg.textContent = text;
-                chatbotMessages.appendChild(userMsg);
-                chatInput.value = '';
-                
-                // Scroll to bottom
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        const existingReplies = chatbotMessages.querySelector('.chatbot-quick-replies');
+        if (existingReplies) existingReplies.remove();
 
-                // Simulate bot response (Gemini integration later)
-                setTimeout(() => {
-                    const botMsg = document.createElement('div');
-                    botMsg.className = 'message bot';
-                    botMsg.textContent = "Thanks for your message! Our team will get back to you shortly, or you can use WhatsApp for an immediate response.";
-                    chatbotMessages.appendChild(botMsg);
-                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                }, 1000);
-            }
-        };
+        addMessage('user', text, 'user');
+        history.push({ role: 'user', content: text });
+        chatInput.value = '';
+        setSendingState(true);
+        const typing = showTyping();
 
-        if (sendMessage && chatInput) {
-            sendMessage.addEventListener('click', handleSend);
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleSend();
-            });
+        try {
+            const reply = await requestBotReply(text);
+            typing.remove();
+            addMessage('assistant', reply, 'bot');
+            history.push({ role: 'assistant', content: reply });
+        } catch (error) {
+            console.warn('AQSA chatbot error:', error);
+            typing.remove();
+            addMessage('assistant', fallbackReply, 'bot');
+            history.push({ role: 'assistant', content: fallbackReply });
+        } finally {
+            while (history.length > 15) history.shift();
+            setSendingState(false);
+            chatInput.focus();
         }
     }
-});
+
+    chatbotMessages.innerHTML = '';
+    addMessage('assistant', greeting, 'bot');
+    history.push({ role: 'assistant', content: greeting });
+    renderQuickReplies();
+
+    chatbotToggle.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('active');
+        if (chatbotWindow.classList.contains('active')) {
+            setTimeout(() => chatInput.focus(), 150);
+        }
+    });
+
+    chatbotToggle.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            chatbotToggle.click();
+        }
+    });
+
+    if (closeChat) {
+        closeChat.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+        });
+    }
+
+    sendMessage.addEventListener('click', () => handleSend());
+    chatInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            handleSend();
+        }
+    });
+}
 
 // Run navbar offset on load (after fonts/images render) and resize
 window.addEventListener('load', applyNavbarOffset);

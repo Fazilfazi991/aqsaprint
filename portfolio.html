@@ -42,6 +42,12 @@
         .portfolio-card-tag{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--gradient-light);color:var(--teal-dark);font-size:12px;font-weight:600;margin-bottom:10px}
         .portfolio-card-body h3{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
         .portfolio-card-body p{font-size:14px;color:var(--gray-500);margin:0}
+        .portfolio-state{grid-column:1/-1;text-align:center;padding:56px 24px;border:1px solid var(--gray-100);border-radius:var(--radius-xl);background:linear-gradient(135deg,#fff 0%,#f8fafc 100%);box-shadow:var(--shadow-sm)}
+        .portfolio-state h3{font-size:22px;font-weight:800;color:var(--gray-900);margin:0 0 10px}
+        .portfolio-state p{max-width:520px;margin:0 auto;color:var(--gray-500);line-height:1.7}
+        .portfolio-loading{display:inline-flex;align-items:center;gap:12px;color:var(--teal-dark);font-weight:700}
+        .portfolio-loading::before{content:'';width:18px;height:18px;border:3px solid rgba(45,184,168,.2);border-top-color:var(--teal);border-radius:50%;animation:portfolioSpin .8s linear infinite}
+        @keyframes portfolioSpin{to{transform:rotate(360deg)}}
 
         .stats-section{padding:80px 0;background:var(--gray-50)}
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
@@ -129,59 +135,175 @@
     </section>
 
     <!-- Supabase SDK -->
+    <script src="data/portfolioFallback.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // Supabase Credentials
         const SUPABASE_URL = "https://enfoikpsxghjbhtnprei.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVuZm9pa3BzeGdoamJodG5wcmVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTkzMjEsImV4cCI6MjA5NDMzNTMyMX0.DJqi2V9GmjzeAH-sbmrJHzsh4CgEfEW3-jhF6sKILS4";
+        const PORTFOLIO_TIMEOUT_MS = 5000;
+        const CATEGORY_LABELS = {
+            signage: "Signage",
+            vehicle: "Vehicle Branding",
+            printing: "Printing",
+            packaging: "Packaging",
+            exhibition: "Exhibition",
+            branding: "Branding"
+        };
 
         let _supabase;
 
+        function escapeHTML(value) {
+            return String(value || '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[char]));
+        }
+
+        function normalizeCategory(category) {
+            const value = String(category || '').trim().toLowerCase();
+            if (value.includes('vehicle')) return 'vehicle';
+            if (value.includes('sign')) return 'signage';
+            if (value.includes('print')) return 'printing';
+            if (value.includes('pack')) return 'packaging';
+            if (value.includes('exhibition') || value.includes('stall') || value.includes('rollup')) return 'exhibition';
+            if (value.includes('brand')) return 'branding';
+            return value || 'branding';
+        }
+
+        function normalizePortfolioItems(items) {
+            return (items || [])
+                .map(item => ({
+                    title: item.title,
+                    category: normalizeCategory(item.category),
+                    image: item.image_url || item.image,
+                    description: item.description || item.location || "AQSA Print portfolio project."
+                }))
+                .filter(item => item.title && item.category && item.image);
+        }
+
+        function withTimeout(promise, ms) {
+            let timer;
+            const timeout = new Promise((_, reject) => {
+                timer = setTimeout(() => reject(new Error('Portfolio request timed out')), ms);
+            });
+
+            return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+        }
+
+        function setPortfolioState(type) {
+            const container = document.getElementById('portfolio-container');
+            if (!container) return;
+
+            if (type === 'loading') {
+                container.innerHTML = `
+                    <div class="portfolio-state">
+                        <div class="portfolio-loading">Loading portfolio projects</div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="portfolio-state">
+                    <h3>Our portfolio is being updated.</h3>
+                    <p>Please check back soon.</p>
+                </div>
+            `;
+        }
+
+        function renderPortfolio(items) {
+            const container = document.getElementById('portfolio-container');
+            if (!container) return;
+
+            const portfolioItems = normalizePortfolioItems(items);
+            if (portfolioItems.length === 0) {
+                setPortfolioState('empty');
+                return;
+            }
+
+            container.innerHTML = portfolioItems.map(item => `
+                <div class="portfolio-card visible" data-category="${escapeHTML(item.category)}">
+                    <div class="portfolio-card-img">
+                        <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy">
+                        <div class="portfolio-card-overlay"></div>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <span class="portfolio-card-tag">${escapeHTML(CATEGORY_LABELS[item.category] || item.category)}</span>
+                        <h3>${escapeHTML(item.title)}</h3>
+                        <p>${escapeHTML(item.description)}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            applyPortfolioFilter(activeFilter, false);
+        }
+
+        function renderFallbackPortfolio(reason) {
+            console.warn('Using fallback portfolio data:', reason);
+            const fallbackItems = normalizePortfolioItems(window.AQSA_PORTFOLIO_FALLBACK);
+            if (fallbackItems.length === 0) {
+                setPortfolioState('empty');
+                return;
+            }
+            renderPortfolio(fallbackItems);
+        }
+
+        function applyPortfolioFilter(filter, animate = true) {
+            document.querySelectorAll('.portfolio-card').forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = '';
+                    if (animate) {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'all .4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
         async function loadPortfolio() {
+            setPortfolioState('loading');
+
             try {
                 if (typeof window.supabase === 'undefined') {
-                    console.error("Supabase not loaded yet, retrying...");
-                    setTimeout(loadPortfolio, 500);
-                    return;
+                    throw new Error('Supabase library is unavailable');
                 }
 
                 _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                
-                const { data: portfolio, error } = await _supabase
-                    .from('portfolio')
-                    .select('*')
-                    .order('created_at', { ascending: false });
+
+                const { data: portfolio, error } = await withTimeout(
+                    _supabase
+                        .from('portfolio')
+                        .select('*')
+                        .order('created_at', { ascending: false }),
+                    PORTFOLIO_TIMEOUT_MS
+                );
 
                 if (error) throw error;
 
-                const container = document.getElementById('portfolio-container');
-                if (!container) return;
-                container.innerHTML = '';
-
-                if (portfolio.length === 0) {
-                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No projects found. Add some from the admin panel!</p>';
+                const portfolioItems = normalizePortfolioItems(portfolio);
+                if (portfolioItems.length === 0) {
+                    renderFallbackPortfolio('Supabase returned no portfolio items');
                     return;
                 }
 
-                portfolio.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'portfolio-card visible'; // Force visible
-                    card.dataset.category = item.category;
-                    card.innerHTML = `
-                        <div class="portfolio-card-img">
-                            <img src="${item.image_url}" alt="${item.title}">
-                            <div class="portfolio-card-overlay"></div>
-                        </div>
-                        <div class="portfolio-card-body">
-                            <span class="portfolio-card-tag">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
-                            <h3>${item.title}</h3>
-                            <p>${item.location}</p>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
+                renderPortfolio(portfolioItems);
             } catch (err) {
-                console.error('Error loading portfolio:', err);
+                renderFallbackPortfolio(err);
             }
         }
         
