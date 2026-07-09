@@ -2235,6 +2235,8 @@ body:not(:has(.top-bar)) .header {
     }
     .message {
         max-width: 92%;
+        font-size: 13px;
+        padding: 11px 14px;
     }
 }
 

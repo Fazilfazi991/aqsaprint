@@ -152,7 +152,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initAqsaChatbot();
 });
 
-function initAqsaChatbot() {
+async function loadAqsaChatbotEngine() {
+    const scripts = [
+        'src/data/aqsaKnowledge.js',
+        'src/data/chatFlows.js',
+        'src/utils/chatbotEngine.js'
+    ];
+
+    for (const src of scripts) {
+        if (document.querySelector(`script[src="${src}"]`)) continue;
+        await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.defer = true;
+            script.onload = resolve;
+            script.onerror = () => reject(new Error(`Unable to load ${src}`));
+            document.head.appendChild(script);
+        });
+    }
+}
+
+async function initAqsaChatbot() {
+    try {
+        await loadAqsaChatbotEngine();
+    } catch (error) {
+        console.warn('AQSA chatbot local engine failed to load:', error);
+        return;
+    }
+
     let chatbotToggle = document.getElementById('chatbotToggle');
     let chatbotWindow = document.getElementById('chatbotWindow');
 
@@ -186,13 +213,12 @@ function initAqsaChatbot() {
     const sendMessage = document.getElementById('sendMessage');
     const chatInput = document.getElementById('chatInput');
     const chatbotMessages = document.getElementById('chatbotMessages');
-    const quickReplies = ['Signage', 'Vehicle Branding', 'Printing', 'Packaging', 'Exhibition', 'Get Quote', 'Contact AQSA'];
-    const fallbackReply = "Sorry, I'm having trouble responding right now. You can share your requirement and phone number, and our team will contact you.";
-    const greeting = "Hi! Welcome to AQSA Print \uD83D\uDC4B What are you looking for today \u2014 signage, vehicle branding, printing, packaging, or exhibition work?";
-    const history = [];
+    const knowledge = window.AQSA_KNOWLEDGE;
+    const engine = window.AQSAChatbotEngine;
     let isSending = false;
 
-    if (!chatbotToggle || !chatbotWindow || !chatInput || !sendMessage || !chatbotMessages) return;
+    if (!chatbotToggle || !chatbotWindow || !chatInput || !sendMessage || !chatbotMessages || !knowledge || !engine) return;
+    let chatState = engine.initialState();
 
     function scrollToBottom() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -207,20 +233,23 @@ function initAqsaChatbot() {
         return message;
     }
 
-    function renderQuickReplies() {
+    function renderQuickReplies(replyItems) {
         const existingReplies = chatbotMessages.querySelector('.chatbot-quick-replies');
         if (existingReplies) existingReplies.remove();
 
-        const replies = document.createElement('div');
-        replies.className = 'chatbot-quick-replies';
-        quickReplies.forEach((reply) => {
+        const items = replyItems && replyItems.length ? replyItems : knowledge.quickReplies;
+        if (!items.length) return;
+
+        const repliesContainer = document.createElement('div');
+        repliesContainer.className = 'chatbot-quick-replies';
+        items.forEach((reply) => {
             const button = document.createElement('button');
             button.type = 'button';
             button.textContent = reply;
             button.addEventListener('click', () => handleSend(reply));
-            replies.appendChild(button);
+            repliesContainer.appendChild(button);
         });
-        chatbotMessages.appendChild(replies);
+        chatbotMessages.appendChild(repliesContainer);
         scrollToBottom();
     }
 
@@ -240,20 +269,29 @@ function initAqsaChatbot() {
         chatbotWindow.classList.toggle('is-loading', nextState);
     }
 
-    async function requestBotReply(text) {
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                message: text,
-                history: history.slice(-14),
-                sourcePage: window.location.pathname
-            })
-        });
+    function waitForTypingDelay() {
+        const delay = 400 + Math.floor(Math.random() * 301);
+        return new Promise((resolve) => setTimeout(resolve, delay));
+    }
 
-        if (!response.ok) throw new Error('Chat request failed');
-        const data = await response.json();
-        return data.reply || fallbackReply;
+    async function saveLead(lead) {
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    lead,
+                    sourcePage: window.location.pathname
+                })
+            });
+            if (!response.ok) throw new Error('Lead save request failed');
+            const data = await response.json();
+            if (!data.ok || !data.leadSaved) {
+                console.info('AQSA chat lead captured but not saved to Supabase:', data.reason || 'not_configured');
+            }
+        } catch (error) {
+            console.warn('AQSA chat lead save failed:', error);
+        }
     }
 
     async function handleSend(value) {
@@ -261,7 +299,7 @@ function initAqsaChatbot() {
         if (!text || isSending) return;
 
         if (text.length > 800) {
-            addMessage('bot', 'Please keep your message under 800 characters so we can respond clearly.', 'bot');
+            addMessage('bot', 'Please keep your message under 800 characters so AQSA team can understand it clearly.', 'bot');
             return;
         }
 
@@ -269,32 +307,42 @@ function initAqsaChatbot() {
         if (existingReplies) existingReplies.remove();
 
         addMessage('user', text, 'user');
-        history.push({ role: 'user', content: text });
         chatInput.value = '';
         setSendingState(true);
         const typing = showTyping();
 
         try {
-            const reply = await requestBotReply(text);
+            const result = engine.getBotResponse({
+                userMessage: text,
+                chatState
+            });
+
+            chatState = result.state;
+            await waitForTypingDelay();
             typing.remove();
-            addMessage('assistant', reply, 'bot');
-            history.push({ role: 'assistant', content: reply });
+            addMessage('assistant', result.message, 'bot');
+
+            if (result.quickReplies && result.quickReplies.length) {
+                renderQuickReplies(result.quickReplies);
+            }
+
+            if (result.saveLead && result.lead) {
+                saveLead(result.lead);
+            }
         } catch (error) {
             console.warn('AQSA chatbot error:', error);
             typing.remove();
-            addMessage('assistant', fallbackReply, 'bot');
-            history.push({ role: 'assistant', content: fallbackReply });
+            addMessage('assistant', knowledge.unknownReply, 'bot');
+            renderQuickReplies();
         } finally {
-            while (history.length > 15) history.shift();
             setSendingState(false);
             chatInput.focus();
         }
     }
 
     chatbotMessages.innerHTML = '';
-    addMessage('assistant', greeting, 'bot');
-    history.push({ role: 'assistant', content: greeting });
-    renderQuickReplies();
+    addMessage('assistant', knowledge.greeting, 'bot');
+    renderQuickReplies(knowledge.quickReplies);
 
     chatbotToggle.addEventListener('click', () => {
         chatbotWindow.classList.toggle('active');

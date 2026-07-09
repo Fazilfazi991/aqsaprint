@@ -5,6 +5,11 @@ create table if not exists chat_leads (
   email text,
   company text,
   service_needed text,
+  quantity text,
+  size text,
+  location text,
+  deadline text,
+  artwork_available text,
   message text,
   source_page text,
   created_at timestamptz default now()
