@@ -2009,6 +2009,23 @@ body:not(:has(.top-bar)) .header {
     gap: 16px;
 }
 
+.lead-form-status {
+    margin-top: 14px;
+    font-size: 14px;
+    text-align: center;
+    color: var(--gray-600);
+}
+
+.lead-form-status.success {
+    color: var(--teal-dark);
+    font-weight: 700;
+}
+
+.lead-form-status.error {
+    color: #b91c1c;
+    font-weight: 700;
+}
+
 /* CHATBOT STYLES */
 .chatbot-toggle {
     position: fixed;

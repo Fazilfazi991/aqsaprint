@@ -47,6 +47,9 @@
         .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .form-submit{width:100%;padding:16px;font-size:16px;font-weight:700;background:var(--gradient-primary);color:#fff;border:none;border-radius:var(--radius-lg);cursor:pointer;transition:all .25s ease}
         .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,184,168,.35)}
+        .lead-form-status{margin-top:14px;font-size:14px;text-align:center;color:var(--gray-600)}
+        .lead-form-status.success{color:var(--teal-dark);font-weight:700}
+        .lead-form-status.error{color:#b91c1c;font-weight:700}
 
         .map-section{padding:0 0 100px;background:#fff}
         .map-wrap{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);height:400px}
@@ -149,10 +152,8 @@
                 <div class="contact-form-wrap">
                     <h3>Send Us a Message</h3>
                     <p>Fill in the form and we'll get back to you within 24 hours.</p>
-                    <form action="https://formsubmit.co/info@aqsaprint.com" method="POST">
-                        <input type="hidden" name="_subject" value="New AQSA Print contact message">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://www.aqsaprint.com/thank-you.html">
+                    <form data-lead-form data-lead-source="contact_form">
+                        <input type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
@@ -169,7 +170,7 @@
                         </div>
                         <div class="form-group">
                             <label for="service">Service Needed</label>
-                            <select id="service" name="service">
+                            <select id="service" name="serviceNeeded">
                                 <option value="">Select a service...</option>
                                 <option>Vehicle Branding</option>
                                 <option>Signage</option>
@@ -185,6 +186,7 @@
                             <textarea id="message" name="message" placeholder="Tell us about your project — quantity, size, deadline, etc."></textarea>
                         </div>
                         <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                        <p class="lead-form-status" data-lead-status aria-live="polite"></p>
                     </form>
                 </div>
             </div>

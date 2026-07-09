@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initAqsaChatbot();
+    initAqsaLeadForms();
 });
 
 async function loadAqsaChatbotEngine() {
@@ -276,18 +277,19 @@ async function initAqsaChatbot() {
 
     async function saveLead(lead) {
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    lead,
+                    ...lead,
+                    source: 'chatbot',
                     sourcePage: window.location.pathname
                 })
             });
             if (!response.ok) throw new Error('Lead save request failed');
             const data = await response.json();
-            if (!data.ok || !data.leadSaved) {
-                console.info('AQSA chat lead captured but not saved to Supabase:', data.reason || 'not_configured');
+            if (!data.success) {
+                console.info('AQSA chat lead captured but email/Supabase delivery was not confirmed.');
             }
         } catch (error) {
             console.warn('AQSA chat lead save failed:', error);
@@ -378,3 +380,89 @@ window.addEventListener('load', applyNavbarOffset);
 window.addEventListener('resize', applyNavbarOffset);
 // Also run immediately on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', applyNavbarOffset);
+
+function initAqsaLeadForms() {
+    document.querySelectorAll('form[data-lead-form]').forEach((form) => {
+        const status = form.querySelector('[data-lead-status]');
+        const submitButton = form.querySelector('[type="submit"]');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            if (formData.get('website_url')) {
+                form.reset();
+                if (status) {
+                    status.textContent = 'Thank you. AQSA team will contact you shortly.';
+                    status.className = 'lead-form-status success';
+                }
+                return;
+            }
+
+            const payload = {
+                source: form.dataset.leadSource || 'service_form',
+                formType: form.dataset.leadType || '',
+                sourcePage: window.location.pathname,
+                name: formData.get('name') || '',
+                phone: formData.get('phone') || '',
+                email: formData.get('email') || '',
+                company: formData.get('company') || '',
+                serviceNeeded: formData.get('serviceNeeded') || formData.get('service') || formData.get('service_type') || '',
+                quantity: formData.get('quantity') || '',
+                size: formData.get('size') || '',
+                location: formData.get('location') || '',
+                deadline: formData.get('deadline') || formData.get('timeline') || '',
+                artworkAvailable: formData.get('artworkAvailable') || '',
+                message: formData.get('message') || formData.get('project_details') || ''
+            };
+
+            const quantityDimensions = formData.get('quantity_dimensions');
+            const budgetRange = formData.get('budget_range');
+            const attachment = formData.get('attachment');
+            const extraLines = [];
+            if (quantityDimensions) extraLines.push(`Quantity/Dimensions: ${quantityDimensions}`);
+            if (budgetRange) extraLines.push(`Budget Range: ${budgetRange}`);
+            if (attachment && attachment.name) extraLines.push(`Attachment filename: ${attachment.name}`);
+            if (extraLines.length) {
+                payload.message = [payload.message, ...extraLines].filter(Boolean).join('\n');
+            }
+            if (!payload.serviceNeeded && payload.source === 'contact_form') {
+                payload.serviceNeeded = 'Contact Form';
+            }
+            if (!payload.quantity && quantityDimensions) {
+                payload.quantity = quantityDimensions;
+            }
+
+            if (status) {
+                status.textContent = 'Sending...';
+                status.className = 'lead-form-status';
+            }
+            if (submitButton) submitButton.disabled = true;
+
+            try {
+                const response = await fetch('/api/leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Lead submit failed');
+                }
+                form.reset();
+                if (status) {
+                    status.textContent = 'Thank you. AQSA team will contact you shortly.';
+                    status.className = 'lead-form-status success';
+                }
+            } catch (error) {
+                console.warn('AQSA lead form failed:', error);
+                if (status) {
+                    status.textContent = 'Sorry, something went wrong. Please try again or contact us directly at info@aqsaprint.com.';
+                    status.className = 'lead-form-status error';
+                }
+            } finally {
+                if (submitButton) submitButton.disabled = false;
+            }
+        });
+    });
+}
