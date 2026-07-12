@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "seo:apply": "node scripts/seo-metadata-pass.cjs",
+    "seo:validate": "node scripts/validate-seo.cjs"
+  },
   "dependencies": {
     "nodemailer": "^9.0.3"
   }

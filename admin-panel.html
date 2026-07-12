@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel | AQSA Print</title>
-    <meta name="description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
+    <title>Manage Portfolio | AQSA Print</title>
+    <meta name="description" content="Learn about manage portfolio from AQSA Print in Riyadh, including printing, branding, signage and custom production support.">
     <link rel="canonical" href="https://www.aqsaprint.com/admin-panel">
     <meta name="robots" content="noindex, follow">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Admin Panel | AQSA Print">
-    <meta property="og:description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
-    <meta property="og:url" content="https://www.aqsaprint.com/admin-panel">
-    <meta property="og:image" content="https://www.aqsaprint.com/images/generated/home_hero.png">
     <meta property="og:site_name" content="AQSA Print">
+    <meta property="og:title" content="Manage Portfolio | AQSA Print">
+    <meta property="og:description" content="Learn about manage portfolio from AQSA Print in Riyadh, including printing, branding, signage and custom production support.">
+    <meta property="og:url" content="https://www.aqsaprint.com/admin-panel">
+    <meta property="og:image" content="https://www.aqsaprint.com/images/aqsa-print-social-share.jpg">
+    <meta property="og:locale" content="en_SA">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Admin Panel | AQSA Print">
-    <meta name="twitter:description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
-    <meta name="twitter:image" content="https://www.aqsaprint.com/images/generated/home_hero.png">
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="Manage Portfolio | AQSA Print">
+    <meta name="twitter:description" content="Learn about manage portfolio from AQSA Print in Riyadh, including printing, branding, signage and custom production support.">
+    <meta name="twitter:image" content="https://www.aqsaprint.com/images/aqsa-print-social-share.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -184,7 +182,7 @@
                         <label class="file-upload-area" id="portfolio-drop-area">
                             <input type="file" name="image" accept="image/*" required id="portfolio-image-input">
                             <div id="portfolio-preview-container" style="display:none; width:100%;">
-                                <img id="portfolio-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
+                                <img loading="lazy" id="portfolio-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
                             </div>
                             <div id="portfolio-upload-prompt">
                                 <i class="fas fa-cloud-upload-alt"></i>
@@ -267,7 +265,7 @@
                         <label class="file-upload-area" id="event-drop-area">
                             <input type="file" name="image" accept="image/*" required id="event-image-input">
                             <div id="event-preview-container" style="display:none; width:100%;">
-                                <img id="event-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
+                                <img loading="lazy" id="event-preview-img" src="" style="max-height:200px; border-radius:8px; margin-bottom:10px;">
                             </div>
                             <div id="event-upload-prompt">
                                 <i class="fas fa-images"></i>
@@ -496,7 +494,7 @@
                 const pList = document.getElementById('portfolio-list');
                 pList.innerHTML = portfolio.map(item => `
                     <tr>
-                        <td><img src="${item.image_url}" alt=""></td>
+                        <td><img loading="lazy" src="${item.image_url}" alt=""></td>
                         <td>${item.title}</td>
                         <td>${item.category}</td>
                         <td>
@@ -510,7 +508,7 @@
                 const eList = document.getElementById('events-list');
                 eList.innerHTML = events.map(item => `
                     <tr>
-                        <td><img src="${item.image_url}" alt=""></td>
+                        <td><img loading="lazy" src="${item.image_url}" alt=""></td>
                         <td>${item.title}</td>
                         <td>${item.type}</td>
                         <td>

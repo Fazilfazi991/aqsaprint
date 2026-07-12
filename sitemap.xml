@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.aqsaprint.com/</loc>
+  </url>
+  <url>
     <loc>https://www.aqsaprint.com/3d-signage</loc>
   </url>
   <url>
@@ -11,6 +14,27 @@
   </url>
   <url>
     <loc>https://www.aqsaprint.com/backdrops</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/best-signage-materials-saudi-arabia</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/business-card-printing-riyadh-guide</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/corporate-gift-ideas-saudi-arabia</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/digital-printing-vs-offset-printing</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/exhibition-printing-checklist</loc>
+  </url>
+  <url>
+    <loc>https://www.aqsaprint.com/blog/vehicle-branding-cost-riyadh</loc>
   </url>
   <url>
     <loc>https://www.aqsaprint.com/brand-identity</loc>
@@ -59,9 +83,6 @@
   </url>
   <url>
     <loc>https://www.aqsaprint.com/graphic-design</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/</loc>
   </url>
   <url>
     <loc>https://www.aqsaprint.com/indoor-outdoor-branding</loc>
@@ -158,26 +179,5 @@
   </url>
   <url>
     <loc>https://www.aqsaprint.com/web-design</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/digital-printing-vs-offset-printing</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/vehicle-branding-cost-riyadh</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/best-signage-materials-saudi-arabia</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/business-card-printing-riyadh-guide</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/exhibition-printing-checklist</loc>
-  </url>
-  <url>
-    <loc>https://www.aqsaprint.com/blog/corporate-gift-ideas-saudi-arabia</loc>
   </url>
 </urlset>

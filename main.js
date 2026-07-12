@@ -31,6 +31,10 @@ function applyNavbarOffset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-current-year]').forEach((element) => {
+        element.textContent = new Date().getFullYear();
+    });
+
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
