@@ -19,7 +19,7 @@ Date: 2026-07-12
 | High | Public pages lacked self-referencing canonical tags. | Public HTML routes | Added absolute canonical URLs matching the sitemap. |
 | Medium | Open Graph and Twitter metadata was missing. | Public HTML routes | Added social metadata using page-specific titles/descriptions/images where available. |
 | Medium | Homepage had multiple H1 elements because the Arabic slide used a second H1. | `/` | Converted the secondary slide heading to H2 to preserve visible content while keeping one primary H1. |
-| Medium | Blog architecture did not exist. | `/blog` | Added crawlable blog listing and five useful articles. |
+| Medium | Blog architecture did not exist. | `/blog` | Added crawlable blog listing and six useful articles. |
 | Medium | Blog was missing from primary navigation. | Global nav | Added crawlable Blog links to desktop/mobile navigation and footer links. |
 | Medium | Breadcrumbs were missing on service and content pages. | Service/product pages, blog articles | Added visible breadcrumbs and matching BreadcrumbList JSON-LD. |
 | Low | Internal links used legacy `.html` URLs while clean URLs are enabled. | Many internal links | Normalized key internal links to extensionless paths while preserving existing files. |
@@ -91,4 +91,5 @@ Date: 2026-07-12
 - /blog/vehicle-branding-cost-riyadh
 - /blog/best-signage-materials-saudi-arabia
 - /blog/business-card-printing-riyadh-guide
-- /blog/exhibition-corporate-event-printing-checklist
+- /blog/exhibition-printing-checklist
+- /blog/corporate-gift-ideas-saudi-arabia

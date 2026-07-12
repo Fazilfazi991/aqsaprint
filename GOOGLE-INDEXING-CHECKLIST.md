@@ -42,4 +42,5 @@ Priority 3:
 - https://www.aqsaprint.com/blog/vehicle-branding-cost-riyadh
 - https://www.aqsaprint.com/blog/best-signage-materials-saudi-arabia
 - https://www.aqsaprint.com/blog/business-card-printing-riyadh-guide
-- https://www.aqsaprint.com/blog/exhibition-corporate-event-printing-checklist
+- https://www.aqsaprint.com/blog/exhibition-printing-checklist
+- https://www.aqsaprint.com/blog/corporate-gift-ideas-saudi-arabia

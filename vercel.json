@@ -44,5 +44,12 @@
       "path": "/api/keep-supabase-alive",
       "schedule": "0 8 */3 * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/blog/exhibition-corporate-event-printing-checklist",
+      "destination": "/blog/exhibition-printing-checklist",
+      "permanent": true
+    }
   ]
 }
