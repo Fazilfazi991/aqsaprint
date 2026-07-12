@@ -5,6 +5,13 @@ const root = process.cwd();
 const baseUrl = 'https://www.aqsaprint.com';
 const defaultImage = `${baseUrl}/images/aqsa-print-social-share.jpg`;
 const today = '2026-07-12';
+const primaryPhoneDisplay = '+966 55 668 3044';
+const primaryPhoneHref = '+966556683044';
+const secondaryPhoneDisplay = '+966 50 496 0576';
+const secondaryPhoneHref = '+966504960576';
+const mapShortUrl = 'https://maps.app.goo.gl/suV6JjCMPg9DDnp79?g_st=ic';
+const mapEmbedUrl = 'https://www.google.com/maps?q=AQSA%20Print%20%7C%20Printing%20Press%20%26%20Advertisement%20Riyadh%2C%20Al%20Mutanabbi%2C%20Al%20Malaz%2C%20Riyadh%2012831&output=embed';
+const workshopAddress = 'AQSA Print, Al Mutanabbi, Al Malaz, Riyadh 12831';
 
 const excludeFromSitemap = new Set(['404.html', 'admin-panel.html', 'login.html', 'thank-you.html']);
 const noindexFiles = new Set(['404.html', 'admin-panel.html', 'login.html', 'thank-you.html']);
@@ -360,7 +367,7 @@ function graphFor(file, meta, content) {
       url: `${baseUrl}/`,
       logo: `${baseUrl}/images/logo.png`,
       email: 'info@aqsaprint.com',
-      telephone: '+966556683044'
+      telephone: [primaryPhoneHref, secondaryPhoneHref]
     });
     graph.push({
       '@type': 'WebSite',
@@ -375,9 +382,15 @@ function graphFor(file, meta, content) {
       name: 'AQSA Print',
       url: `${baseUrl}/`,
       image: meta.image || defaultImage,
-      telephone: '+966556683044',
+      telephone: [primaryPhoneHref, secondaryPhoneHref],
       email: 'info@aqsaprint.com',
-      address: { '@type': 'PostalAddress', addressLocality: 'Riyadh', addressCountry: 'SA' }
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Al Mutanabbi, Al Malaz',
+        addressLocality: 'Riyadh',
+        postalCode: '12831',
+        addressCountry: 'SA'
+      }
     });
   }
   if (meta.serviceName && !noindexFiles.has(file)) {
@@ -475,6 +488,23 @@ function updateHomepageContent(content) {
   return content;
 }
 
+function updateContactDetails(content, file) {
+  content = content.replace(/<a href="tel:\+966556683044" class="top-bar-link">\s*<i class="fas fa-phone"><\/i> \+966 55 668 3044\s*<\/a>/g, `<a href="tel:${primaryPhoneHref}" class="top-bar-link">\n                        <i class="fas fa-phone"></i> ${primaryPhoneDisplay}\n                    </a>\n                    <a href="tel:${secondaryPhoneHref}" class="top-bar-link">\n                        <i class="fas fa-mobile-alt"></i> ${secondaryPhoneDisplay}\n                    </a>`);
+  content = content.replace(/<li><i class="fas fa-phone"><\/i><span>\+966 55 668 3044<\/span><\/li>/g, `<li><i class="fas fa-phone"></i><span>${primaryPhoneDisplay}</span></li>\n                        <li><i class="fas fa-mobile-alt"></i><span>${secondaryPhoneDisplay}</span></li>`);
+  content = content.replace(/Or call us directly: \+966 55 668 3044/g, `Or call us directly: ${primaryPhoneDisplay} / ${secondaryPhoneDisplay}`);
+  content = content.replace(/<p class="cta-note"><i class="fas fa-phone"><\/i> (?:Or call us directly: )?\+966 55 668 3044<\/p>/g, `<p class="cta-note"><i class="fas fa-phone"></i> Or call us directly: ${primaryPhoneDisplay} / ${secondaryPhoneDisplay}</p>`);
+
+  if (file === 'contact.html') {
+    content = content.replace(/<a href="tel:\+966556683044" style="text-decoration:none;color:inherit">\s*<div class="contact-card">([\s\S]*?)<\/div>\s*<\/a>/, `<div class="contact-card">$1</div>`);
+    content = content.replace(/<div><h4>Call Us<\/h4><p><a href="tel:\+966556683044">\+966 55 668 3044<\/a><\/p><p>Sun–Thu, 8 AM – 6 PM<\/p><\/div>/, `<div><h4>Call Us</h4><p><a href="tel:${primaryPhoneHref}">${primaryPhoneDisplay}</a></p><p><a href="tel:${secondaryPhoneHref}">${secondaryPhoneDisplay}</a></p><p>Sun-Thu, 8 AM - 6 PM</p></div>`);
+    content = content.replace(/<div><h4>Visit Our Workshop<\/h4><p>Riyadh, Saudi Arabia<\/p><p>By appointment — call ahead<\/p><\/div>/, `<div><h4>Visit Our Workshop</h4><p>${workshopAddress}</p><p><a href="${mapShortUrl}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a></p></div>`);
+    content = content.replace(/<iframe src="[^"]*google\.com\/maps\/embed[^"]*" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"><\/iframe>/, `<iframe src="${mapEmbedUrl}" title="AQSA Print location in Al Malaz, Riyadh" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`);
+    content = content.replace(/<a href="tel:\+966556683044" class="btn btn-primary btn-lg"><i class="fas fa-phone"><\/i> Call Us<\/a>/, `<a href="tel:${primaryPhoneHref}" class="btn btn-primary btn-lg"><i class="fas fa-phone"></i> Call Us</a>\n                <a href="tel:${secondaryPhoneHref}" class="btn btn-secondary btn-lg"><i class="fas fa-mobile-alt"></i> Secondary Mobile</a>`);
+  }
+
+  return content;
+}
+
 function auditRow(file, before, after, meta, inSitemap) {
   const currentTitle = attr(before, /<title>([\s\S]*?)<\/title>/i);
   const currentDescription = attr(before, /<meta\s+name="description"\s+content="([^"]*)"/i);
@@ -501,6 +531,7 @@ for (const file of allFiles) {
   const before = content;
   const meta = metadata[file] || fallbackMeta(file, content);
   if (file === 'index.html') content = updateHomepageContent(content);
+  content = updateContactDetails(content, file);
   content = replaceFirstH1(content, meta.h1);
   content = normalizeFooterYear(content);
   content = addLazyLoading(content);

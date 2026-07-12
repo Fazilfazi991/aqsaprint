@@ -3,15 +3,15 @@
         company: {
             name: "AQSA Print",
             business: "Printing and advertising solutions company",
-            location: "Riyadh, Saudi Arabia",
+            location: "AQSA Print, Al Mutanabbi, Al Malaz, Riyadh 12831",
             serviceArea: "Riyadh and across KSA",
             workingHours: "Sat - Thu, 8am - 8pm"
         },
         contact: {
             // Update AQSA public chatbot contact details here.
-            phone: "+966 55 668 3044",
+            phone: "+966 55 668 3044 / +966 50 496 0576",
             email: "info@aqsaprint.com",
-            location: "Riyadh, Saudi Arabia",
+            location: "AQSA Print, Al Mutanabbi, Al Malaz, Riyadh 12831",
             mainCta: "Share your requirement and our team will contact you with a quote."
         },
         quickReplies: [
