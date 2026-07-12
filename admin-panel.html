@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | AQSA Print</title>
+    <title>Admin Panel | AQSA Print</title>
+    <meta name="description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
+    <link rel="canonical" href="https://www.aqsaprint.com/admin-panel">
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Admin Panel | AQSA Print">
+    <meta property="og:description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
+    <meta property="og:url" content="https://www.aqsaprint.com/admin-panel">
+    <meta property="og:image" content="https://www.aqsaprint.com/images/generated/home_hero.png">
+    <meta property="og:site_name" content="AQSA Print">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Admin Panel | AQSA Print">
+    <meta name="twitter:description" content="Learn about admin panel services and solutions from AQSA Print in Riyadh, Saudi Arabia.">
+    <meta name="twitter:image" content="https://www.aqsaprint.com/images/generated/home_hero.png">
+
+
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -21,7 +37,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg); color: var(--text-main); display: flex; min-height: 100vh; }
-        
+
         /* Sidebar */
         .sidebar { width: 260px; background-color: var(--sidebar); color: var(--white); display: flex; flex-direction: column; }
         .sidebar-header { padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 12px; }
@@ -32,24 +48,24 @@
         .nav-item i { width: 20px; text-align: center; }
         .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.1); }
         .sidebar-footer a { color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 14px; }
-        
+
         /* Main Content */
         .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .topbar { background-color: var(--white); padding: 20px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .topbar h1 { font-size: 24px; font-weight: 600; color: #0f172a; }
         .user-profile { display: flex; align-items: center; gap: 12px; }
         .avatar { width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
-        
+
         /* Dashboard Container */
         .dashboard-container { padding: 32px; max-width: 1200px; width: 100%; margin: 0 auto; }
-        
+
         /* Panels */
         .panel { background-color: var(--white); border-radius: 12px; box-shadow: var(--shadow); padding: 32px; margin-bottom: 24px; display: none; }
         .panel.active { display: block; }
         .panel-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
         .panel-header h2 { font-size: 20px; color: #0f172a; margin-bottom: 8px; }
         .panel-header p { color: var(--text-muted); font-size: 14px; }
-        
+
         /* Forms */
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-weight: 500; margin-bottom: 8px; color: #1e293b; font-size: 14px; }
@@ -57,7 +73,7 @@
         .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45, 184, 168, 0.1); }
         textarea.form-control { resize: vertical; min-height: 120px; }
         select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-        
+
         /* File Upload */
         .file-upload-area { border: 2px dashed var(--border); border-radius: 8px; padding: 40px; text-align: center; background-color: #f8fafc; cursor: pointer; transition: 0.2s; }
         .file-upload-area:hover { border-color: var(--primary); background-color: #f1f5f9; }
@@ -65,11 +81,11 @@
         .file-upload-area h4 { color: #1e293b; margin-bottom: 8px; }
         .file-upload-area p { color: var(--text-muted); font-size: 14px; }
         .file-upload-area input[type="file"] { display: none; }
-        
+
         /* Grid Layout */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
-        
+
         /* Buttons */
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; border: none; font-size: 15px; }
         .btn-primary { background-color: var(--primary); color: white; }
@@ -77,7 +93,7 @@
         .btn-outline { background-color: transparent; border: 1px solid var(--border); color: var(--text-main); }
         .btn-outline:hover { background-color: #f1f5f9; }
         .form-actions { display: flex; justify-content: flex-end; gap: 16px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
-        
+
         /* Alerts */
         .alert { padding: 16px; border-radius: 8px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
         .alert-info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
@@ -108,7 +124,7 @@
                 <i class="fas fa-calendar-alt"></i>
                 Manage Events
             </a>
-            <a class="nav-item" href="index.html">
+            <a class="nav-item" href="/">
                 <i class="fas fa-external-link-alt"></i>
                 View Website
             </a>
@@ -137,7 +153,7 @@
                     <h2>Add New Portfolio Item</h2>
                     <p>Upload new projects to showcase on the portfolio page.</p>
                 </div>
-                
+
                 <form id="portfolioForm">
                     <div class="form-grid">
                         <div class="form-group">
@@ -157,12 +173,12 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Client / Location (Optional)</label>
                         <input type="text" name="location" class="form-control" placeholder="e.g. Retail Mall, Riyadh">
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Project Image *</label>
                         <label class="file-upload-area" id="portfolio-drop-area">
@@ -177,7 +193,7 @@
                             </div>
                         </label>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="button" class="btn btn-outline">Cancel</button>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Publish Project</button>
@@ -213,7 +229,7 @@
                     <h2>Add New Event</h2>
                     <p>Add upcoming events or upload a gallery from a past event.</p>
                 </div>
-                
+
                 <form id="eventForm">
                     <div class="form-grid">
                         <div class="form-group">
@@ -229,7 +245,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Event Date *</label>
@@ -240,12 +256,12 @@
                             <input type="text" name="location" class="form-control" placeholder="e.g. Riyadh International Convention Center">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Event Description</label>
                         <textarea name="description" class="form-control" placeholder="Write a brief description of the event..."></textarea>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Cover Image *</label>
                         <label class="file-upload-area" id="event-drop-area">
@@ -260,7 +276,7 @@
                             </div>
                         </label>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="button" class="btn btn-outline">Cancel</button>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Add Event</button>
@@ -289,7 +305,7 @@
                     </table>
                 </div>
             </div>
-            
+
         </div>
     </main>
 
@@ -400,19 +416,19 @@
                 const successMsg = document.createElement('div');
                 successMsg.className = 'alert alert-info';
                 successMsg.style.marginTop = '20px';
-                successMsg.innerHTML = `<i class="fas fa-check-circle"></i> Project published! <a href="portfolio.html" target="_blank">View in Portfolio</a>`;
+                successMsg.innerHTML = `<i class="fas fa-check-circle"></i> Project published! <a href="/portfolio" target="_blank">View in Portfolio</a>`;
                 this.appendChild(successMsg);
 
                 alert('Project published successfully!');
-                
+
                 // Refresh list
                 loadItems();
-                
+
                 // Reset preview
                 document.getElementById('portfolio-preview-container').style.display = 'none';
                 document.getElementById('portfolio-upload-prompt').style.display = 'block';
                 this.reset();
-                
+
                 setTimeout(() => successMsg.remove(), 5000);
             } catch (err) {
                 console.error(err);
@@ -453,12 +469,12 @@
                 document.getElementById('event-preview-container').style.display = 'none';
 
                 alert('Event added successfully!');
-                
+
                 // Refresh list
                 loadItems();
-                
+
                 this.reset();
-                
+
                 setTimeout(() => {
                     document.getElementById('event-drop-area').classList.remove('success');
                     document.getElementById('event-upload-prompt').innerHTML = '<i class="fas fa-images"></i><h4>Click to upload event image</h4><p>For past events, you can upload a gallery preview image.</p>';
