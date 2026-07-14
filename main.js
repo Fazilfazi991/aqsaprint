@@ -30,6 +30,171 @@ function applyNavbarOffset() {
     });
 }
 
+const AQSA_CHATBOT_STORAGE_KEY = 'aqsa_chatbot_submission_state';
+const AQSA_FORM_SUBMIT_URL = 'https://formsubmit.co/ajax/info@aqsaprint.com';
+const AQSA_QUOTE_MAX_FILE_SIZE = 5 * 1024 * 1024;
+const AQSA_ALLOWED_FILE_EXTENSIONS = new Set(['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx', 'ai', 'eps']);
+const AQSA_ALLOWED_FILE_TYPES = new Set([
+    'application/pdf',
+    'image/jpeg',
+    'image/png',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/postscript',
+    'application/illustrator',
+    'application/octet-stream'
+]);
+
+function isAqsaDevelopmentHost() {
+    return ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+}
+
+function safeJsonParse(value, fallback) {
+    try {
+        return value ? JSON.parse(value) : fallback;
+    } catch (error) {
+        if (isAqsaDevelopmentHost()) {
+            console.warn('AQSA chatbot storage contained invalid JSON.');
+        }
+        return fallback;
+    }
+}
+
+function getStoredChatbotSubmissionState() {
+    const fallback = {
+        messages: [],
+        capturedContactDetails: {},
+        detectedRequirements: {},
+        lastMessageAt: ''
+    };
+
+    if (window.AQSA_CHATBOT_SUBMISSION_STATE) {
+        return {
+            ...fallback,
+            ...window.AQSA_CHATBOT_SUBMISSION_STATE,
+            messages: Array.isArray(window.AQSA_CHATBOT_SUBMISSION_STATE.messages) ? window.AQSA_CHATBOT_SUBMISSION_STATE.messages : []
+        };
+    }
+
+    try {
+        return {
+            ...fallback,
+            ...safeJsonParse(sessionStorage.getItem(AQSA_CHATBOT_STORAGE_KEY), fallback)
+        };
+    } catch (error) {
+        return fallback;
+    }
+}
+
+function persistChatbotSubmissionState(state) {
+    const safeState = {
+        messages: Array.isArray(state.messages) ? state.messages.slice(-40) : [],
+        capturedContactDetails: state.capturedContactDetails || {},
+        detectedRequirements: state.detectedRequirements || {},
+        lastMessageAt: state.lastMessageAt || ''
+    };
+    window.AQSA_CHATBOT_SUBMISSION_STATE = safeState;
+    try {
+        sessionStorage.setItem(AQSA_CHATBOT_STORAGE_KEY, JSON.stringify(safeState));
+    } catch (error) {
+        if (isAqsaDevelopmentHost()) {
+            console.warn('AQSA chatbot state could not be stored.');
+        }
+    }
+}
+
+function extractRequirementHints(text) {
+    const value = String(text || '');
+    return {
+        quantity: (value.match(/\b\d+\s*(?:pcs|pieces|units|cards|stickers|banners|boxes|vehicles|cars|vans|trucks)?\b/i) || [''])[0],
+        dimensions: (value.match(/\b\d+(?:\.\d+)?\s*(?:x|by)\s*\d+(?:\.\d+)?\s*(?:cm|mm|m|meter|meters|ft|feet|inch|inches)?\b/i) || [''])[0],
+        timeline: (value.match(/\b(?:today|tomorrow|urgent|asap|this week|next week|within\s+\d+\s+(?:day|days|week|weeks))\b/i) || [''])[0],
+        budget: (value.match(/\b(?:sar|rs|aed|budget)\s*[\d,]+|[\d,]+\s*(?:sar|rs|aed)\b/i) || [''])[0],
+        material: (value.match(/\b(?:matte|gloss|vinyl|acrylic|metal|paper|canvas|fabric|foam|aluminium|stainless|lamination)\b/i) || [''])[0]
+    };
+}
+
+function compactObject(object) {
+    return Object.fromEntries(Object.entries(object || {}).filter(([, value]) => {
+        if (value == null) return false;
+        if (typeof value === 'string') return value.trim() !== '';
+        if (typeof value === 'object') return Object.keys(value).length > 0;
+        return true;
+    }));
+}
+
+function buildChatbotSummary({ state, formValues }) {
+    // For a true AI-generated summary later, call a secure backend/serverless endpoint here;
+    // do not expose AI provider keys in browser JavaScript.
+    const captured = compactObject({
+        ...(state.capturedContactDetails || {}),
+        name: formValues.name || state.capturedContactDetails?.name,
+        phone: formValues.phone || state.capturedContactDetails?.phone,
+        email: formValues.email || state.capturedContactDetails?.email,
+        company: formValues.company || state.capturedContactDetails?.company
+    });
+    const requirements = compactObject({
+        ...(state.detectedRequirements || {}),
+        service: formValues.serviceNeeded || state.detectedRequirements?.service,
+        quantity: formValues.quantity || state.detectedRequirements?.quantity,
+        dimensions: formValues.dimensions || state.detectedRequirements?.dimensions,
+        timeline: formValues.timeline || state.detectedRequirements?.timeline,
+        budget: formValues.budget || state.detectedRequirements?.budget,
+        projectDescription: formValues.projectDescription || state.detectedRequirements?.projectDescription,
+        uploadedFile: formValues.uploadedFile || state.detectedRequirements?.uploadedFile
+    });
+
+    const transcriptMessages = Array.isArray(state.messages) ? state.messages : [];
+    const customerMessages = transcriptMessages.filter((message) => message.role === 'user').map((message) => message.text).filter(Boolean);
+
+    if (!customerMessages.length && !Object.keys(captured).length && !Object.keys(requirements).length) {
+        return 'No chatbot conversation was recorded.';
+    }
+
+    const lines = ['Customer Requirement Summary'];
+    if (captured.name) lines.push(`Name: ${captured.name}`);
+    if (captured.phone) lines.push(`Phone: ${captured.phone}`);
+    if (captured.email) lines.push(`Email: ${captured.email}`);
+    if (captured.company) lines.push(`Company: ${captured.company}`);
+    if (requirements.service) lines.push(`Service: ${requirements.service}`);
+    if (requirements.quantity) lines.push(`Quantity: ${requirements.quantity}`);
+    if (requirements.dimensions) lines.push(`Dimensions: ${requirements.dimensions}`);
+    if (requirements.material) lines.push(`Material/Finish: ${requirements.material}`);
+    if (requirements.timeline) lines.push(`Timeline: ${requirements.timeline}`);
+    if (requirements.budget) lines.push(`Budget: ${requirements.budget}`);
+    if (requirements.deliveryLocation) lines.push(`Delivery Location: ${requirements.deliveryLocation}`);
+    if (requirements.uploadedFile) lines.push(`Uploaded/Reference File: ${requirements.uploadedFile}`);
+    if (requirements.projectDescription) lines.push(`Project Description: ${requirements.projectDescription}`);
+    if (customerMessages.length) {
+        lines.push(`Conversation Summary: ${customerMessages.slice(-4).join(' | ')}`);
+    } else {
+        lines.push('Conversation Summary: No chatbot conversation was recorded.');
+    }
+    return lines.join('\n');
+}
+
+function getChatbotSubmissionData(formValues = {}) {
+    const state = getStoredChatbotSubmissionState();
+    const storedMessages = Array.isArray(state.messages) ? state.messages : [];
+    const hasCustomerMessage = storedMessages.some((message) => message.role === 'user');
+    const messages = hasCustomerMessage ? storedMessages : [];
+    const transcript = messages.length
+        ? messages.map((message) => `[${message.at || ''}] ${message.role}: ${message.text}`).join('\n')
+        : 'No transcript available.';
+    const summary = buildChatbotSummary({ state, formValues });
+
+    return {
+        summary,
+        transcript,
+        messageCount: messages.length,
+        lastMessageAt: state.lastMessageAt || '',
+        capturedContactDetails: compactObject(state.capturedContactDetails || {}),
+        detectedRequirements: compactObject(state.detectedRequirements || {})
+    };
+}
+
+window.getChatbotSubmissionData = getChatbotSubmissionData;
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-current-year]').forEach((element) => {
         element.textContent = new Date().getFullYear();
@@ -224,6 +389,34 @@ async function initAqsaChatbot() {
 
     if (!chatbotToggle || !chatbotWindow || !chatInput || !sendMessage || !chatbotMessages || !knowledge || !engine) return;
     let chatState = engine.initialState();
+    let submissionState = getStoredChatbotSubmissionState();
+
+    function updateStoredChatbotState(extra = {}) {
+        const lead = chatState && chatState.collectedLeadData ? chatState.collectedLeadData : {};
+        const selectedService = chatState && chatState.selectedService ? chatState.selectedService : '';
+        const latestUserText = (submissionState.messages || []).filter((message) => message.role === 'user').map((message) => message.text).join('\n');
+        submissionState = {
+            ...submissionState,
+            ...extra,
+            capturedContactDetails: compactObject({
+                ...(submissionState.capturedContactDetails || {}),
+                name: lead.name,
+                phone: lead.phone,
+                email: lead.email,
+                company: lead.company
+            }),
+            detectedRequirements: compactObject({
+                ...(submissionState.detectedRequirements || {}),
+                service: lead.serviceNeeded || selectedService,
+                quantity: lead.quantity,
+                dimensions: lead.size,
+                timeline: lead.deadline,
+                projectDescription: lead.message,
+                ...extractRequirementHints(latestUserText)
+            })
+        };
+        persistChatbotSubmissionState(submissionState);
+    }
 
     function scrollToBottom() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -234,6 +427,14 @@ async function initAqsaChatbot() {
         message.className = `message ${className || role}`;
         message.textContent = text;
         chatbotMessages.appendChild(message);
+        const storedRole = role === 'assistant' ? 'assistant' : role;
+        const at = new Date().toISOString();
+        submissionState.messages = [
+            ...(Array.isArray(submissionState.messages) ? submissionState.messages : []),
+            { role: storedRole, text: String(text || '').slice(0, 1200), at }
+        ].slice(-40);
+        submissionState.lastMessageAt = at;
+        updateStoredChatbotState();
         scrollToBottom();
         return message;
     }
@@ -324,6 +525,7 @@ async function initAqsaChatbot() {
             });
 
             chatState = result.state;
+            updateStoredChatbotState();
             await waitForTypingDelay();
             typing.remove();
             addMessage('assistant', result.message, 'bot');
@@ -389,12 +591,20 @@ function initAqsaLeadForms() {
     document.querySelectorAll('form[data-lead-form]').forEach((form) => {
         const status = form.querySelector('[data-lead-status]');
         const submitButton = form.querySelector('[type="submit"]');
+        let isSubmitting = false;
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+            if (isSubmitting) return;
+
+            if (form.dataset.leadSource === 'quote_form') {
+                await handleQuoteFormSubmit({ form, status, submitButton, setSubmitting: (value) => { isSubmitting = value; } });
+                return;
+            }
+
             const formData = new FormData(form);
 
-            if (formData.get('website_url')) {
+            if (formData.get('website_url') || formData.get('_honey')) {
                 form.reset();
                 if (status) {
                     status.textContent = 'Thank you. AQSA team will contact you shortly.';
@@ -469,4 +679,184 @@ function initAqsaLeadForms() {
             }
         });
     });
+}
+
+function setLeadStatus(status, message, className) {
+    if (!status) return;
+    status.textContent = message;
+    status.className = `lead-form-status${className ? ` ${className}` : ''}`;
+}
+
+function getFieldValue(form, name) {
+    const field = form.elements[name];
+    return field && typeof field.value === 'string' ? field.value.trim() : '';
+}
+
+function updateHiddenField(form, name, value) {
+    let field = form.querySelector(`input[type="hidden"][name="${name}"]`);
+    if (!field) {
+        field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = name;
+        form.appendChild(field);
+    }
+    field.value = value == null ? '' : String(value);
+}
+
+function validateQuoteForm(form) {
+    const requiredFields = [
+        ['name', 'Please enter your full name.'],
+        ['email', 'Please enter your email address.'],
+        ['phone', 'Please enter your phone number.']
+    ];
+
+    for (const [name, message] of requiredFields) {
+        const field = form.elements[name];
+        if (!field || !String(field.value || '').trim()) {
+            if (field && typeof field.focus === 'function') field.focus();
+            return message;
+        }
+    }
+
+    const email = form.elements.email;
+    if (email && !email.checkValidity()) {
+        email.focus();
+        return 'Please enter a valid email address.';
+    }
+
+    const fileInput = form.elements.attachment;
+    const file = fileInput && fileInput.files && fileInput.files[0];
+    if (file) {
+        const extension = (file.name.split('.').pop() || '').toLowerCase();
+        if (!AQSA_ALLOWED_FILE_EXTENSIONS.has(extension) || (file.type && !AQSA_ALLOWED_FILE_TYPES.has(file.type))) {
+            fileInput.value = '';
+            fileInput.focus();
+            return 'Please upload a PDF, JPG, JPEG, PNG, DOC, DOCX, AI, or EPS file.';
+        }
+        if (file.size > AQSA_QUOTE_MAX_FILE_SIZE) {
+            fileInput.value = '';
+            fileInput.focus();
+            return 'Your file is too large to upload through this form. Please send it directly to info@aqsaprint.com or contact us through WhatsApp.';
+        }
+    }
+
+    return '';
+}
+
+function quoteFormValues(form) {
+    const file = form.elements.attachment && form.elements.attachment.files ? form.elements.attachment.files[0] : null;
+    return {
+        name: getFieldValue(form, 'name'),
+        email: getFieldValue(form, 'email'),
+        phone: getFieldValue(form, 'phone'),
+        company: getFieldValue(form, 'company'),
+        serviceNeeded: getFieldValue(form, 'serviceNeeded'),
+        projectDescription: getFieldValue(form, 'project_details'),
+        quantity: getFieldValue(form, 'quantity_dimensions'),
+        dimensions: getFieldValue(form, 'quantity_dimensions'),
+        timeline: getFieldValue(form, 'timeline'),
+        budget: getFieldValue(form, 'budget_range'),
+        uploadedFile: file ? `${file.name} (${Math.round(file.size / 1024)} KB)` : ''
+    };
+}
+
+function buildQuoteFormData(form) {
+    const values = quoteFormValues(form);
+    const chatData = getChatbotSubmissionData(values);
+    const submittedAt = new Date().toISOString();
+    const sourcePage = window.location.href;
+
+    updateHiddenField(form, 'chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
+    updateHiddenField(form, 'chatbot_transcript', chatData.transcript || 'No transcript available.');
+    updateHiddenField(form, 'chatbot_message_count', chatData.messageCount || 0);
+    updateHiddenField(form, 'chatbot_last_message_at', chatData.lastMessageAt || '');
+    updateHiddenField(form, 'chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
+    updateHiddenField(form, 'chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
+    updateHiddenField(form, 'source_page', sourcePage);
+    updateHiddenField(form, 'submitted_at', submittedAt);
+
+    const formData = new FormData(form);
+    formData.set('_subject', 'New Quote Request - Aqsa Print');
+    formData.set('_template', 'table');
+    formData.set('_captcha', 'false');
+    formData.set('source_page', sourcePage);
+    formData.set('submitted_at', submittedAt);
+    formData.set('chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
+    formData.set('chatbot_transcript', chatData.transcript || 'No transcript available.');
+    formData.set('chatbot_message_count', String(chatData.messageCount || 0));
+    formData.set('chatbot_last_message_at', chatData.lastMessageAt || '');
+    formData.set('chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
+    formData.set('chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
+    return formData;
+}
+
+async function submitFormSubmitRequest(formData, timeoutMs = 20000) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        // FormSubmit may send an activation email to info@aqsaprint.com on the first submission.
+        // The inbox owner must approve it before normal submissions are delivered.
+        return await fetch(AQSA_FORM_SUBMIT_URL, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                Accept: 'application/json'
+            },
+            signal: controller.signal
+        });
+    } finally {
+        window.clearTimeout(timeout);
+    }
+}
+
+async function handleQuoteFormSubmit({ form, status, submitButton, setSubmitting }) {
+    const validationError = validateQuoteForm(form);
+    if (validationError) {
+        setLeadStatus(status, validationError, 'error');
+        return;
+    }
+
+    if (form.elements.website_url && form.elements.website_url.value) return;
+    if (form.elements._honey && form.elements._honey.value) return;
+
+    const originalButtonHtml = submitButton ? submitButton.innerHTML : '';
+    setSubmitting(true);
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending Request...';
+    }
+    setLeadStatus(status, 'Sending Request...', '');
+
+    try {
+        const formData = buildQuoteFormData(form);
+        const response = await submitFormSubmitRequest(formData);
+        const data = await response.json().catch(() => ({}));
+        const succeeded = response.ok && (data.success === true || data.success === 'true' || data.message || Object.keys(data).length === 0);
+
+        if (!succeeded) {
+            throw new Error(`FormSubmit rejected quote request with status ${response.status}`);
+        }
+
+        form.reset();
+        setLeadStatus(status, 'Thank you! Your quotation request has been submitted successfully. Our team will contact you shortly.', 'success');
+    } catch (error) {
+        if (isAqsaDevelopmentHost()) {
+            console.warn('AQSA quote submission failed:', error && error.message ? error.message : error);
+        } else {
+            console.warn('AQSA quote submission failed.');
+        }
+        setLeadStatus(status, 'We couldn’t submit your request right now. Please try again or email info@aqsaprint.com.', 'error');
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonHtml;
+        }
+        setSubmitting(false);
+        return;
+    }
+
+    if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHtml;
+    }
+    setSubmitting(false);
 }
