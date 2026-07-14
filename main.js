@@ -31,7 +31,8 @@ function applyNavbarOffset() {
 }
 
 const AQSA_CHATBOT_STORAGE_KEY = 'aqsa_chatbot_submission_state';
-const AQSA_FORM_SUBMIT_URL = 'https://formsubmit.co/info@aqsaprint.com';
+const AQSA_LEADS_API_URL = '/api/leads.js';
+const AQSA_WHATSAPP_QUOTE_URL = 'https://wa.me/966504960576';
 const AQSA_QUOTE_MAX_FILE_SIZE = 5 * 1024 * 1024;
 const AQSA_ALLOWED_FILE_EXTENSIONS = new Set(['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx', 'ai', 'eps']);
 const AQSA_ALLOWED_FILE_TYPES = new Set([
@@ -600,13 +601,8 @@ function initAqsaLeadForms() {
                     return;
                 }
 
-                const isReady = prepareQuoteNativeSubmit({ form, status, submitButton });
-                if (!isReady) {
-                    event.preventDefault();
-                    return;
-                }
-
-                isSubmitting = true;
+                event.preventDefault();
+                await handleQuoteApiSubmit({ form, status, submitButton, setSubmitting: (value) => { isSubmitting = value; } });
                 return;
             }
 
@@ -773,11 +769,21 @@ function quoteFormValues(form) {
     };
 }
 
-function buildQuoteFormData(form) {
+function buildQuoteApiPayload(form) {
     const values = quoteFormValues(form);
     const chatData = getChatbotSubmissionData(values);
-    const submittedAt = new Date().toISOString();
-    const sourcePage = window.location.href;
+    const file = form.elements.attachment && form.elements.attachment.files ? form.elements.attachment.files[0] : null;
+    const extraLines = [
+        values.projectDescription,
+        values.quantity ? `Quantity/Dimensions: ${values.quantity}` : '',
+        values.timeline ? `Timeline: ${values.timeline}` : '',
+        values.budget ? `Budget Range: ${values.budget}` : '',
+        file ? `Attachment selected: ${file.name} (${Math.round(file.size / 1024)} KB). Customer may need to send artwork separately by email or WhatsApp.` : '',
+        chatData.summary ? `Chatbot Summary:\n${chatData.summary}` : '',
+        chatData.transcript ? `Chatbot Transcript:\n${chatData.transcript}` : '',
+        chatData.capturedContactDetails ? `Chatbot Captured Details: ${JSON.stringify(chatData.capturedContactDetails)}` : '',
+        chatData.detectedRequirements ? `Chatbot Detected Requirements: ${JSON.stringify(chatData.detectedRequirements)}` : ''
+    ].filter(Boolean);
 
     updateHiddenField(form, 'chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
     updateHiddenField(form, 'chatbot_transcript', chatData.transcript || 'No transcript available.');
@@ -785,47 +791,96 @@ function buildQuoteFormData(form) {
     updateHiddenField(form, 'chatbot_last_message_at', chatData.lastMessageAt || '');
     updateHiddenField(form, 'chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
     updateHiddenField(form, 'chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
-    updateHiddenField(form, 'source_page', sourcePage);
-    updateHiddenField(form, 'submitted_at', submittedAt);
+    updateHiddenField(form, 'source_page', window.location.href);
+    updateHiddenField(form, 'submitted_at', new Date().toISOString());
 
-    const formData = new FormData(form);
-    formData.set('_subject', 'New Quote Request - Aqsa Print');
-    formData.set('_template', 'table');
-    formData.set('_captcha', 'false');
-    formData.set('_next', 'https://www.aqsaprint.com/thank-you');
-    formData.set('source_page', sourcePage);
-    formData.set('submitted_at', submittedAt);
-    formData.set('chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
-    formData.set('chatbot_transcript', chatData.transcript || 'No transcript available.');
-    formData.set('chatbot_message_count', String(chatData.messageCount || 0));
-    formData.set('chatbot_last_message_at', chatData.lastMessageAt || '');
-    formData.set('chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
-    formData.set('chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
-    return formData;
+    return {
+        source: 'quote_form',
+        formType: 'Quote Form',
+        sourcePage: window.location.href,
+        name: values.name,
+        phone: values.phone,
+        email: values.email,
+        company: values.company,
+        serviceNeeded: values.serviceNeeded || 'Quote Request',
+        quantity: values.quantity,
+        size: values.dimensions,
+        deadline: values.timeline,
+        artworkAvailable: file ? `Selected: ${file.name}` : '',
+        message: extraLines.join('\n\n'),
+        chatbotSummary: chatData.summary || 'No chatbot conversation was recorded.',
+        chatbotTranscript: chatData.transcript || 'No transcript available.',
+        chatbotMessageCount: String(chatData.messageCount || 0),
+        chatbotLastMessageAt: chatData.lastMessageAt || '',
+        chatbotCapturedDetails: chatData.capturedContactDetails || {},
+        chatbotDetectedRequirements: chatData.detectedRequirements || {}
+    };
 }
 
-function prepareQuoteNativeSubmit({ form, status, submitButton }) {
+async function postQuoteLead(payload, timeoutMs = 20000) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        const response = await fetch(AQSA_LEADS_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+        });
+        const data = await response.json().catch(() => ({}));
+        return { response, data };
+    } finally {
+        window.clearTimeout(timeout);
+    }
+}
+
+function setQuoteFallbackStatus(status) {
+    if (!status) return;
+    status.className = 'lead-form-status error';
+    status.innerHTML = `We couldn’t submit your request right now. Please email <a href="mailto:info@aqsaprint.com">info@aqsaprint.com</a> or send it on <a href="${AQSA_WHATSAPP_QUOTE_URL}" target="_blank" rel="noopener">WhatsApp</a>.`;
+}
+
+async function handleQuoteApiSubmit({ form, status, submitButton, setSubmitting }) {
     const validationError = validateQuoteForm(form);
     if (validationError) {
         setLeadStatus(status, validationError, 'error');
-        return false;
+        return;
     }
 
-    if (form.elements.website_url && form.elements.website_url.value) return false;
-    if (form.elements._honey && form.elements._honey.value) return false;
+    if (form.elements.website_url && form.elements.website_url.value) return;
+    if (form.elements._honey && form.elements._honey.value) return;
 
-    // FormSubmit may send an activation email to info@aqsaprint.com on the first submission.
-    // The inbox owner must approve it before normal submissions are delivered.
-    form.action = AQSA_FORM_SUBMIT_URL;
-    form.method = 'POST';
-    form.enctype = 'multipart/form-data';
-    updateHiddenField(form, '_next', 'https://www.aqsaprint.com/thank-you');
-    buildQuoteFormData(form);
-
+    const originalButtonHtml = submitButton ? submitButton.innerHTML : '';
+    setSubmitting(true);
     if (submitButton) {
         submitButton.disabled = true;
         submitButton.textContent = 'Sending Request...';
     }
     setLeadStatus(status, 'Sending Request...', '');
-    return true;
+
+    try {
+        const payload = buildQuoteApiPayload(form);
+        const { response, data } = await postQuoteLead(payload);
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || `Quote API rejected request with status ${response.status}`);
+        }
+        form.reset();
+        setLeadStatus(status, 'Thank you! Your quotation request has been submitted successfully. Our team will contact you shortly.', 'success');
+    } catch (error) {
+        if (isAqsaDevelopmentHost()) {
+            console.warn('AQSA quote submission failed:', error && error.message ? error.message : error);
+        } else {
+            console.warn('AQSA quote submission failed.');
+        }
+        setQuoteFallbackStatus(status);
+    } finally {
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonHtml;
+        }
+        setSubmitting(false);
+    }
 }

@@ -51,5 +51,19 @@
       "destination": "/blog/exhibition-printing-checklist",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/leads",
+      "destination": "/api/leads.js"
+    },
+    {
+      "source": "/api/chat",
+      "destination": "/api/chat.js"
+    },
+    {
+      "source": "/api/keep-supabase-alive",
+      "destination": "/api/keep-supabase-alive.js"
+    }
   ]
 }
