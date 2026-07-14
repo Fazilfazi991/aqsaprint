@@ -56,38 +56,38 @@
             <div class="quote-form-container" style="max-width: 900px; margin: -100px auto 0; position: relative; z-index: 10;">
                 <form data-lead-form data-lead-source="quote_form" action="https://forminit.com/f/e3ycbbstidx" method="POST" enctype="multipart/form-data" style="background: white; padding: 48px; border-radius: 24px; box-shadow: var(--shadow-xl);">
                     <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
-                    <input type="hidden" name="chatbot_summary">
-                    <input type="hidden" name="chatbot_transcript">
-                    <input type="hidden" name="chatbot_message_count">
-                    <input type="hidden" name="chatbot_last_message_at">
-                    <input type="hidden" name="chatbot_captured_details">
-                    <input type="hidden" name="chatbot_detected_requirements">
-                    <input type="hidden" name="source_page">
-                    <input type="hidden" name="submitted_at">
+                    <input type="hidden" name="fi-text-chatbot-summary">
+                    <input type="hidden" name="fi-text-chatbot-transcript">
+                    <input type="hidden" name="fi-text-chatbot-message-count">
+                    <input type="hidden" name="fi-text-chatbot-last-message-at">
+                    <input type="hidden" name="fi-text-chatbot-captured-details">
+                    <input type="hidden" name="fi-text-chatbot-detected-requirements">
+                    <input type="hidden" name="fi-url-source-page">
+                    <input type="hidden" name="fi-text-submitted-at">
                     <input type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Name (Required)</label>
-                            <input type="text" name="name" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="text" name="fi-sender-fullName" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Email (Required)</label>
-                            <input type="email" name="email" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="email" name="fi-sender-email" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Phone (Required)</label>
-                            <input type="tel" name="phone" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="tel" name="fi-text-phone" required style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Company</label>
-                            <input type="text" name="company" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="text" name="fi-text-company" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                     </div>
                     <div style="margin-bottom: 24px;">
                         <label style="display: block; font-weight: 600; margin-bottom: 8px;">Service Type</label>
-                        <select name="serviceNeeded" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                        <select name="fi-select-service-needed" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                             <option>Printing Services</option>
                             <option>Indoor & Outdoor Branding</option>
                             <option>Vehicle Branding</option>
@@ -101,26 +101,26 @@
                     </div>
                     <div style="margin-bottom: 24px;">
                         <label style="display: block; font-weight: 600; margin-bottom: 8px;">Project Details</label>
-                        <textarea name="project_details" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px; height: 120px;" placeholder="Tell us about your project..."></textarea>
+                        <textarea name="fi-text-project-details" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px; height: 120px;" placeholder="Tell us about your project..."></textarea>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Quantity/Dimensions</label>
-                            <input type="text" name="quantity_dimensions" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="text" name="fi-text-quantity-dimensions" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Timeline</label>
-                            <input type="text" name="timeline" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="text" name="fi-text-timeline" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">Budget Range</label>
-                            <input type="text" name="budget_range" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="text" name="fi-text-budget-range" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                         <div>
                             <label style="display: block; font-weight: 600; margin-bottom: 8px;">File Upload</label>
-                            <input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.ai,.eps,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/postscript" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
+                            <input type="file" name="fi-file-artwork" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.ai,.eps,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/postscript" style="width: 100%; padding: 14px; border: 1px solid var(--gray-200); border-radius: 12px;">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Get My Free Quote</button>

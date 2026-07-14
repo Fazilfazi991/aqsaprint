@@ -697,7 +697,8 @@ function setLeadStatus(status, message, className) {
 }
 
 function getFieldValue(form, name) {
-    const field = form.elements[name];
+    const names = Array.isArray(name) ? name : [name];
+    const field = names.map((fieldName) => form.elements[fieldName]).find(Boolean);
     return field && typeof field.value === 'string' ? field.value.trim() : '';
 }
 
@@ -712,28 +713,41 @@ function updateHiddenField(form, name, value) {
     field.value = value == null ? '' : String(value);
 }
 
+function normalizeE164Phone(value) {
+    const text = String(value || '').trim();
+    if (/^\+\d{8,15}$/.test(text.replace(/\s+/g, ''))) {
+        return text.replace(/\s+/g, '');
+    }
+
+    const digits = text.replace(/\D/g, '');
+    if (/^05\d{8}$/.test(digits)) return `+966${digits.slice(1)}`;
+    if (/^5\d{8}$/.test(digits)) return `+966${digits}`;
+    if (/^9665\d{8}$/.test(digits)) return `+${digits}`;
+    return '';
+}
+
 function validateQuoteForm(form) {
     const requiredFields = [
-        ['name', 'Please enter your full name.'],
-        ['email', 'Please enter your email address.'],
-        ['phone', 'Please enter your phone number.']
+        [['fi-sender-fullName', 'name'], 'Please enter your full name.'],
+        [['fi-sender-email', 'email'], 'Please enter your email address.'],
+        [['fi-text-phone', 'fi-sender-phone', 'phone'], 'Please enter your phone number.']
     ];
 
     for (const [name, message] of requiredFields) {
-        const field = form.elements[name];
+        const field = (Array.isArray(name) ? name : [name]).map((fieldName) => form.elements[fieldName]).find(Boolean);
         if (!field || !String(field.value || '').trim()) {
             if (field && typeof field.focus === 'function') field.focus();
             return message;
         }
     }
 
-    const email = form.elements.email;
+    const email = form.elements['fi-sender-email'] || form.elements.email;
     if (email && !email.checkValidity()) {
         email.focus();
         return 'Please enter a valid email address.';
     }
 
-    const fileInput = form.elements.attachment;
+    const fileInput = form.elements['fi-file-artwork'] || form.elements.attachment;
     const file = fileInput && fileInput.files && fileInput.files[0];
     if (file) {
         const extension = (file.name.split('.').pop() || '').toLowerCase();
@@ -753,18 +767,19 @@ function validateQuoteForm(form) {
 }
 
 function quoteFormValues(form) {
-    const file = form.elements.attachment && form.elements.attachment.files ? form.elements.attachment.files[0] : null;
+    const fileInput = form.elements['fi-file-artwork'] || form.elements.attachment;
+    const file = fileInput && fileInput.files ? fileInput.files[0] : null;
     return {
-        name: getFieldValue(form, 'name'),
-        email: getFieldValue(form, 'email'),
-        phone: getFieldValue(form, 'phone'),
-        company: getFieldValue(form, 'company'),
-        serviceNeeded: getFieldValue(form, 'serviceNeeded'),
-        projectDescription: getFieldValue(form, 'project_details'),
-        quantity: getFieldValue(form, 'quantity_dimensions'),
-        dimensions: getFieldValue(form, 'quantity_dimensions'),
-        timeline: getFieldValue(form, 'timeline'),
-        budget: getFieldValue(form, 'budget_range'),
+        name: getFieldValue(form, ['fi-sender-fullName', 'name']),
+        email: getFieldValue(form, ['fi-sender-email', 'email']),
+        phone: getFieldValue(form, ['fi-text-phone', 'fi-sender-phone', 'phone']),
+        company: getFieldValue(form, ['fi-text-company', 'company']),
+        serviceNeeded: getFieldValue(form, ['fi-select-service-needed', 'serviceNeeded']),
+        projectDescription: getFieldValue(form, ['fi-text-project-details', 'project_details']),
+        quantity: getFieldValue(form, ['fi-text-quantity-dimensions', 'quantity_dimensions']),
+        dimensions: getFieldValue(form, ['fi-text-quantity-dimensions', 'quantity_dimensions']),
+        timeline: getFieldValue(form, ['fi-text-timeline', 'timeline']),
+        budget: getFieldValue(form, ['fi-text-budget-range', 'budget_range']),
         uploadedFile: file ? `${file.name} (${Math.round(file.size / 1024)} KB)` : ''
     };
 }
@@ -772,7 +787,8 @@ function quoteFormValues(form) {
 function buildQuoteForminitData(form) {
     const values = quoteFormValues(form);
     const chatData = getChatbotSubmissionData(values);
-    const file = form.elements.attachment && form.elements.attachment.files ? form.elements.attachment.files[0] : null;
+    const fileInput = form.elements['fi-file-artwork'] || form.elements.attachment;
+    const file = fileInput && fileInput.files ? fileInput.files[0] : null;
     const submittedAt = new Date().toISOString();
     const sourcePage = window.location.href;
     const extraLines = [
@@ -787,14 +803,14 @@ function buildQuoteForminitData(form) {
         chatData.detectedRequirements ? `Chatbot Detected Requirements: ${JSON.stringify(chatData.detectedRequirements)}` : ''
     ].filter(Boolean);
 
-    updateHiddenField(form, 'chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
-    updateHiddenField(form, 'chatbot_transcript', chatData.transcript || 'No transcript available.');
-    updateHiddenField(form, 'chatbot_message_count', chatData.messageCount || 0);
-    updateHiddenField(form, 'chatbot_last_message_at', chatData.lastMessageAt || '');
-    updateHiddenField(form, 'chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
-    updateHiddenField(form, 'chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
-    updateHiddenField(form, 'source_page', sourcePage);
-    updateHiddenField(form, 'submitted_at', submittedAt);
+    updateHiddenField(form, 'fi-text-chatbot-summary', chatData.summary || 'No chatbot conversation was recorded.');
+    updateHiddenField(form, 'fi-text-chatbot-transcript', chatData.transcript || 'No transcript available.');
+    updateHiddenField(form, 'fi-text-chatbot-message-count', chatData.messageCount || 0);
+    updateHiddenField(form, 'fi-text-chatbot-last-message-at', chatData.lastMessageAt || '');
+    updateHiddenField(form, 'fi-text-chatbot-captured-details', JSON.stringify(chatData.capturedContactDetails || {}));
+    updateHiddenField(form, 'fi-text-chatbot-detected-requirements', JSON.stringify(chatData.detectedRequirements || {}));
+    updateHiddenField(form, 'fi-url-source-page', sourcePage);
+    updateHiddenField(form, 'fi-text-submitted-at', submittedAt);
 
     const formData = new FormData(form);
     const message = extraLines.join('\n\n');
@@ -814,7 +830,10 @@ function buildQuoteForminitData(form) {
 
     formData.set('fi-sender-fullName', values.name);
     formData.set('fi-sender-email', values.email);
-    formData.set('fi-sender-phone', values.phone);
+    const normalizedPhone = normalizeE164Phone(values.phone);
+    if (normalizedPhone) formData.set('fi-sender-phone', normalizedPhone);
+    else formData.delete('fi-sender-phone');
+    formData.set('fi-text-phone', values.phone);
     formData.set('fi-text-company', values.company || 'Not provided');
     formData.set('fi-text-service-needed', values.serviceNeeded || 'Quote Request');
     formData.set('fi-text-quantity-dimensions', values.quantity || 'Not provided');
