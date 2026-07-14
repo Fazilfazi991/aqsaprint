@@ -31,7 +31,7 @@ function applyNavbarOffset() {
 }
 
 const AQSA_CHATBOT_STORAGE_KEY = 'aqsa_chatbot_submission_state';
-const AQSA_LEADS_API_URL = '/api/leads.js';
+const AQSA_FORMINIT_FORM_ID = 'e3ycbbstidx';
 const AQSA_WHATSAPP_QUOTE_URL = 'https://wa.me/966504960576';
 const AQSA_QUOTE_MAX_FILE_SIZE = 5 * 1024 * 1024;
 const AQSA_ALLOWED_FILE_EXTENSIONS = new Set(['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx', 'ai', 'eps']);
@@ -769,10 +769,12 @@ function quoteFormValues(form) {
     };
 }
 
-function buildQuoteApiPayload(form) {
+function buildQuoteForminitData(form) {
     const values = quoteFormValues(form);
     const chatData = getChatbotSubmissionData(values);
     const file = form.elements.attachment && form.elements.attachment.files ? form.elements.attachment.files[0] : null;
+    const submittedAt = new Date().toISOString();
+    const sourcePage = window.location.href;
     const extraLines = [
         values.projectDescription,
         values.quantity ? `Quantity/Dimensions: ${values.quantity}` : '',
@@ -791,50 +793,57 @@ function buildQuoteApiPayload(form) {
     updateHiddenField(form, 'chatbot_last_message_at', chatData.lastMessageAt || '');
     updateHiddenField(form, 'chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
     updateHiddenField(form, 'chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
-    updateHiddenField(form, 'source_page', window.location.href);
-    updateHiddenField(form, 'submitted_at', new Date().toISOString());
+    updateHiddenField(form, 'source_page', sourcePage);
+    updateHiddenField(form, 'submitted_at', submittedAt);
 
-    return {
-        source: 'quote_form',
-        formType: 'Quote Form',
-        sourcePage: window.location.href,
-        name: values.name,
-        phone: values.phone,
-        email: values.email,
-        company: values.company,
-        serviceNeeded: values.serviceNeeded || 'Quote Request',
-        quantity: values.quantity,
-        size: values.dimensions,
-        deadline: values.timeline,
-        artworkAvailable: file ? `Selected: ${file.name}` : '',
-        message: extraLines.join('\n\n'),
-        chatbotSummary: chatData.summary || 'No chatbot conversation was recorded.',
-        chatbotTranscript: chatData.transcript || 'No transcript available.',
-        chatbotMessageCount: String(chatData.messageCount || 0),
-        chatbotLastMessageAt: chatData.lastMessageAt || '',
-        chatbotCapturedDetails: chatData.capturedContactDetails || {},
-        chatbotDetectedRequirements: chatData.detectedRequirements || {}
-    };
+    const formData = new FormData(form);
+    const message = extraLines.join('\n\n');
+
+    formData.set('source', 'quote_form');
+    formData.set('form_type', 'Quote Form');
+    formData.set('source_page', sourcePage);
+    formData.set('submitted_at', submittedAt);
+    formData.set('attachment_note', file ? `Selected: ${file.name} (${Math.round(file.size / 1024)} KB)` : 'No file selected');
+    formData.set('message', message);
+    formData.set('chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
+    formData.set('chatbot_transcript', chatData.transcript || 'No transcript available.');
+    formData.set('chatbot_message_count', String(chatData.messageCount || 0));
+    formData.set('chatbot_last_message_at', chatData.lastMessageAt || '');
+    formData.set('chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
+    formData.set('chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
+
+    formData.set('fi-sender-fullName', values.name);
+    formData.set('fi-sender-email', values.email);
+    formData.set('fi-sender-phone', values.phone);
+    formData.set('fi-text-company', values.company || 'Not provided');
+    formData.set('fi-text-service-needed', values.serviceNeeded || 'Quote Request');
+    formData.set('fi-text-quantity-dimensions', values.quantity || 'Not provided');
+    formData.set('fi-text-timeline', values.timeline || 'Not provided');
+    formData.set('fi-text-budget-range', values.budget || 'Not provided');
+    formData.set('fi-text-message', message || 'Quote request submitted from AQSA Print website.');
+    return formData;
 }
 
-async function postQuoteLead(payload, timeoutMs = 20000) {
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
-    try {
-        const response = await fetch(AQSA_LEADS_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify(payload),
-            signal: controller.signal
-        });
-        const data = await response.json().catch(() => ({}));
-        return { response, data };
-    } finally {
-        window.clearTimeout(timeout);
+async function submitQuoteToForminit(formData, timeoutMs = 20000) {
+    if (typeof window.Forminit !== 'function') {
+        throw new Error('Forminit SDK is unavailable');
     }
+
+    const forminit = new window.Forminit();
+    let timeoutId;
+    const timeoutPromise = new Promise((resolve) => {
+        timeoutId = window.setTimeout(() => resolve({ error: { message: 'Submission timed out. Please try again.' } }), timeoutMs);
+    });
+    let result;
+    try {
+        result = await Promise.race([forminit.submit(AQSA_FORMINIT_FORM_ID, formData), timeoutPromise]);
+    } finally {
+        window.clearTimeout(timeoutId);
+    }
+    if (result && result.error) {
+        throw new Error(result.error.message || 'Forminit rejected quote request');
+    }
+    return result;
 }
 
 function setQuoteFallbackStatus(status) {
@@ -862,11 +871,8 @@ async function handleQuoteApiSubmit({ form, status, submitButton, setSubmitting 
     setLeadStatus(status, 'Sending Request...', '');
 
     try {
-        const payload = buildQuoteApiPayload(form);
-        const { response, data } = await postQuoteLead(payload);
-        if (!response.ok || !data.success) {
-            throw new Error(data.message || `Quote API rejected request with status ${response.status}`);
-        }
+        const formData = buildQuoteForminitData(form);
+        await submitQuoteToForminit(formData);
         form.reset();
         setLeadStatus(status, 'Thank you! Your quotation request has been submitted successfully. Our team will contact you shortly.', 'success');
     } catch (error) {
