@@ -875,6 +875,7 @@ async function handleQuoteApiSubmit({ form, status, submitButton, setSubmitting 
         await submitQuoteToForminit(formData);
         form.reset();
         setLeadStatus(status, 'Thank you! Your quotation request has been submitted successfully. Our team will contact you shortly.', 'success');
+        window.location.href = '/thank-you';
     } catch (error) {
         if (isAqsaDevelopmentHost()) {
             console.warn('AQSA quote submission failed:', error && error.message ? error.message : error);
