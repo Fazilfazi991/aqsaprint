@@ -31,8 +31,10 @@ function applyNavbarOffset() {
 }
 
 const AQSA_CHATBOT_STORAGE_KEY = 'aqsa_chatbot_submission_state';
+const AQSA_CHATBOT_SESSION_KEY = 'aqsa_chatbot_session_id';
+const AQSA_CHATBOT_SUBMITTED_SESSION_KEY = 'aqsa_chatbot_submitted_session_id';
 const AQSA_FORMINIT_FORM_ID = 'e3ycbbstidx';
-const AQSA_WHATSAPP_QUOTE_URL = 'https://wa.me/966504960576';
+const AQSA_FORMINIT_ENDPOINT = `https://forminit.com/f/${AQSA_FORMINIT_FORM_ID}`;
 const AQSA_QUOTE_MAX_FILE_SIZE = 5 * 1024 * 1024;
 const AQSA_ALLOWED_FILE_EXTENSIONS = new Set(['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx', 'ai', 'eps']);
 const AQSA_ALLOWED_FILE_TYPES = new Set([
@@ -101,6 +103,34 @@ function persistChatbotSubmissionState(state) {
         if (isAqsaDevelopmentHost()) {
             console.warn('AQSA chatbot state could not be stored.');
         }
+    }
+}
+
+function getChatSessionId() {
+    try {
+        const existing = sessionStorage.getItem(AQSA_CHATBOT_SESSION_KEY);
+        if (existing) return existing;
+        const nextId = `chat_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+        sessionStorage.setItem(AQSA_CHATBOT_SESSION_KEY, nextId);
+        return nextId;
+    } catch (error) {
+        return `chat_${Date.now()}`;
+    }
+}
+
+function markChatbotSessionSubmitted(sessionId) {
+    try {
+        sessionStorage.setItem(AQSA_CHATBOT_SUBMITTED_SESSION_KEY, sessionId);
+    } catch (error) {
+        // Duplicate prevention is best-effort if storage is unavailable.
+    }
+}
+
+function chatbotSessionWasSubmitted(sessionId) {
+    try {
+        return sessionStorage.getItem(AQSA_CHATBOT_SUBMITTED_SESSION_KEY) === sessionId;
+    } catch (error) {
+        return false;
     }
 }
 
@@ -481,25 +511,78 @@ async function initAqsaChatbot() {
         return new Promise((resolve) => setTimeout(resolve, delay));
     }
 
-    async function saveLead(lead) {
-        try {
-            const response = await fetch('/api/leads', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    ...lead,
-                    source: 'chatbot',
-                    sourcePage: window.location.pathname
-                })
-            });
-            if (!response.ok) throw new Error('Lead save request failed');
-            const data = await response.json();
-            if (!data.success) {
-                console.info('AQSA chat lead captured but email/Supabase delivery was not confirmed.');
+    function chatbotLeadHasMinimumDetails(lead) {
+        const hasContact = Boolean(lead && (lead.phone || lead.email));
+        const hasRequirement = Boolean(lead && (lead.serviceNeeded || lead.message || lead.quantity || lead.size));
+        return hasContact && hasRequirement;
+    }
+
+    function buildChatbotLeadFormData(lead) {
+        const sessionId = getChatSessionId();
+        const chatData = getChatbotSubmissionData({
+            name: lead.name,
+            phone: lead.phone,
+            email: lead.email,
+            company: lead.company,
+            serviceNeeded: lead.serviceNeeded,
+            quantity: lead.quantity,
+            dimensions: lead.size,
+            timeline: lead.deadline,
+            projectDescription: lead.message
+        });
+        const submittedAt = new Date().toISOString();
+        const formData = new FormData();
+        const subjectName = String(lead.name || '').replace(/[^\w\s.'-]/g, '').trim().slice(0, 60);
+        const subject = subjectName
+            ? `New Chatbot Enquiry – ${subjectName} – Aqsa Print`
+            : 'New Chatbot Enquiry – Aqsa Print';
+
+        formData.set('fi-text-enquiry-type', 'Chatbot Enquiry');
+        formData.set('fi-text-subject', subject);
+        formData.set('fi-text-chat-session-id', sessionId);
+        formData.set('fi-sender-fullName', lead.name || 'Not provided');
+        formData.set('fi-sender-email', lead.email || '');
+        const normalizedPhone = normalizeE164Phone(lead.phone);
+        if (normalizedPhone) formData.set('fi-sender-phone', normalizedPhone);
+        formData.set('fi-text-phone', lead.phone || 'Not provided');
+        formData.set('fi-text-company', lead.company || 'Not provided');
+        formData.set('fi-text-service', lead.serviceNeeded || 'Not provided');
+        formData.set('fi-text-project-requirement', lead.message || 'Not provided');
+        formData.set('fi-text-quantity', lead.quantity || 'Not provided');
+        formData.set('fi-text-dimensions', lead.size || 'Not provided');
+        formData.set('fi-text-material', chatData.detectedRequirements.material || 'Not provided');
+        formData.set('fi-text-finishing', 'Not provided');
+        formData.set('fi-text-timeline', lead.deadline || chatData.detectedRequirements.timeline || 'Not provided');
+        formData.set('fi-text-budget', chatData.detectedRequirements.budget || 'Not provided');
+        formData.set('fi-text-delivery-location', lead.location || chatData.detectedRequirements.deliveryLocation || 'Not provided');
+        formData.set('fi-text-conversation-summary', chatData.summary || 'No chatbot conversation was recorded.');
+        formData.set('fi-text-chat-transcript', chatData.transcript || 'No transcript available.');
+        formData.set('fi-text-message-count', String(chatData.messageCount || 0));
+        formData.set('fi-text-last-message-at', chatData.lastMessageAt || '');
+        formData.set('fi-url-source-page', window.location.href);
+        formData.set('fi-text-submitted-at', submittedAt);
+        formData.set('fi-text-message', chatData.summary || lead.message || 'Chatbot enquiry submitted from AQSA Print website.');
+        return { formData, sessionId };
+    }
+
+    async function submitChatbotEnquiry(lead) {
+        if (!chatbotLeadHasMinimumDetails(lead)) return false;
+        const sessionId = getChatSessionId();
+        if (chatbotSessionWasSubmitted(sessionId)) return false;
+
+        const { formData } = buildChatbotLeadFormData(lead);
+        const response = await fetch(AQSA_FORMINIT_ENDPOINT, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                Accept: 'application/json'
             }
-        } catch (error) {
-            console.warn('AQSA chat lead save failed:', error);
+        });
+        if (!response.ok) {
+            throw new Error(`Chatbot Forminit request failed with status ${response.status}`);
         }
+        markChatbotSessionSubmitted(sessionId);
+        return true;
     }
 
     async function handleSend(value) {
@@ -536,7 +619,16 @@ async function initAqsaChatbot() {
             }
 
             if (result.saveLead && result.lead) {
-                saveLead(result.lead);
+                try {
+                    addMessage('assistant', 'Sending your enquiry to AQSA team...', 'bot');
+                    const submitted = await submitChatbotEnquiry(result.lead);
+                    if (submitted) {
+                        addMessage('assistant', 'Thank you! Your enquiry has been sent. Our team will contact you shortly.', 'bot');
+                    }
+                } catch (error) {
+                    console.warn('AQSA chatbot enquiry failed:', error);
+                    addMessage('assistant', 'We couldn’t send your enquiry right now. Please try again or contact us on WhatsApp.', 'bot');
+                }
             }
         } catch (error) {
             console.warn('AQSA chatbot error:', error);
@@ -791,7 +883,6 @@ function quoteFormValues(form) {
 
 function buildQuoteForminitData(form) {
     const values = quoteFormValues(form);
-    const chatData = getChatbotSubmissionData(values);
     const fileInput = form.elements['fi-file-artwork'] || form.elements.attachment;
     const file = fileInput && fileInput.files ? fileInput.files[0] : null;
     const submittedAt = new Date().toISOString();
@@ -801,38 +892,24 @@ function buildQuoteForminitData(form) {
         values.quantity ? `Quantity/Dimensions: ${values.quantity}` : '',
         values.timeline ? `Timeline: ${values.timeline}` : '',
         values.budget ? `Budget Range: ${values.budget}` : '',
-        file ? `Attachment selected: ${file.name} (${Math.round(file.size / 1024)} KB). Customer may need to send artwork separately by email or WhatsApp.` : '',
-        chatData.summary ? `Chatbot Summary:\n${chatData.summary}` : '',
-        chatData.transcript ? `Chatbot Transcript:\n${chatData.transcript}` : '',
-        chatData.capturedContactDetails ? `Chatbot Captured Details: ${JSON.stringify(chatData.capturedContactDetails)}` : '',
-        chatData.detectedRequirements ? `Chatbot Detected Requirements: ${JSON.stringify(chatData.detectedRequirements)}` : ''
+        file ? `Uploaded File: ${file.name} (${Math.round(file.size / 1024)} KB)` : '',
+        `Source Page: ${sourcePage}`,
+        `Submitted At: ${submittedAt}`
     ].filter(Boolean);
 
-    updateHiddenField(form, 'fi-text-chatbot-summary', chatData.summary || 'No chatbot conversation was recorded.');
-    updateHiddenField(form, 'fi-text-chatbot-transcript', chatData.transcript || 'No transcript available.');
-    updateHiddenField(form, 'fi-text-chatbot-message-count', chatData.messageCount || 0);
-    updateHiddenField(form, 'fi-text-chatbot-last-message-at', chatData.lastMessageAt || '');
-    updateHiddenField(form, 'fi-text-chatbot-captured-details', JSON.stringify(chatData.capturedContactDetails || {}));
-    updateHiddenField(form, 'fi-text-chatbot-detected-requirements', JSON.stringify(chatData.detectedRequirements || {}));
     updateHiddenField(form, 'fi-url-source-page', sourcePage);
     updateHiddenField(form, 'fi-text-submitted-at', submittedAt);
+    updateHiddenField(form, 'fi-text-enquiry-type', 'Quote Form');
+    updateHiddenField(form, 'fi-text-subject', values.name ? `New Lead Form Enquiry – ${values.name.replace(/[^\w\s.'-]/g, '').trim().slice(0, 60)} – Aqsa Print` : 'New Lead Form Enquiry – Aqsa Print');
 
     const formData = new FormData(form);
     const message = extraLines.join('\n\n');
 
-    formData.set('source', 'quote_form');
-    formData.set('form_type', 'Quote Form');
-    formData.set('source_page', sourcePage);
-    formData.set('submitted_at', submittedAt);
-    formData.set('attachment_note', file ? `Selected: ${file.name} (${Math.round(file.size / 1024)} KB)` : 'No file selected');
-    formData.set('message', message);
-    formData.set('chatbot_summary', chatData.summary || 'No chatbot conversation was recorded.');
-    formData.set('chatbot_transcript', chatData.transcript || 'No transcript available.');
-    formData.set('chatbot_message_count', String(chatData.messageCount || 0));
-    formData.set('chatbot_last_message_at', chatData.lastMessageAt || '');
-    formData.set('chatbot_captured_details', JSON.stringify(chatData.capturedContactDetails || {}));
-    formData.set('chatbot_detected_requirements', JSON.stringify(chatData.detectedRequirements || {}));
-
+    formData.set('fi-text-enquiry-type', 'Quote Form');
+    formData.set('fi-text-subject', values.name ? `New Lead Form Enquiry – ${values.name.replace(/[^\w\s.'-]/g, '').trim().slice(0, 60)} – Aqsa Print` : 'New Lead Form Enquiry – Aqsa Print');
+    formData.set('fi-url-source-page', sourcePage);
+    formData.set('fi-text-submitted-at', submittedAt);
+    formData.set('fi-text-uploaded-file', file ? `${file.name} (${Math.round(file.size / 1024)} KB)` : 'No file selected');
     formData.set('fi-sender-fullName', values.name);
     formData.set('fi-sender-email', values.email);
     const normalizedPhone = normalizeE164Phone(values.phone);
@@ -846,12 +923,6 @@ function buildQuoteForminitData(form) {
     formData.set('fi-text-budget-range', values.budget || 'Not provided');
     formData.set('fi-text-message', message || 'Quote request submitted from AQSA Print website.');
     return formData;
-}
-
-function setQuoteFallbackStatus(status) {
-    if (!status) return;
-    status.className = 'lead-form-status error';
-    status.innerHTML = `We couldn’t submit your request right now. Please email <a href="mailto:info@aqsaprint.com">info@aqsaprint.com</a> or send it on <a href="${AQSA_WHATSAPP_QUOTE_URL}" target="_blank" rel="noopener">WhatsApp</a>.`;
 }
 
 function prepareQuoteForminitSubmit({ form, status, submitButton }) {
