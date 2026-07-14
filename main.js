@@ -601,8 +601,13 @@ function initAqsaLeadForms() {
                     return;
                 }
 
-                event.preventDefault();
-                await handleQuoteApiSubmit({ form, status, submitButton, setSubmitting: (value) => { isSubmitting = value; } });
+                const isReady = prepareQuoteForminitSubmit({ form, status, submitButton });
+                if (!isReady) {
+                    event.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
                 return;
             }
 
@@ -843,70 +848,31 @@ function buildQuoteForminitData(form) {
     return formData;
 }
 
-async function submitQuoteToForminit(formData, timeoutMs = 20000) {
-    if (typeof window.Forminit !== 'function') {
-        throw new Error('Forminit SDK is unavailable');
-    }
-
-    const forminit = new window.Forminit();
-    let timeoutId;
-    const timeoutPromise = new Promise((resolve) => {
-        timeoutId = window.setTimeout(() => resolve({ error: { message: 'Submission timed out. Please try again.' } }), timeoutMs);
-    });
-    let result;
-    try {
-        result = await Promise.race([forminit.submit(AQSA_FORMINIT_FORM_ID, formData), timeoutPromise]);
-    } finally {
-        window.clearTimeout(timeoutId);
-    }
-    if (result && result.error) {
-        throw new Error(result.error.message || 'Forminit rejected quote request');
-    }
-    return result;
-}
-
 function setQuoteFallbackStatus(status) {
     if (!status) return;
     status.className = 'lead-form-status error';
     status.innerHTML = `We couldn’t submit your request right now. Please email <a href="mailto:info@aqsaprint.com">info@aqsaprint.com</a> or send it on <a href="${AQSA_WHATSAPP_QUOTE_URL}" target="_blank" rel="noopener">WhatsApp</a>.`;
 }
 
-async function handleQuoteApiSubmit({ form, status, submitButton, setSubmitting }) {
+function prepareQuoteForminitSubmit({ form, status, submitButton }) {
     const validationError = validateQuoteForm(form);
     if (validationError) {
         setLeadStatus(status, validationError, 'error');
-        return;
+        return false;
     }
 
-    if (form.elements.website_url && form.elements.website_url.value) return;
-    if (form.elements._honey && form.elements._honey.value) return;
+    if (form.elements.website_url && form.elements.website_url.value) return false;
+    if (form.elements._honey && form.elements._honey.value) return false;
 
-    const originalButtonHtml = submitButton ? submitButton.innerHTML : '';
-    setSubmitting(true);
+    buildQuoteForminitData(form);
+    form.action = `https://forminit.com/f/${AQSA_FORMINIT_FORM_ID}`;
+    form.method = 'POST';
+    form.enctype = 'multipart/form-data';
+
     if (submitButton) {
         submitButton.disabled = true;
         submitButton.textContent = 'Sending Request...';
     }
     setLeadStatus(status, 'Sending Request...', '');
-
-    try {
-        const formData = buildQuoteForminitData(form);
-        await submitQuoteToForminit(formData);
-        form.reset();
-        setLeadStatus(status, 'Thank you! Your quotation request has been submitted successfully. Our team will contact you shortly.', 'success');
-        window.location.href = '/thank-you';
-    } catch (error) {
-        if (isAqsaDevelopmentHost()) {
-            console.warn('AQSA quote submission failed:', error && error.message ? error.message : error);
-        } else {
-            console.warn('AQSA quote submission failed.');
-        }
-        setQuoteFallbackStatus(status);
-    } finally {
-        if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonHtml;
-        }
-        setSubmitting(false);
-    }
+    return true;
 }
