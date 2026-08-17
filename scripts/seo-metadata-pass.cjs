@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = process.cwd();
-const baseUrl = 'https://www.aqsaprint.com';
+const baseUrl = 'https://aqsaprint.com';
 const defaultImage = `${baseUrl}/images/aqsa-print-social-share.jpg`;
 const today = '2026-07-12';
 const primaryPhoneDisplay = '+966 55 668 3044';
@@ -94,11 +94,11 @@ function discoverFiles() {
 
 const metadata = {
   'index.html': {
-    title: 'Printing Company in Riyadh | Signage & Branding | AQSA Print',
-    description: 'AQSA Print provides digital and offset printing, signage, vehicle branding, exhibition displays and corporate gifts in Riyadh. Request a quote today.',
-    ogDescription: 'AQSA Print provides digital and offset printing, signage, vehicle branding, exhibition displays and corporate gifts in Riyadh.',
-    twitterDescription: 'Digital and offset printing, signage, vehicle branding, exhibition displays and corporate gifts in Riyadh.',
-    h1: 'Printing, Signage and Branding Solutions in Riyadh',
+    title: 'Best Printing Press in Riyadh, Saudi Arabia | Aqsa Print',
+    description: 'Aqsa Print delivers premium printing, advertising, branding and signage solutions in Riyadh, Saudi Arabia. Request a tailored quote for your project.',
+    ogDescription: 'Aqsa Print delivers premium printing, advertising, branding and signage solutions in Riyadh, Saudi Arabia.',
+    twitterDescription: 'Aqsa Print delivers premium printing, advertising, branding and signage solutions in Riyadh, Saudi Arabia.',
+    h1: 'Transform Your Brand with Premium Printing & Advertising Solutions',
     image: defaultImage,
     kind: 'home'
   },
@@ -367,7 +367,13 @@ function graphFor(file, meta, content) {
       url: `${baseUrl}/`,
       logo: `${baseUrl}/images/logo.png`,
       email: 'info@aqsaprint.com',
-      telephone: [primaryPhoneHref, secondaryPhoneHref]
+      telephone: [primaryPhoneHref, secondaryPhoneHref],
+      sameAs: [
+        'https://youtube.com/@aqsaprint',
+        'https://www.instagram.com/aqsa_print',
+        'https://www.facebook.com/share/1Dsn3aHPf3/?mibextid=wwXIfr',
+        'https://x.com/aqsaprint_ksa'
+      ]
     });
     graph.push({
       '@type': 'WebSite',
@@ -390,6 +396,11 @@ function graphFor(file, meta, content) {
         addressLocality: 'Riyadh',
         postalCode: '12831',
         addressCountry: 'SA'
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Riyadh',
+        containedInPlace: { '@type': 'Country', name: 'Saudi Arabia' }
       }
     });
   }
@@ -483,8 +494,8 @@ function normalizeFooterYear(content) {
 }
 
 function updateHomepageContent(content) {
-  content = content.replace('Transform your brand with <span class="gradient-text">Premium Printing</span> & Advertising Solutions', 'Printing, Signage and Branding Solutions in Riyadh');
-  content = content.replace(/<p class="hero-subtitle">[\s\S]*?<\/p>/, '<p class="hero-subtitle">Digital printing, offset printing, large-format printing, signage, vehicle branding, exhibition displays and corporate gifts for businesses in Riyadh and Saudi Arabia.</p>');
+  content = content.replace(/<span class="hero-badge">[\s\S]*?<\/span>/, '<span class="hero-badge">Printing, Signage &amp; Branding in Riyadh</span>');
+  content = content.replace(/<p class="hero-subtitle">[\s\S]*?<\/p>/, '<p class="hero-subtitle">Aqsa Print delivers professional printing, advertising, branding and signage services for businesses in Riyadh, Saudi Arabia.</p>');
   return content;
 }
 

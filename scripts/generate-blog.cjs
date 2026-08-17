@@ -3,7 +3,7 @@ const path = require('path');
 const articles = require('../data/blogArticles.cjs');
 
 const root = path.resolve(__dirname, '..');
-const baseUrl = 'https://www.aqsaprint.com';
+const baseUrl = 'https://aqsaprint.com';
 const author = 'AQSA Print';
 const logoUrl = `${baseUrl}/images/logo.png`;
 

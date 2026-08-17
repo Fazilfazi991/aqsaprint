@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = process.cwd();
-const baseUrl = 'https://www.aqsaprint.com';
+const baseUrl = 'https://aqsaprint.com';
 const noindexRoutes = new Set(['/404', '/admin-panel', '/login', '/thank-you']);
 
 function read(file) {

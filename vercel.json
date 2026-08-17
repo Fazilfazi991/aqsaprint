@@ -47,6 +47,17 @@
   ],
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.aqsaprint.com"
+        }
+      ],
+      "destination": "https://aqsaprint.com/$1",
+      "permanent": true
+    },
+    {
       "source": "/blog/exhibition-corporate-event-printing-checklist",
       "destination": "/blog/exhibition-printing-checklist",
       "permanent": true

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = process.cwd();
-const baseUrl = 'https://www.aqsaprint.com';
+const baseUrl = 'https://aqsaprint.com';
 const defaultImage = `${baseUrl}/images/generated/home_hero.png`;
 const socialProfiles = [
   'https://youtube.com/@aqsaprint',
@@ -785,13 +785,13 @@ Date: 2026-07-12
 - Routing: root-level HTML files with Vercel \`cleanUrls: true\`; API routes are serverless Node functions under \`/api\`.
 - Rendering: static HTML pages, with some client-side JavaScript for forms, chat, sliders and portfolio loading.
 - Metadata before this pass: mostly per-page title and description only; canonical, Open Graph, Twitter and robots metadata were incomplete.
-- Production domain: \`https://aqsaprint.com/\` redirects to \`https://www.aqsaprint.com/\`; canonical domain is \`https://www.aqsaprint.com\`.
+- Production domain: \`https://aqsaprint.com/\` redirects to \`https://aqsaprint.com/\`; canonical domain is \`https://aqsaprint.com\`.
 
 ## Issues Found and Fixes
 
 | Severity | Issue | Affected URLs | Fix |
 | --- | --- | --- | --- |
-| High | Sitemap used non-www URLs and included changefreq/priority values without a reliable source. | \`/sitemap.xml\` | Regenerated sitemap with canonical \`https://www.aqsaprint.com\` extensionless URLs only. |
+| High | Sitemap used non-www URLs and included changefreq/priority values without a reliable source. | \`/sitemap.xml\` | Regenerated sitemap with canonical \`https://aqsaprint.com\` extensionless URLs only. |
 | High | No robots.txt existed. | \`/robots.txt\` | Added crawl-friendly robots.txt with sitemap reference and private/admin exclusions. |
 | High | Public pages lacked self-referencing canonical tags. | Public HTML routes | Added absolute canonical URLs matching the sitemap. |
 | Medium | Open Graph and Twitter metadata was missing. | Public HTML routes | Added social metadata using page-specific titles/descriptions/images where available. |
